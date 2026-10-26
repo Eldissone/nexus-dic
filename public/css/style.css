@@ -1,0 +1,15 @@
+:root {
+  --color-black: #101114;
+  --color-yellow: #f2d21b;
+  --color-silver: #d7d7d4;
+  --color-white: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: Arial, sans-serif;
+}
