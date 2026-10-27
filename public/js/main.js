@@ -551,6 +551,20 @@
       });
     }
 
-    initHero3dToggle();
-  });
-})();
+    /* ==========================================================================
+       INIT ALL
+       ========================================================================== */
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initBeforeAfterSlider();
+      initSpatialVisualizer();
+      initMaterialsSection();
+      initBimTable();
+      initFaqAccordion();
+      initCadernoPdfModal();
+      initAppointmentModal();
+      initModalsClose();
+      initTelemetryClockAndCursor();
+      initHero3dToggle();
+    });
+  })();
