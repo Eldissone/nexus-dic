@@ -1590,12 +1590,82 @@ section {
 }
 
 @media (max-width: 640px) {
+  #main-header {
+    gap: 0.75rem;
+    padding: 0.5rem 1rem;
+  }
+
+  #main-header > .header-logo-wrap {
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-content: flex-start;
+  }
+
+  #main-header .logo {
+    width: min(52vw, 190px);
+    height: 68px;
+  }
+
+  #main-header .logo img {
+    transform: translateX(-22.4%);
+  }
+
+  .header-contact-pill {
+    flex: 0 0 auto;
+    padding: 9px 16px;
+    font-size: 13px;
+  }
+
   .hero-main-title {
     font-size: 2.8rem;
   }
 
   .hero-villa-img {
     height: 320px;
+  }
+
+  .hero-3d-toggle-bar {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.35rem;
+  }
+
+  .hero-3d-toggle-bar .stage-pill-btn {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 7px 5px;
+    font-size: 10px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .process-light-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .process-light-row > * {
+    min-width: 0;
+  }
+
+  .p-step-num {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .p-step-title h4 {
+    font-size: clamp(1.05rem, 5vw, 1.2rem);
+  }
+
+  .p-step-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
   .metrics-grid-4 {
