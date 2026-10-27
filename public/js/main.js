@@ -1,15 +1,6 @@
-/* ==========================================================================
-   NEXUS ARCHITECTURAL ATELIER — MAIN CLIENT CONTROLLER
-   Before/After Slider, Spatial Visualizer HUD, Materials Filter & Modal,
-   BIM Filter, Technical Dossier PDF Preview, Project Scope Estimator
-   ========================================================================== */
 
 (function () {
   'use strict';
-
-  /* ==========================================================================
-     1. BEFORE / AFTER COMPARISON SLIDER
-     ========================================================================== */
 
   function initBeforeAfterSlider() {
     const stage = document.querySelector('.before-after-stage');
@@ -76,12 +67,12 @@
 
   function initSpatialVisualizer() {
     const mainImg = document.getElementById('viewer-img-target');
-    const camBtns = document.querySelectorAll('.cam-btn');
+    const camBtns = document.querySelectorAll('.cam-pill[data-camera]');
     const lightBtns = document.querySelectorAll('.light-btn');
     const btnZoomIn = document.getElementById('btn-viewer-zoom-in');
     const btnZoomOut = document.getElementById('btn-viewer-zoom-out');
     const btnFullscreen = document.getElementById('btn-viewer-fullscreen');
-    const viewerFrame = document.querySelector('.viewer-viewport-frame');
+    const viewerFrame = document.querySelector('.viewer-viewport-box');
     const readoutFov = document.getElementById('viewer-telemetry-fov');
 
     if (!mainImg) return;
@@ -137,11 +128,17 @@
         const viewData = cameraViews[camKey];
 
         if (viewData) {
-          mainImg.style.opacity = '0';
-          setTimeout(() => {
-            mainImg.src = viewData.src;
-            mainImg.style.opacity = '1';
-          }, 200);
+          mainImg.classList.add('is-changing');
+          mainImg.onload = () => mainImg.classList.remove('is-changing');
+          mainImg.onerror = () => {
+            mainImg.classList.remove('is-changing');
+            console.error(`Unable to load visualizer image: ${viewData.src}`);
+          };
+          mainImg.src = viewData.src;
+          if (mainImg.complete && mainImg.naturalWidth > 0) {
+            mainImg.classList.remove('is-changing');
+          }
+          mainImg.alt = viewData.title;
 
           const hudTitle = document.getElementById('viewer-active-view-title');
           if (hudTitle) hudTitle.textContent = viewData.title;
@@ -158,7 +155,7 @@
         btn.classList.add('active');
 
         const mode = btn.getAttribute('data-light-mode');
-        mainImg.className = 'viewer-main-img';
+        mainImg.classList.remove('light-mode-day', 'light-mode-twilight', 'light-mode-night');
         if (mode === 'day') {
           mainImg.classList.add('light-mode-day');
         } else if (mode === 'twilight') {
@@ -276,9 +273,9 @@
 
         cards.forEach((card) => {
           if (filter === 'all' || card.getAttribute('data-category') === filter) {
-            card.style.display = 'flex';
+              card.classList.remove('is-filtered-out');
           } else {
-            card.style.display = 'none';
+              card.classList.add('is-filtered-out');
           }
         });
       });
@@ -304,9 +301,9 @@
             specsWrap.innerHTML = data.specs
               .map(
                 (s) => `
-                <div style="border-bottom: 1px solid var(--color-border); padding: 0.6rem 0; display: flex; justify-content: space-between; gap: 1rem; font-family: var(--font-mono); font-size: 11px;">
-                  <span style="color: var(--tertiary-blueprint); text-transform: uppercase;">${s.label}:</span>
-                  <span style="color: var(--color-white); font-weight: 600; text-align: right;">${s.value}</span>
+                <div class="material-spec-row">
+                  <span class="material-spec-label">${s.label}:</span>
+                  <span class="material-spec-value">${s.value}</span>
                 </div>
               `
               )
@@ -334,7 +331,7 @@
 
       rows.forEach((row) => {
         const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(query) ? '' : 'none';
+        row.classList.toggle('is-filtered-out', !text.includes(query));
       });
     });
   }
@@ -389,10 +386,15 @@
 
         const pageId = tab.getAttribute('data-page');
         pagePanels.forEach((panel) => {
-          panel.style.display = panel.getAttribute('data-page') === pageId ? 'block' : 'none';
+          panel.classList.toggle('is-active', panel.getAttribute('data-page') === pageId);
         });
       });
     });
+
+    const printButton = modal.querySelector('.btn-print-page');
+    if (printButton) {
+      printButton.addEventListener('click', () => window.print());
+    }
   }
 
   /* ==========================================================================
@@ -448,6 +450,15 @@
       projectType.addEventListener('change', updateCalculations);
     }
     updateCalculations();
+
+    const form = document.getElementById('appointment-form');
+    if (form) {
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        window.alert('Solicitação de orçamento registada com sucesso! A equipa do Nexus Design de Interiores e Construção entrará em contacto nas próximas 24 horas.');
+        modal.classList.remove('active');
+      });
+    }
   }
 
   /* ==========================================================================
@@ -535,15 +546,15 @@
       if (!btnToggle || !container3D || !imgDisplay) return;
 
       btnToggle.addEventListener('click', () => {
-        const is3DActive = container3D.style.display !== 'none';
+        const is3DActive = container3D.classList.contains('is-visible');
         if (is3DActive) {
-          container3D.style.display = 'none';
-          imgDisplay.style.display = 'block';
+          container3D.classList.remove('is-visible');
+          imgDisplay.classList.remove('is-hidden');
           btnToggle.textContent = '3D INTERATIVO (WEBGL)';
           btnToggle.classList.remove('active');
         } else {
-          container3D.style.display = 'block';
-          imgDisplay.style.display = 'none';
+          container3D.classList.add('is-visible');
+          imgDisplay.classList.add('is-hidden');
           btnToggle.textContent = 'RENDER FOTORREALISTA';
           btnToggle.classList.add('active');
           window.dispatchEvent(new Event('resize'));

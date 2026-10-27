@@ -62,6 +62,10 @@
      ========================================================================== */
 
   function initScrollAnimations() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     // 1. Hero Reveal Timeline (Smooth Sky Blue Stagger)
     const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
@@ -96,7 +100,6 @@
       heroTl.from('.hero-cta-pill', {
         y: 20,
         scale: 0.95,
-        opacity: 0,
         duration: 0.7
       }, '-=0.6');
     }
@@ -140,7 +143,6 @@
           toggleActions: 'play none none none'
         },
         y: 40,
-        opacity: 0,
         duration: 0.9,
         ease: 'power3.out'
       });
@@ -155,7 +157,6 @@
           toggleActions: 'play none none none'
         },
         y: 35,
-        opacity: 0,
         duration: 0.8,
         stagger: 0.12,
         ease: 'power3.out'
@@ -171,7 +172,6 @@
           toggleActions: 'play none none none'
         },
         y: 40,
-        opacity: 0,
         duration: 0.9,
         stagger: 0.15,
         ease: 'power3.out'
@@ -187,7 +187,6 @@
           toggleActions: 'play none none none'
         },
         y: 35,
-        opacity: 0,
         duration: 0.8,
         stagger: 0.1,
         ease: 'power3.out'
@@ -203,7 +202,6 @@
           toggleActions: 'play none none none'
         },
         x: -30,
-        opacity: 0,
         duration: 0.7,
         stagger: 0.12,
         ease: 'power3.out'

@@ -68,8 +68,7 @@
             alt="Nexus Design de Interiores e Construção Modern Villa Daylight Render" class="hero-villa-img"
             id="hero-display-img" />
 
-          <div id="hero-3d-canvas-container"
-            style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; background: #ffffff;">
+          <div id="hero-3d-canvas-container">
             <canvas id="hero-3d-canvas"></canvas>
           </div>
           <div class="hero-3d-toggle-bar">
@@ -150,7 +149,7 @@
               europeu, sofás orgânicos modulares e lareiras de design que criam pontos acolhedores de convivência para
               toda a família.
             </p>
-            <button type="button" class="btn-white-pill btn-open-appointment-modal">
+            <button type="button" class="btn-white-pill btn-action btn-open-appointment-modal">
               Solicitar Projeto de Interiores →
             </button>
           </div>
@@ -352,8 +351,7 @@
           <!-- Top Toolbar -->
           <div class="viewer-top-toolbar">
             <div class="viewer-cam-pills">
-              <span
-                style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 0.5rem;">CÂMARAS:</span>
+              <span class="viewer-toolbar-label">VISUALIZAÇÃO:</span>
               <button type="button" class="cam-pill active" data-camera="cam-living-fire">
                 Living &amp; Lareira (Interior)
               </button>
@@ -370,29 +368,21 @@
                 Planta CAD 2D
               </button>
             </div>
-
-            <div class="viewer-cam-pills">
-              <span
-                style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 0.5rem;">ILUMINAÇÃO:</span>
-              <button type="button" class="cam-pill light-btn active" data-light-mode="day">Dia (Solar 6500K)</button>
-              <button type="button" class="cam-pill light-btn" data-light-mode="twilight">Crepúsculo (3200K)</button>
-              <button type="button" class="cam-pill light-btn" data-light-mode="night">Noite (2700K)</button>
-            </div>
           </div>
 
           <!-- Viewport Stage -->
           <div class="viewer-viewport-box">
             <img src="/assets/images/i5.jpg" alt="Visualização 3D Living e Lareira" id="viewer-img-target"
-              class="light-mode-day" />
+              class="viewer-main-img light-mode-day" />
           </div>
 
           <!-- Bottom Telemetry Bar -->
           <div class="viewer-bottom-bar">
-            <span>LOCALIZAÇÃO: <strong>LUANDA, ANGOLA (-8.83833°, 13.23444°)</strong></span>
+            <span>LOCALIZAÇÃO: <strong>LUBANGO, ANGOLA </strong></span>
             <span>LENTE FOV: <strong id="viewer-telemetry-fov">54°</strong></span>
             <span>EXPOSIÇÃO: <strong>+0.0 EV // ISO 100</strong></span>
-            <span>RESOLUÇÃO: <strong>7680 x 4320 (8K ULTRA HD)</strong></span>
-            <span>STATUS: <strong style="color: #16a34a;">BIM VALIDADO</strong></span>
+            <span>RESOLUÇÃO: <strong>7680 x 4320</strong></span>
+            <span>STATUS: <strong class="status-validated">PROJETO VALIDADO</strong></span>
           </div>
 
         </div>
@@ -400,9 +390,6 @@
       </div>
     </section>
 
-    <!-- ==========================================================================
-           SECTION: AXONOMETRIA EXPLODIDA 3D (Structural Assembly)
-           ========================================================================== -->
     <section id="axonometria">
       <div class="container">
 
@@ -422,34 +409,31 @@
 
           <div class="viewer-top-toolbar">
             <div class="viewer-cam-pills">
-              <span
-                style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 0.5rem;">SUBSISTEMAS:</span>
+              <span class="viewer-toolbar-label">SUBSISTEMAS:</span>
               <button type="button" class="cam-pill active" id="btn-axon-wire">WIREFRAME</button>
               <button type="button" class="cam-pill" id="btn-axon-toggle-fallback">CAD ESQUEMÁTICO (2D)</button>
             </div>
-            <div style="font-size: 13px; font-weight: 600; color: var(--color-primary-light);">
+            <div class="axon-toolbar-hint">
               Arraste o slider para separar as camadas 3D em tempo real
             </div>
           </div>
 
-          <div class="viewer-viewport-box" id="axon-canvas-wrap" style="height: 580px; background: #f8fafc;">
+          <div class="viewer-viewport-box axon-viewport" id="axon-canvas-wrap">
             <canvas id="axon-3d-canvas"></canvas>
 
-            <div class="axon-static-layer" style="position: absolute; inset: 0; display: none; background: #ffffff;">
+            <div class="axon-static-layer">
               <img src="/assets/images/axonometria_explodida.jpg" alt="Axonometria Caderno Técnico"
-                style="width: 100%; height: 100%; object-fit: contain;" />
+                class="axon-static-image" />
             </div>
           </div>
 
           <!-- Slider Bar -->
-          <div
-            style="padding: 1.5rem 2rem; background: var(--surface-white); border-top: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; gap: 2rem;">
-            <span style="font-size: 13px; font-weight: 700; color: var(--text-primary);">Nível de Separação
+          <div class="axon-slider-bar">
+            <span class="axon-slider-label">Nível de Separação
               Tridimensional:</span>
             <input type="range" min="0" max="100" value="55" class="custom-range-slider" id="axon-explosion-slider"
-              style="flex-grow: 1;" />
-            <strong id="axon-slider-readout"
-              style="font-size: 15px; color: var(--color-primary-light); min-width: 50px;">55%</strong>
+              />
+            <strong id="axon-slider-readout" class="axon-slider-readout">55%</strong>
           </div>
 
         </div>
@@ -497,11 +481,10 @@
 
           </div>
 
-          <div
-            style="margin-top: 1rem; display: flex; justify-content: space-between; font-size: 12.5px; color: var(--text-muted); font-weight: 500;">
-            <span>REGISTO DE CANTEIRO (ESTRUTURA EXISTENTE)</span>
+          <div class="comparison-caption">
+            <span>ESTRUTURA EXISTENTE</span>
             <span id="split-percentage-readout">50% / 50%</span>
-            <span>MODELO FOTORREALISTA ORTHOGONAL 8K</span>
+            <span>MODELO FOTORREALISTA</span>
           </div>
         </div>
 
@@ -689,8 +672,7 @@
         <div class="cta-box-center">
           <h2>Pronto para transformar seu projeto em uma experiência memorável?</h2>
           <p>
-            Agende uma reunião preliminar com os nossos arquitetos e especialistas em 3D e descubra o verdadeiro
-            potencial do seu imóvel em Angola.
+            Agende uma reunião com o time  e descubra o que podemos criar juntos.
           </p>
           <div class="cta-pill-group">
             <button type="button" class="btn-white-pill btn-open-appointment-modal">
@@ -711,18 +693,17 @@
       <div class="footer-main-grid">
 
         <div class="footer-col">
-          <div class="header-logo-wrap" style="color: var(--text-primary); margin-bottom: 1.25rem;">
-            <div class="logo-symbol" style="border-color: var(--text-primary);">
-              <div
-                style="width: 14px; height: 14px; background: var(--text-primary); position: absolute; right: -3px; bottom: -3px;">
+          <div class="header-logo-wrap footer-logo-wrap">
+            <div class="logo-symbol footer-logo-symbol">
+              <div class="footer-logo-mark">
               </div>
             </div>
             <div>
-              <span class="logo-name" style="color: var(--text-primary);">NEXUS</span>
-              <span class="logo-sub" style="color: var(--text-muted);">DESIGNS DE INTERIORES &amp; CONSTRUÇÃO</span>
+              <span class="logo-name footer-logo-name">NEXUS</span>
+              <span class="logo-sub footer-logo-sub">DESIGNS DE INTERIORES &amp; CONSTRUÇÃO</span>
             </div>
           </div>
-          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 320px;">
+          <p class="footer-description">
             Criamos experiências visuais fotorrealistas e projetos de design de interiores contemporâneo para
             empreendimentos de alto padrão em Angola.
           </p>
@@ -731,7 +712,7 @@
         <div class="footer-col">
           <h4>Navegação</h4>
           <ul class="footer-links">
-            <li><a href="#hero">Sobre o Studio</a></li>
+            <li><a href="#hero">Sobre </a></li>
             <li><a href="#servicos">Especialidades</a></li>
             <li><a href="#interiores">Design de Interiores</a></li>
             <li><a href="#visualizador">Galeria 3D</a></li>
@@ -742,20 +723,19 @@
         <div class="footer-col">
           <h4>Contato Direto</h4>
           <ul class="footer-links">
-            <li><a href="mailto:contato@orthogonal-studio.com">contato@orthogonal-studio.com</a></li>
+            <li><a href="mailto:contato@orthogonal-studio.com">contato@nexus-dic.com</a></li>
             <li><a href="https://wa.me/244923000000" target="_blank" rel="noopener">WhatsApp: +244 923 000 000</a></li>
-            <li><span style="font-size: 14px; color: var(--text-muted);">Sede: Condomínio Golfe 2, Luanda</span></li>
-            <li><span style="font-size: 14px; color: var(--text-muted);">Seg - Sex: 08:30 - 18:00 WAT</span></li>
+            <li><span class="footer-contact-detail">Sede: Lubango, Huíla</span></li>
+            <li><span class="footer-contact-detail">Seg - Sex: 08:30 - 18:00 Horas</span></li>
           </ul>
         </div>
 
         <div class="footer-col">
           <h4>Caderno Técnico</h4>
-          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+          <p class="footer-dossier-description">
             Consulte especificações de materiais, parâmetros BIM e memórias descritivas dos nossos projetos.
           </p>
-          <button type="button" class="stage-pill-btn btn-open-caderno-modal"
-            style="background: var(--surface-subtle); border: 1px solid var(--border-light);">
+          <button type="button" class="stage-pill-btn footer-dossier-button btn-open-caderno-modal">
             Acessar Dossiê PDF
           </button>
         </div>
@@ -778,14 +758,13 @@
     <div class="modal-window">
       <div class="modal-header">
         <div>
-          <span class="section-label" style="margin-bottom: 0.25rem;">ORÇAMENTO PRELIMINAR</span>
+          <span class="section-label modal-section-label">ORÇAMENTO PRELIMINAR</span>
           <h3 id="appointment-modal-title">Fazer Meu Orçamento</h3>
         </div>
         <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
       </div>
 
-      <form class="modal-body"
-        onsubmit="event.preventDefault(); alert('Solicitação de orçamento registada com sucesso! A equipa do Nexus Design de Interiores e Construção entrará em contacto nas próximas 24 horas.'); document.getElementById('modal-technical-appointment').classList.remove('active');">
+      <form class="modal-body" id="appointment-form">
 
         <div class="form-grid-2">
           <div class="form-group">
@@ -815,46 +794,42 @@
           </div>
         </div>
 
-        <div class="form-group"
-          style="background: var(--surface-subtle); padding: 1.5rem; border-radius: 14px; border: 1px solid var(--border-light);">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-            <span class="form-label" style="margin-bottom: 0;">Área Estimada do Projeto:</span>
-            <strong id="calc-area-display" style="font-size: 1.3rem; color: var(--color-primary-light);">450 m²</strong>
+        <div class="form-group estimate-card">
+          <div class="estimate-heading">
+            <span class="form-label estimate-label">Área Estimada do Projeto:</span>
+            <strong id="calc-area-display" class="estimate-area">450 m²</strong>
           </div>
           <input type="range" id="calc-area-range" min="100" max="2500" step="50" value="450"
-            class="custom-range-slider" style="width: 100%;" />
-          <div
-            style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 0.5rem;">
+            class="custom-range-slider estimate-slider" />
+          <div class="estimate-range-labels">
             <span>100 m²</span>
             <span>800 m²</span>
             <span>2500+ m²</span>
           </div>
 
-          <div
-            style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light); display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+          <div class="estimate-results">
             <div>
-              <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Prazo Estimado de
+              <span class="estimate-result-label">Prazo Estimado de
                 Estudo 3D:</span>
-              <div id="calc-est-time" style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700;">~ 6
+              <div id="calc-est-time" class="estimate-result-value">~ 6
                 semanas</div>
             </div>
             <div>
-              <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Entregáveis
+              <span class="estimate-result-label">Entregáveis
                 Previstos:</span>
-              <div id="calc-est-docs" style="font-size: 1.15rem; color: var(--color-primary-light); font-weight: 700;">
+              <div id="calc-est-docs" class="estimate-result-value estimate-docs">
                 12 renders 8K + Dossier BIM</div>
             </div>
           </div>
         </div>
 
-        <div class="form-group" style="margin-top: 1.5rem;">
+        <div class="form-group form-details-group">
           <label class="form-label">Detalhes Adicionais:</label>
           <textarea class="form-control" rows="3"
             placeholder="Indique especificações: design de interiores completo, marcenaria sob medida, lançamento imobiliário..."></textarea>
         </div>
 
-        <button type="submit" class="btn-white-pill"
-          style="width: 100%; background: var(--color-primary-light); color: #ffffff; text-align: center; justify-content: center; margin-top: 1rem;">
+        <button type="submit" class="btn-white-pill btn-action btn-action-primary">
           Solicitar Orçamento &amp; Agendar Demonstração →
         </button>
 
@@ -870,14 +845,13 @@
     <div class="modal-window">
       <div class="modal-header">
         <div>
-          <span class="section-label" style="margin-bottom: 0.25rem;">ARQUIVO TÉCNICO</span>
+          <span class="section-label modal-section-label">ARQUIVO TÉCNICO</span>
           <h3 id="caderno-modal-title">Caderno Técnico — Residência Quilemba</h3>
         </div>
         <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
       </div>
 
-      <div
-        style="background: var(--surface-subtle); padding: 0.75rem 2.25rem; border-bottom: 1px solid var(--border-light); display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <div class="caderno-page-tabs">
         <button type="button" class="cam-pill caderno-page-tab active" data-page="page-1">Pág 01: Implantação</button>
         <button type="button" class="cam-pill caderno-page-tab" data-page="page-2">Pág 02: Axonometria 3D</button>
         <button type="button" class="cam-pill caderno-page-tab" data-page="page-3">Pág 03: Interiores</button>
@@ -885,49 +859,44 @@
       </div>
 
       <div class="modal-body">
-        <div class="caderno-page-view" data-page="page-1" style="display: block;">
-          <div
-            style="border: 1px solid var(--border-light); border-radius: 12px; padding: 1rem; background: #ffffff; text-align: center;">
+        <div class="caderno-page-view is-active" data-page="page-1">
+          <div class="caderno-page-image-frame">
             <img src="/assets/images/i3.jpg" alt="Planta de Implantação"
-              style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
+              class="caderno-page-image" />
           </div>
-          <div
-            style="margin-top: 1rem; font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between;">
+          <div class="caderno-page-caption">
             <span>DESENHO: ARQ-01 // ESCALA 1:100</span>
             <span>PROPRIETÁRIO: DR. EVARISTO CORREIA</span>
           </div>
         </div>
 
-        <div class="caderno-page-view" data-page="page-2" style="display: none;">
-          <div
-            style="border: 1px solid var(--border-light); border-radius: 12px; padding: 1rem; background: #ffffff; text-align: center;">
+        <div class="caderno-page-view" data-page="page-2">
+          <div class="caderno-page-image-frame">
             <img src="/assets/images/axonometria_explodida.jpg" alt="Axonometria Explodida"
-              style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
+              class="caderno-page-image" />
           </div>
         </div>
 
-        <div class="caderno-page-view" data-page="page-3" style="display: none;">
-          <div
-            style="border: 1px solid var(--border-light); border-radius: 12px; padding: 1rem; background: #ffffff; text-align: center;">
+        <div class="caderno-page-view" data-page="page-3">
+          <div class="caderno-page-image-frame">
             <img src="/assets/images/i5.jpg" alt="Interiores e Marcenaria"
-              style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
+              class="caderno-page-image" />
           </div>
         </div>
 
-        <div class="caderno-page-view" data-page="page-4" style="display: none;">
-          <div
-            style="border: 1px solid var(--border-light); border-radius: 12px; padding: 1rem; background: #ffffff; text-align: center;">
+        <div class="caderno-page-view" data-page="page-4">
+          <div class="caderno-page-image-frame">
             <img src="/assets/images/i6.jpg" alt="Planeamento BIM"
-              style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
+              class="caderno-page-image" />
           </div>
         </div>
 
-        <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
-          <button type="button" class="stage-pill-btn" onclick="window.print()">
+        <div class="caderno-page-actions">
+          <button type="button" class="stage-pill-btn btn-print-page">
             Imprimir
           </button>
           <a href="/assets/images/hero_orthogonal_villa.jpg" download="Orthogonal_Studio_Dossier.jpg"
-            class="btn-white-pill" style="background: var(--color-primary-light); color: #ffffff;">
+            class="btn-white-pill btn-action btn-action-primary">
             Descarregar Arquivo Completo
           </a>
         </div>
@@ -943,24 +912,22 @@
     <div class="modal-window">
       <div class="modal-header">
         <div>
-          <span class="section-label" style="margin-bottom: 0.25rem;">DETALHE DE MATERIAL</span>
+          <span class="section-label modal-section-label">DETALHE DE MATERIAL</span>
           <h3 id="mat-detail-modal-title" class="modal-mat-title">Especificação de Material</h3>
         </div>
         <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
       </div>
 
       <div class="modal-body">
-        <div
-          style="width: 100%; height: 260px; overflow: hidden; border-radius: 14px; margin-bottom: 1.5rem; border: 1px solid var(--border-light);">
+        <div class="modal-mat-image-frame">
           <img src="/assets/images/mat_latao.jpg" alt="Amostra de Material" class="modal-mat-img"
-            style="width: 100%; height: 100%; object-fit: cover;" />
+            />
         </div>
 
-        <div class="modal-mat-specs-list" style="margin-bottom: 2rem;"></div>
+        <div class="modal-mat-specs-list"></div>
 
-        <div style="display: flex; justify-content: flex-end;">
-          <button type="button" class="btn-white-pill btn-open-appointment-modal"
-            style="background: var(--color-primary-light); color: #ffffff;">
+        <div class="modal-mat-actions">
+          <button type="button" class="btn-white-pill btn-action btn-action-primary btn-open-appointment-modal">
             Consultar Aplicação no Projeto
           </button>
         </div>
