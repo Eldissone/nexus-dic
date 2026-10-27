@@ -1015,6 +1015,21 @@ section {
   transition: all 0.3s ease;
 }
 
+.process-light-row.has-reveal-animation {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-light-row.has-reveal-animation.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.process-light-row.has-reveal-animation:hover {
+  transform: translateX(4px);
+}
+
 .process-light-row:hover {
   background: var(--surface-white);
   border-color: var(--color-primary-light);

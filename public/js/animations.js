@@ -6,6 +6,38 @@
 (function () {
   'use strict';
 
+  function initProcessStepReveals() {
+    const processRows = document.querySelectorAll('.process-light-row');
+
+    if (!processRows.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    function revealVisibleRows() {
+      const revealThreshold = window.innerHeight * 0.9;
+
+      processRows.forEach((row) => {
+        if (!row.classList.contains('is-revealed') &&
+            row.getBoundingClientRect().top < revealThreshold) {
+          row.classList.add('is-revealed');
+        }
+      });
+    }
+
+    processRows.forEach((row) => {
+      row.classList.add('has-reveal-animation');
+    });
+    window.addEventListener('scroll', revealVisibleRows, { passive: true });
+    window.addEventListener('resize', revealVisibleRows);
+    revealVisibleRows();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProcessStepReveals, { once: true });
+  } else {
+    initProcessStepReveals();
+  }
+
   if (typeof gsap === 'undefined') {
     console.warn('GSAP library not detected');
     return;
@@ -193,22 +225,7 @@
       });
     }
 
-    // 8. Process Step Rows Reveal
-    if (document.querySelector('.process-light-row') && document.querySelector('.process-steps-list')) {
-      gsap.from('.process-light-row', {
-        scrollTrigger: {
-          trigger: '.process-steps-list',
-          start: 'top 80%',
-          toggleActions: 'play none none none'
-        },
-        x: -30,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: 'power3.out'
-      });
-    }
-
-    // 9. Floating Cloud Parallax Effect
+    // 8. Floating Cloud Parallax Effect
     window.addEventListener('scroll', () => {
       const scrollY = window.pageYOffset;
       const clouds = document.querySelector('.hero-clouds-layer');
