@@ -65,127 +65,150 @@
     // 1. Hero Reveal Timeline (Smooth Sky Blue Stagger)
     const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-    heroTl.from('.hero-badge-pill', {
-      y: -20,
-      opacity: 0,
-      duration: 0.8,
-      delay: 0.2
-    });
+    if (document.querySelector('.hero-badge-pill')) {
+      heroTl.from('.hero-badge-pill', {
+        y: -20,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.2
+      });
+    }
 
-    heroTl.from('.hero-main-title', {
-      y: 40,
-      opacity: 0,
-      duration: 1.1,
-      ease: 'power4.out'
-    }, '-=0.5');
+    if (document.querySelector('.hero-main-title')) {
+      heroTl.from('.hero-main-title', {
+        y: 40,
+        opacity: 0,
+        duration: 1.1,
+        ease: 'power4.out',
+        delay: 0.2
+      });
+    }
 
-    heroTl.from('.hero-description-text', {
-      y: 25,
-      opacity: 0,
-      duration: 0.9
-    }, '-=0.7');
+    if (document.querySelector('.hero-description-text')) {
+      heroTl.from('.hero-description-text', {
+        y: 25,
+        opacity: 0,
+        duration: 0.9
+      }, '-=0.7');
+    }
 
-    heroTl.from('.hero-cta-pill', {
-      y: 20,
-      scale: 0.95,
-      opacity: 0,
-      duration: 0.7
-    }, '-=0.6');
+    if (document.querySelector('.hero-cta-pill')) {
+      heroTl.from('.hero-cta-pill', {
+        y: 20,
+        scale: 0.95,
+        opacity: 0,
+        duration: 0.7
+      }, '-=0.6');
+    }
 
-    heroTl.from('.hero-villa-frame', {
-      y: 60,
-      opacity: 0,
-      duration: 1.2,
-      ease: 'power3.out'
-    }, '-=0.5');
+    if (document.querySelector('.hero-villa-frame')) {
+      heroTl.from('.hero-villa-frame', {
+        y: 60,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power3.out'
+      }, '-=0.5');
+    }
 
     // 2. Animate KPI numbers
     animateCounters();
 
     // 3. Stagger section headers
     gsap.utils.toArray('.section-header-block').forEach((block) => {
-      gsap.from(block.children, {
-        scrollTrigger: {
-          trigger: block,
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: 'power3.out'
-      });
+      if (block.children && block.children.length > 0) {
+        gsap.from(block.children, {
+          scrollTrigger: {
+            trigger: block,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out'
+        });
+      }
     });
 
     // 4. Interior Spotlight Card Reveal
-    gsap.from('.interior-spotlight-card', {
-      scrollTrigger: {
-        trigger: '.interior-spotlight-card',
-        start: 'top 82%',
-        toggleActions: 'play none none none'
-      },
-      y: 40,
-      opacity: 0,
-      duration: 0.9,
-      ease: 'power3.out'
-    });
+    if (document.querySelector('.interior-spotlight-card')) {
+      gsap.from('.interior-spotlight-card', {
+        scrollTrigger: {
+          trigger: '.interior-spotlight-card',
+          start: 'top 82%',
+          toggleActions: 'play none none none'
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power3.out'
+      });
+    }
 
     // 5. Pillars Stagger
-    gsap.from('.pillar-card', {
-      scrollTrigger: {
-        trigger: '.pillars-light-grid',
-        start: 'top 82%',
-        toggleActions: 'play none none none'
-      },
-      y: 35,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.12,
-      ease: 'power3.out'
-    });
+    if (document.querySelector('.pillar-card') && document.querySelector('.pillars-light-grid')) {
+      gsap.from('.pillar-card', {
+        scrollTrigger: {
+          trigger: '.pillars-light-grid',
+          start: 'top 82%',
+          toggleActions: 'play none none none'
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: 'power3.out'
+      });
+    }
 
     // 6. Services Bento Grid Reveal
-    gsap.from('.service-card', {
-      scrollTrigger: {
-        trigger: '.services-bento-grid',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-      },
-      y: 40,
-      opacity: 0,
-      duration: 0.9,
-      stagger: 0.15,
-      ease: 'power3.out'
-    });
+    if (document.querySelector('.service-card') && document.querySelector('.services-bento-grid')) {
+      gsap.from('.service-card', {
+        scrollTrigger: {
+          trigger: '.services-bento-grid',
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        stagger: 0.15,
+        ease: 'power3.out'
+      });
+    }
 
     // 7. Materials Cards Reveal
-    gsap.from('.mat-light-card', {
-      scrollTrigger: {
-        trigger: '.materials-light-grid',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-      },
-      y: 35,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1,
-      ease: 'power3.out'
-    });
+    if (document.querySelector('.mat-light-card') && document.querySelector('.materials-light-grid')) {
+      gsap.from('.mat-light-card', {
+        scrollTrigger: {
+          trigger: '.materials-light-grid',
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        },
+        y: 35,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out'
+      });
+    }
 
     // 8. Process Step Rows Reveal
-    gsap.from('.process-light-row', {
-      scrollTrigger: {
-        trigger: '.process-steps-list',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-      },
-      x: -30,
-      opacity: 0,
-      duration: 0.7,
-      stagger: 0.12,
-      ease: 'power3.out'
-    });
+    if (document.querySelector('.process-light-row') && document.querySelector('.process-steps-list')) {
+      gsap.from('.process-light-row', {
+        scrollTrigger: {
+          trigger: '.process-steps-list',
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        },
+        x: -30,
+        opacity: 0,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'power3.out'
+      });
+    }
 
     // 9. Floating Cloud Parallax Effect
     window.addEventListener('scroll', () => {
