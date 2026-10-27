@@ -526,19 +526,31 @@
     }
   }
 
-  /* ==========================================================================
-     INIT ALL
-     ========================================================================== */
+    // Hero 3D WebGL / 8K Render Mode Toggle
+    function initHero3dToggle() {
+      const btnToggle = document.getElementById('btn-toggle-hero-3d');
+      const container3D = document.getElementById('hero-3d-canvas-container');
+      const imgDisplay = document.getElementById('hero-display-img');
 
-  document.addEventListener('DOMContentLoaded', () => {
-    initBeforeAfterSlider();
-    initSpatialVisualizer();
-    initMaterialsSection();
-    initBimTable();
-    initFaqAccordion();
-    initCadernoPdfModal();
-    initAppointmentModal();
-    initModalsClose();
-    initTelemetryClockAndCursor();
+      if (!btnToggle || !container3D || !imgDisplay) return;
+
+      btnToggle.addEventListener('click', () => {
+        const is3DActive = container3D.style.display !== 'none';
+        if (is3DActive) {
+          container3D.style.display = 'none';
+          imgDisplay.style.display = 'block';
+          btnToggle.textContent = '3D INTERATIVO (WEBGL)';
+          btnToggle.classList.remove('active');
+        } else {
+          container3D.style.display = 'block';
+          imgDisplay.style.display = 'none';
+          btnToggle.textContent = 'RENDER FOTORREALISTA';
+          btnToggle.classList.add('active');
+          window.dispatchEvent(new Event('resize'));
+        }
+      });
+    }
+
+    initHero3dToggle();
   });
 })();

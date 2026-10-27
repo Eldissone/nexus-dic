@@ -1,883 +1,680 @@
 <!doctype html>
 <html lang="pt-AO">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEXUS — Design de interior e construção</title>
-    <meta name="description" content="Laboratório de arquitetura computacional, engenharia avançada e visualização fotorrealista 3D em Angola. Conceção de projetos residenciais e corporativos de alto padrão." />
-    
-    <!-- Design System CSS -->
-    <link rel="stylesheet" href="/css/style.css" />
 
-    <!-- Three.js + OrbitControls (CDN) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus - Design de Interiores e Construção</title>
+  <meta name="description"
+    content="Criamos experiências visuais que traduzem seu empreendimento e ajudam você a vender" />
+  <link rel="stylesheet" href="/css/style.css" />
 
-    <!-- GSAP 3 + ScrollTrigger (CDN) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-    <!-- Client Scripts (Deferred) -->
-    <script src="/js/three-scenes.js" defer></script>
-    <script src="/js/animations.js" defer></script>
-    <script src="/js/main.js" defer></script>
-  </head>
-  <body>
+  <script src="/js/three-scenes.js" defer></script>
+  <script src="/js/animations.js" defer></script>
+  <script src="/js/main.js" defer></script>
+</head>
 
-    <!-- Precision CAD Crosshair Cursor Follower -->
-    <div class="custom-cursor" aria-hidden="true">
-      <div class="cursor-cross"></div>
-      <div class="cursor-coords">CAD X:000.00 Y:000.00</div>
+<body>
+
+  <header id="main-header">
+    <a href="#hero" class="header-logo-wrap">
+      <div class="logo">
+        <img src="/assets/logo.png" alt="Logo Nexus" class="logo-img">
+      </div>
+    </a>
+
+    <nav class="nav-pill-capsule" aria-label="Navegação Principal">
+      <a href="#hero" class="nav-link active">Sobre</a>
+      <a href="#servicos" class="nav-link">Serviços</a>
+      <a href="#interiores" class="nav-link">Interiores</a>
+      <a href="#visualizador" class="nav-link">Galeria 3D</a>
+      <a href="#axonometria" class="nav-link">Cases</a>
+      <a href="#processo" class="nav-link">Como trabalhamos</a>
+    </nav>
+
+    <!-- Right Contact Pill -->
+    <button type="button" class="header-contact-pill btn-open-appointment-modal">
+      Contato
+    </button>
+  </header>
+
+  <main id="app">
+    <section id="hero">
+      <div class="hero-center-content">
+
+        <h1 class="hero-main-title">
+          Nexus Design de Interiores & Construções
+        </h1>
+
+        <p class="hero-description-text">
+          Criamos <strong>Experiências Visuais</strong> que traduzem seu empreendimento e ajudam você a <strong>vender
+            mais na planta</strong> e valorizar cada espaço com identidade única.
+        </p>
+
+        <a href="#servicos" class="hero-cta-pill">
+          Tenho Interesse
+        </a>
+      </div>
+
+      <div class="hero-villa-stage">
+        <div class="hero-villa-frame">
+
+          <img src="/assets/images/hero_orthogonal_villa.jpg"
+            alt="Nexus Design de Interiores e Construção Modern Villa Daylight Render" class="hero-villa-img"
+            id="hero-display-img" />
+
+          <div id="hero-3d-canvas-container"
+            style="display: none; position: absolute; inset: 0; width: 100%; height: 100%; background: #ffffff;">
+            <canvas id="hero-3d-canvas"></canvas>
+          </div>
+          <div class="hero-3d-toggle-bar">
+            <button type="button" class="stage-pill-btn active" id="btn-toggle-hero-3d"
+              title="Alternar entre imagem 8K e 3D interativo">
+              3D INTERATIVO (WEBGL)
+            </button>
+            <button type="button" class="stage-pill-btn" id="btn-hero-iso">
+              ISOMÉTRICA
+            </button>
+            <button type="button" class="stage-pill-btn" id="btn-hero-wireframe">
+              CAD WIREFRAME
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <div class="metrics-light-strip">
+      <div class="container">
+        <div class="metrics-grid-4">
+
+          <div class="metric-item">
+            <span class="metric-val" id="stat-counter-1">98.4%</span>
+            <span class="metric-label">Satisfação Contratual</span>
+            <span class="metric-sub">Aprovação em primeira rodada</span>
+          </div>
+
+          <div class="metric-item">
+            <span class="metric-val" id="stat-counter-2">+5000 M²</span>
+            <span class="metric-label">Espaços Projetados</span>
+            <span class="metric-sub">Residenciais e corporativos</span>
+          </div>
+
+          <div class="metric-item">
+            <span class="metric-val" id="stat-counter-3">4 Anos</span>
+            <span class="metric-label">Experiências Criativas</span>
+            <span class="metric-sub">Desde 2022</span>
+          </div>
+
+          <div class="metric-item">
+            <span class="metric-val" id="stat-counter-4">8K UHD</span>
+            <span class="metric-label">Projecções Visuais</span>
+            <span class="metric-sub">Renderização em 3D</span>
+          </div>
+
+        </div>
+      </div>
     </div>
 
-    <!-- MAIN ARCHITECTURAL HEADER -->
-    <header id="main-header">
-      <a href="#hero" class="logo-container" aria-label="NEXUS Atelier Página Inicial">
-        <div class="logo-mark">N</div>
-        <div class="logo-text">
-          <span class="logo-title">NEXUS ATELIER</span>
-          <span class="logo-subtitle">DESIGN COMPUTACIONAL &amp; ENGENHARIA</span>
+    <section id="interiores">
+      <div class="container">
+
+        <div class="section-header-block">
+          <div class="section-header-flex">
+            <div>
+              <h2 class="section-title">Design de Interiores que Inspira e Valoriza</h2>
+            </div>
+            <p class="section-subtitle">
+              Ambientes com iluminação natural generosa, marcenaria sob medida em carvalho nobre, ergonomia refinada e
+              conexão biofílica com a paisagem.
+            </p>
+          </div>
         </div>
-      </a>
 
-      <!-- Navigation Links -->
-      <nav class="main-nav" aria-label="Navegação Principal">
-        <a href="#hero" class="nav-link active">INÍCIO</a>
-        <a href="#especialidades" class="nav-link">ESPECIALIDADES</a>
-        <a href="#estudo-caso" class="nav-link">PROJETOS 3D</a>
-        <a href="#axonometria" class="nav-link">AXONOMETRIA 3D</a>
-        <a href="#visualizador" class="nav-link">VISUALIZADOR</a>
-        <a href="#comparacao" class="nav-link">ANTES &amp; DEPOIS</a>
-        <a href="#materiais" class="nav-link">MATERIAIS</a>
-        <a href="#processo" class="nav-link">PROCESSO</a>
-        <a href="#bim" class="nav-link">BIM &amp; SPECS</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-      </nav>
+        <!-- Spotlight Card: Living Room & Fireplace -->
+        <div class="interior-spotlight-card">
+          <div class="interior-spotlight-media">
+            <img src="/assets/images/i5.jpg" alt="Living Contemporâneo com Lareira e Marcenaria em Carvalho"
+              loading="lazy" />
+          </div>
+          <div class="interior-spotlight-body">
+            <h3>Living &amp; Lareira com Conexão Natural</h3>
+            <p>
+              Desenhamos espaços onde a luz solar de Luanda dialoga suavemente com ripados acústicos em carvalho
+              europeu, sofás orgânicos modulares e lareiras de design que criam pontos acolhedores de convivência para
+              toda a família.
+            </p>
+            <button type="button" class="btn-white-pill btn-open-appointment-modal"
+              style="background: var(--color-primary-light); color: #ffffff;">
+              Solicitar Projeto de Interiores →
+            </button>
+          </div>
+        </div>
 
-      <!-- Header CTAs -->
-      <div class="header-actions">
-        <button type="button" class="btn-primary btn-open-appointment-modal">
-          SOLICITAR ESTUDO TÉCNICO
-        </button>
-        <button type="button" class="telemetry-btn btn-open-caderno-modal" title="Abrir Caderno Técnico PDF">
-          CADERNO [PDF]
-        </button>
+        <!-- 4 Pillars of Interior Design -->
+        <div class="pillars-light-grid">
+
+          <div class="pillar-card">
+            <div class="pillar-icon-pill">☼</div>
+            <h4>Iluminação Circadiana</h4>
+            <p>
+              Equilíbrio de luz natural diurna com iluminação indireta quente (2700K) embutida em sancas perimétricas
+              para relaxamento noturno.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-pill">🪵</div>
+            <h4>Marcenaria Sob Medida</h4>
+            <p>
+              Painéis acústicos de carvalho, portas de piso ao teto (3.40m) com dobradiças ocultas e estantes que
+              ordenam o espaço sem poluição visual.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-pill">◇</div>
+            <h4>Paleta Tátil &amp; Nobre</h4>
+            <p>
+              Mármore travertino romano apicoado, latão acetinado escovado manualmente, tecidos em linho puro e
+              cerâmicas atérmicas.
+            </p>
+          </div>
+
+          <div class="pillar-card">
+            <div class="pillar-icon-pill">◎</div>
+            <h4>Ergonomia &amp; Fluidez</h4>
+            <p>
+              Distribuição espacial calculada na proporção áurea, assegurando circulação fluida entre sala de estar,
+              jantar e jardim contemplativo.
+            </p>
+          </div>
+
+        </div>
+
       </div>
-    </header>
+    </section>
 
-    <main id="app">
-
-      <!-- ==========================================================================
-           SECTION 1: HERO — TRANSFORMAMOS IDEIAS EM ESPAÇOS COM IDENTIDADE
+    <!-- ==========================================================================
+           SECTION: ESPECIALIDADES & SERVIÇOS (Light Bento Grid)
            ========================================================================== -->
-      <section id="hero">
-        
-        <!-- Interactive 3D Three.js Architectural Canvas -->
-        <div id="hero-3d-canvas-container">
-          <canvas id="hero-3d-canvas"></canvas>
+    <section id="servicos">
+      <div class="container">
 
-          <!-- 3D Viewport Controls HUD -->
-          <div class="hero-canvas-controls">
-            <button type="button" class="canvas-ctrl-btn" id="btn-hero-wireframe" title="Alternar renderização sólida / wireframe">
-              <span>MODO CAD:</span> <strong class="mode-state">SÓLIDO</strong>
-            </button>
-            <button type="button" class="canvas-ctrl-btn" id="btn-hero-iso" title="Alternar vista isométrica de câmara">
-              <span>CÂMARA:</span> <strong>ISOMÉTRICA</strong>
-            </button>
-            <button type="button" class="canvas-ctrl-btn" id="btn-hero-reset" title="Reiniciar perspetiva de câmara">
-              <span>RESET</span> <strong>↺</strong>
-            </button>
-          </div>
-        </div>
-
-        <!-- Left Hero Content -->
-        <div class="hero-content-wrap">
-          <div class="hero-cad-tag">
-            <span class="mono-tag">[BIM LEVEL 3] CONCEÇÃO ESPACIAL &amp; ENGENHARIA COMPUTACIONAL</span>
-          </div>
-
-          <h1 class="hero-title">
-            TRANSFORMAMOS IDEIAS EM ESPAÇOS COM <span class="accent">IDENTIDADE.</span>
-          </h1>
-
-          <p class="hero-description">
-            A NEXUS dedica-se à conceção e desenvolvimento de soluções integrais para arquitetura, design de interiores e engenharia civil, articulando rigor analítico, precisão técnica e visão contemporânea em Angola.
-          </p>
-
-          <div class="hero-buttons">
-            <a href="#estudo-caso" class="btn-primary">
-              EXPLORAR PROJETOS 3D <span>→</span>
-            </a>
-            <a href="#processo" class="btn-ghost">
-              CONHECER SERVIÇOS <span class="arrow">↘</span>
-            </a>
-          </div>
-
-          <!-- Highlight Case Callout Box -->
-          <div class="hero-case-callout">
-            <div class="callout-header">
-              <span class="mono-tag" style="font-size: 9px;">PROJETO DESTAQUE // QUILEMBA RESIDENCE</span>
-              <span class="spec-chip">LUANDA</span>
-            </div>
-            <p class="callout-quote">
-              "Projetado para excelência: Onde a técnica computacional transforma visões em espaços concretos de alta vivência."
-            </p>
-          </div>
-        </div>
-
-        <!-- Bottom Telemetry Metric Strip -->
-        <div class="hero-telemetry-strip">
-          <div class="hero-stat-card">
-            <span class="stat-value" id="stat-counter-1">98.4%</span>
-            <span class="stat-label">SATISFAÇÃO CONTRATUAL</span>
-          </div>
-          <div class="hero-stat-card">
-            <span class="stat-value" id="stat-counter-2">+120 400 M²</span>
-            <span class="stat-label">MODELADOS E CONSTRUÍDOS</span>
-          </div>
-          <div class="hero-stat-card">
-            <span class="stat-value" id="stat-counter-3">10 ANOS</span>
-            <span class="stat-label">GARANTIA ESTRUTURAL &amp; TÉCNICA</span>
-          </div>
-          <div class="hero-stat-card">
-            <span class="stat-value" id="stat-counter-4">BIM LVL 3</span>
-            <span class="stat-label">COMPATIBILIZAÇÃO INTEGRAL</span>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ==========================================================================
-           SECTION 2: ESPECIALIDADES DE ENGENHARIA & ATELIER (Bento Grid)
-           ========================================================================== -->
-      <section id="especialidades">
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <span class="section-label">01 // MATRIZ DISCIPLINAR</span>
-              <h2 class="section-title">ESPECIALIDADES DE ENGENHARIA &amp; ATELIER</h2>
+              <h2 class="section-title">Especialidades de Engenharia &amp; Atelier</h2>
             </div>
             <p class="section-subtitle">
-              Sinergia entre modelação tridimensional precisa, conformidade normativa e acompanhamento técnico rigoroso no setor imobiliário angolano.
+              Atuamos desde a conceção tridimensional preliminar até à entrega dos projetos executivos e fiscalização
+              rigorosa de obra.
             </p>
           </div>
         </div>
 
-        <div class="bento-grid">
-          
-          <!-- Card 01: Arquitetura e 3D -->
-          <article class="bento-card">
-            <div class="bento-card-media">
-              <img src="/assets/images/i1.jpg" alt="Arquitetura e Visualização 3D - Residência Quilemba" loading="lazy" />
-              <div class="bento-cad-overlay">
-                <span class="spec-chip">FACHADA &amp; VOLUMETRIA</span>
-              </div>
+        <div class="services-bento-grid">
+
+          <!-- Card 1: Arquitetura e 3D -->
+          <article class="service-card">
+            <div class="service-card-media">
+              <img src="/assets/images/hero_orthogonal_villa.jpg" alt="Arquitetura e Visualização 3D" loading="lazy" />
+              <span class="service-card-tag">VOLUMETRIA 3D</span>
             </div>
-            <div class="bento-card-body">
+            <div class="service-card-body">
               <div>
-                <span class="bento-index">01 //</span>
-                <h3 class="bento-title">ARQUITETURA E VISUALIZAÇÃO 3D</h3>
-                <p class="bento-desc">
-                  Conceção arquitetónica volumétrica, modelação tridimensional precisa de edifícios, ensaios de iluminação solar e de fachadas, renderização estática fotorrealista e experiências de realidade imersiva.
+                <h3>Arquitetura &amp; Visualização 3D</h3>
+                <p>
+                  Conceção volumétrica contemporânea, estudos de fachadas com insolação solar real, renderização
+                  fotorrealista 8K e passeios imersivos que encantam investidores e compradores.
                 </p>
-                <div class="bento-tags">
-                  <span class="spec-chip">Modelação Paramétrica</span>
-                  <span class="spec-chip">Renders 8K</span>
-                  <span class="spec-chip">Corona / UE5</span>
+                <div class="service-pill-tags">
+                  <span class="pill-tag">Renders 8K</span>
+                  <span class="pill-tag">Fachadas Ventiladas</span>
+                  <span class="pill-tag">Animação 3D</span>
                 </div>
               </div>
-              <div class="bento-card-footer btn-open-appointment-modal">
-                <span>CONSULTAR SOLUÇÃO 3D</span>
+              <div class="service-card-footer btn-open-appointment-modal">
+                <span>SABER MAIS SOBRE 3D</span>
                 <span>→</span>
               </div>
             </div>
           </article>
 
-          <!-- Card 02: Design de Interiores -->
-          <article class="bento-card">
-            <div class="bento-card-media">
-              <img src="/assets/images/i5.jpg" alt="Design de Interiores Residencial" loading="lazy" />
-              <div class="bento-cad-overlay">
-                <span class="spec-chip">ESPAÇO &amp; ERGONOMIA</span>
-              </div>
+          <!-- Card 2: Design de Interiores -->
+          <article class="service-card">
+            <div class="service-card-media">
+              <img src="/assets/images/i2.jpg" alt="Design de Interiores com Jardim Contemplativo" loading="lazy" />
+              <span class="service-card-tag">INTERIORES</span>
             </div>
-            <div class="bento-card-body">
+            <div class="service-card-body">
               <div>
-                <span class="bento-index">02 //</span>
-                <h3 class="bento-title">DESIGN DE INTERIORES</h3>
-                <p class="bento-desc">
-                  Ambientes com narrativa visual, ergonomia, conforto e apuro estético contemporâneo. Curadoria inteligente de tecidos, cálculo luminotécnico em Kelvin e LUX, marcenaria sob medida e mobiliário exclusivo.
+                <h3>Design de Interiores Residencial</h3>
+                <p>
+                  Planeamento minucioso de layouts, curadoria de mobiliário contemporâneo, projetos luminotécnicos com
+                  cálculos LUX e desenho técnico de marcenaria sob medida.
                 </p>
-                <div class="bento-tags">
-                  <span class="spec-chip">Luminotecnia LUX</span>
-                  <span class="spec-chip">Marcenaria Sob Medida</span>
-                  <span class="spec-chip">Curadoria de Arte</span>
+                <div class="service-pill-tags">
+                  <span class="pill-tag">Marcenaria em Carvalho</span>
+                  <span class="pill-tag">Luz LUX / Kelvin</span>
+                  <span class="pill-tag">Mobiliário de Autor</span>
                 </div>
               </div>
-              <div class="bento-card-footer btn-open-appointment-modal">
-                <span>CONSULTAR DESIGN DE INTERIORES</span>
+              <div class="service-card-footer btn-open-appointment-modal">
+                <span>SABER MAIS SOBRE INTERIORES</span>
                 <span>→</span>
               </div>
             </div>
           </article>
 
-          <!-- Card 03: Construção Civil e Planeamento -->
-          <article class="bento-card">
-            <div class="bento-card-media">
-              <img src="/assets/images/i6.jpg" alt="Construção Civil e Planeamento Técnico de Obra" loading="lazy" />
-              <div class="bento-cad-overlay">
-                <span class="spec-chip">COORDENAÇÃO &amp; FISCALIZAÇÃO</span>
-              </div>
+          <!-- Card 3: Construção e Planeamento -->
+          <article class="service-card">
+            <div class="service-card-media">
+              <img src="/assets/images/i6.jpg" alt="Construção Civil e Coordenação Técnica" loading="lazy" />
+              <span class="service-card-tag">ENGENHARIA</span>
             </div>
-            <div class="bento-card-body">
+            <div class="service-card-body">
               <div>
-                <span class="bento-index">03 //</span>
-                <h3 class="bento-title">CONSTRUÇÃO CIVIL E PLANEAMENTO</h3>
-                <p class="bento-desc">
-                  Preparação de projetos de execução rigorosos, orçamentação detalhada, planeamento físico-financeiro com curvas de avanço e fiscalização de obra com conformidade normativa rigorosa.
+                <h3>Construção Civil &amp; Planeamento</h3>
+                <p>
+                  Projetos executivos detalhados, orçamentação transparente com mapa de quantidades, cronograma
+                  físico-financeiro rigoroso e fiscalização in loco no canteiro de obras.
                 </p>
-                <div class="bento-tags">
-                  <span class="spec-chip">Projetos Executivos</span>
-                  <span class="spec-chip">Controle de Custos</span>
-                  <span class="spec-chip">Fiscalização In Situ</span>
+                <div class="service-pill-tags">
+                  <span class="pill-tag">Projetos Executivos</span>
+                  <span class="pill-tag">Fiscalização In Situ</span>
+                  <span class="pill-tag">Controle de Prazos</span>
                 </div>
               </div>
-              <div class="bento-card-footer btn-open-appointment-modal">
-                <span>CONSULTAR GESTÃO DE CONSTRUÇÃO</span>
+              <div class="service-card-footer btn-open-appointment-modal">
+                <span>SABER MAIS SOBRE CONSTRUÇÃO</span>
                 <span>→</span>
               </div>
             </div>
           </article>
 
-          <!-- Card 04: Requalificação e Remodelação -->
-          <article class="bento-card">
-            <div class="bento-card-media">
-              <img src="/assets/images/i7.jpg" alt="Requalificação e Remodelação de Imóveis" loading="lazy" />
-              <div class="bento-cad-overlay">
-                <span class="spec-chip">RETROFIT &amp; REESTRUTURAÇÃO</span>
-              </div>
+          <!-- Card 4: Requalificação e Retrofit -->
+          <article class="service-card">
+            <div class="service-card-media">
+              <img src="/assets/images/i7.jpg" alt="Requalificação e Retrofit de Imóveis" loading="lazy" />
+              <span class="service-card-tag">RETROFIT</span>
             </div>
-            <div class="bento-card-body">
+            <div class="service-card-body">
               <div>
-                <span class="bento-index">04 //</span>
-                <h3 class="bento-title">REQUALIFICAÇÃO E REMODELAÇÃO</h3>
-                <p class="bento-desc">
-                  Modernização estrutural e estética de edifícios existentes, reorganização funcional de plantas residenciais e corporativas, reforço de estruturas e integração com sistemas de climatização contemporâneos.
+                <h3>Requalificação &amp; Remodelação</h3>
+                <p>
+                  Transformação completa de edifícios e interiores degradados ou obsoletos em residências e escritórios
+                  de vanguarda com reforço estrutural e eficiência energética.
                 </p>
-                <div class="bento-tags">
-                  <span class="spec-chip">Diagnóstico Patológico</span>
-                  <span class="spec-chip">Reforço Estrutural</span>
-                  <span class="spec-chip">Reconversão de Espaços</span>
+                <div class="service-pill-tags">
+                  <span class="pill-tag">Diagnóstico de Estrutura</span>
+                  <span class="pill-tag">Reconversão de Espaços</span>
+                  <span class="pill-tag">Acústica Moderna</span>
                 </div>
               </div>
-              <div class="bento-card-footer btn-open-appointment-modal">
-                <span>SOLICITAR PROPOSTA DE RETROFIT</span>
+              <div class="service-card-footer btn-open-appointment-modal">
+                <span>SABER MAIS SOBRE RETROFIT</span>
                 <span>→</span>
               </div>
             </div>
           </article>
 
         </div>
-      </section>
 
-      <!-- ==========================================================================
-           SECTION 3: GALERIA DE PROJETOS 3D & ESTUDOS TÉCNICOS (Attachment 1 Hero)
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+           SECTION: VISUALIZADOR ESPACIAL 3D (Clean Light HUD)
            ========================================================================== -->
-      <section id="estudo-caso">
+    <section id="visualizador">
+      <div class="container">
+
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <span class="section-label">[ESTUDO DE CASO 0202/2024] DADOS E ANÁLISE [BIM DIC]</span>
-              <h2 class="section-title">GALERIA DE PROJETOS 3D &amp; ESTUDOS TÉCNICOS</h2>
-            </div>
-            <div>
-              <button type="button" class="btn-primary btn-open-caderno-modal">
-                DESCARREGAR CADERNO TÉCNICO (PDF)
-              </button>
-            </div>
-          </div>
-          <p class="section-subtitle" style="margin-top: 1rem;">
-            Conceção espacial rigorosa, modelação fotorrealista e engenharia de detalhes tridimensional integrada em arquitetura de alta exigência em Angola.
-          </p>
-        </div>
-
-        <!-- Project Dossier Strip -->
-        <div class="project-dossier-bar">
-          <div class="dossier-col">
-            <div class="dossier-label">01. PROJETO DE REFERÊNCIA</div>
-            <div class="dossier-val">Residência Quilemba</div>
-          </div>
-          <div class="dossier-col">
-            <div class="dossier-label">02. CLIENTE / LOCALIZAÇÃO</div>
-            <div class="dossier-val">Dr. Evaristo Correia (Luanda)</div>
-          </div>
-          <div class="dossier-col">
-            <div class="dossier-label">03. TIPO DE INTERVENÇÃO</div>
-            <div class="dossier-val">Requalificação &amp; Design 3D</div>
-          </div>
-          <div class="dossier-col">
-            <div class="dossier-label">04. STATUS DO PROJETO</div>
-            <div class="dossier-val badge-status">[ENTREGA CONCLUÍDA]</div>
-          </div>
-        </div>
-
-        <!-- Sequência Metodológica do Estudo -->
-        <div class="section-header-block" style="margin-bottom: 2rem;">
-          <h3 style="font-size: 1.5rem; text-transform: uppercase;">SEQUÊNCIA METODOLÓGICA DO ESTUDO</h3>
-        </div>
-
-        <div class="methodology-grid">
-          
-          <div class="method-card">
-            <div>
-              <div class="method-phase">
-                <span>FASE 01</span>
-                <span class="mono-tag" style="font-size: 8px;">LEVANTAMENTO</span>
-              </div>
-              <h4 class="method-title">CONCEITO &amp; BRIEFING</h4>
-              <p class="method-desc">
-                Diagnóstico minucioso in loco, fixação de objetivos espaciais e levantamento volumétrico preliminar, alinhado à estimativa de custo de investimento pretendida pelo cliente.
-              </p>
-            </div>
-            <div class="method-cad-spec">
-              ESCALA: 1:200 // TOLERÂNCIA: ±5MM
-            </div>
-          </div>
-
-          <div class="method-card">
-            <div>
-              <div class="method-phase">
-                <span>FASE 02</span>
-                <span class="mono-tag" style="font-size: 8px;">GEOMETRIA</span>
-              </div>
-              <h4 class="method-title">ESTUDO ARQUITETÓNICO</h4>
-              <p class="method-desc">
-                Desenvolvimento volumétrico com modulação de esquadria e análise comparativa de soluções estéticas com layout esquemático e definição da matriz estrutural portante.
-              </p>
-            </div>
-            <div class="method-cad-spec">
-              CAD DWG / REVIT BIM MODELING
-            </div>
-          </div>
-
-          <div class="method-card">
-            <div>
-              <div class="method-phase">
-                <span>FASE 03</span>
-                <span class="mono-tag" style="font-size: 8px;">FÍSICA DA LUZ</span>
-              </div>
-              <h4 class="method-title">ILUMINAÇÃO &amp; MATERIAIS</h4>
-              <p class="method-desc">
-                Cálculo luminotécnico (Kelvin, LUX, lumens), paleta cromática rigorosa e curadoria de materiais reais como travertino, carvalho e perfis metálicos com simulação física contínua.
-              </p>
-            </div>
-            <div class="method-cad-spec">
-              TEMPERATURA: 2700K - 6500K // LUX SIM
-            </div>
-          </div>
-
-          <div class="method-card">
-            <div>
-              <div class="method-phase">
-                <span>FASE 04</span>
-                <span class="mono-tag" style="font-size: 8px;">FOTORREALISMO</span>
-              </div>
-              <h4 class="method-title">RENDER FOTORREALISTA</h4>
-              <p class="method-desc">
-                Geração de renders em ultra-alta resolução (8K), reflexos fisionómicos e enquadramentos de câmara interna e externa sob luz solar diurna e iluminação crepuscular de realce.
-              </p>
-            </div>
-            <div class="method-cad-spec">
-              SAÍDA: RENDER 8K // FORMATO IFC / PDF
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
-      <!-- ==========================================================================
-           SECTION 4: AXONOMETRIA EXPLODIDA: DECOMPOSIÇÃO ESTRUTURAL
-           ========================================================================== -->
-      <section id="axonometria">
-        <div class="section-header-block">
-          <div class="section-header-flex">
-            <div>
-              <span class="section-label">03 // DECOMPOSIÇÃO ESTRUTURAL TRIDIMENSIONAL</span>
-              <h2 class="section-title">AXONOMETRIA EXPLODIDA: DECOMPOSIÇÃO ESTRUTURAL</h2>
+              <h2 class="section-title">Ambiente de Visualização Espacial 3D</h2>
             </div>
             <p class="section-subtitle">
-              Desmembramento paramétrico de todos os subsistemas construtivos da Residência Quilemba. Arraste a barra para explodir as camadas em 3D em tempo real.
+              Alterne entre ângulos de câmara calculados, ensaios de iluminação solar diurna e noturna para inspecionar
+              cada detalhe do projeto.
             </p>
           </div>
         </div>
 
-        <div class="axon-viewer-container">
-          
-          <!-- Top Controls -->
-          <div class="axon-viewer-header">
-            <div class="axon-controls-row">
-              <span class="mono-tag">[3D WEBGL LIVE ENGINE]</span>
-              <button type="button" class="telemetry-btn active" id="btn-axon-iso">VISTA ISOMÉTRICA</button>
-              <button type="button" class="telemetry-btn" id="btn-axon-persp">PERSPETIVA</button>
-              <button type="button" class="telemetry-btn" id="btn-axon-wire">WIREFRAME</button>
-            </div>
-            <div class="axon-controls-row">
-              <button type="button" class="telemetry-btn" id="btn-axon-toggle-fallback">
-                CAD ESQUEMÁTICO (2D)
+        <div class="viewer-light-card">
+
+          <!-- Top Toolbar -->
+          <div class="viewer-top-toolbar">
+            <div class="viewer-cam-pills">
+              <span
+                style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 0.5rem;">CÂMARAS:</span>
+              <button type="button" class="cam-pill active" data-camera="cam-living-fire">
+                Living &amp; Lareira (Interior)
               </button>
-            </div>
-          </div>
-
-          <!-- 3D Stage -->
-          <div class="axon-stage" id="axon-canvas-wrap">
-            <canvas id="axon-3d-canvas"></canvas>
-
-            <!-- Fallback / Schematic High-Res Image Overlay -->
-            <div class="axon-static-layer">
-              <img src="/assets/images/axonometria_explodida.jpg" alt="Axonometria Explodida Caderno Técnico" />
-            </div>
-          </div>
-
-          <!-- Real-Time Explosion Range Slider -->
-          <div class="axon-slider-bar">
-            <div class="slider-label-group">
-              <span class="slider-title">NÍVEL DE SEPARAÇÃO ESTRUTURAL:</span>
-              <span class="slider-sub">DECOMPOSIÇÃO FÍSICA DOS SUBSISTEMAS</span>
-            </div>
-            <input type="range" min="0" max="100" value="55" class="custom-range-slider" id="axon-explosion-slider" aria-label="Nível de Separação Tridimensional" />
-            <div class="slider-val-readout" id="axon-slider-readout">55%</div>
-          </div>
-
-          <!-- Interactive Layers Legend Pills -->
-          <div class="axon-layers-pills">
-            <div class="layer-pill active" data-layer="layer1_roof">
-              <div class="layer-dot"></div>
-              <span>01. COBERTURA VERDE &amp; SEDUM</span>
-            </div>
-            <div class="layer-pill" data-layer="layer2_truss">
-              <div class="layer-dot"></div>
-              <span>02. TRELIÇA METÁLICA ESTRUTURAL</span>
-            </div>
-            <div class="layer-pill" data-layer="layer3_slab">
-              <div class="layer-dot"></div>
-              <span>03. LAJE INTERMÉDIA DE BETÃO</span>
-            </div>
-            <div class="layer-pill" data-layer="layer4_glazing">
-              <div class="layer-dot"></div>
-              <span>04. CAIXILHARIA &amp; VIDRO DUPLO</span>
-            </div>
-            <div class="layer-pill" data-layer="layer5_walls">
-              <div class="layer-dot"></div>
-              <span>05. ALVENARIAS &amp; PAINÉIS DE CARVALHO</span>
-            </div>
-            <div class="layer-pill" data-layer="layer6_foundation">
-              <div class="layer-dot"></div>
-              <span>06. FUNDAÇÃO EM RADIER &amp; VIGAS</span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ==========================================================================
-           SECTION 5: AMBIENTE DE VISUALIZAÇÃO ESPACIAL NEXUS 3D (HUD Viewer)
-           ========================================================================== -->
-      <section id="visualizador">
-        <div class="section-header-block">
-          <div class="section-header-flex">
-            <div>
-              <span class="section-label">04 // VIEWPORT INTERATIVO FOTORREALISTA</span>
-              <h2 class="section-title">AMBIENTE DE VISUALIZAÇÃO ESPACIAL NEXUS 3D</h2>
-            </div>
-            <p class="section-subtitle">
-              Inspeção de ângulos de câmara calculados com variação de temperatura de cor e simulação de iluminação solar in situ em Luanda.
-            </p>
-          </div>
-        </div>
-
-        <div class="spatial-viewer-wrapper">
-          
-          <!-- Top HUD Options -->
-          <div class="viewer-top-hud">
-            <div class="viewer-camera-pills">
-              <span class="mono-tag" style="margin-right: 0.5rem;">CÂMARAS:</span>
-              <button type="button" class="cam-btn active" data-camera="cam-ext-twilight">
-                01 // EXTERIOR CREPÚSCULO
+              <button type="button" class="cam-pill" data-camera="cam-living-garden">
+                Sala &amp; Jardim
               </button>
-              <button type="button" class="cam-btn" data-camera="cam-living-fire">
-                02 // LIVING &amp; LAREIRA
+              <button type="button" class="cam-pill" data-camera="cam-ext-twilight">
+                Fachada Externa
               </button>
-              <button type="button" class="cam-btn" data-camera="cam-living-garden">
-                03 // SALA &amp; JARDIM
+              <button type="button" class="cam-pill" data-camera="cam-ext-night">
+                Piscina &amp; Terraço
               </button>
-              <button type="button" class="cam-btn" data-camera="cam-ext-night">
-                04 // PISCINA NOTURNA
-              </button>
-              <button type="button" class="cam-btn" data-camera="cam-cad-plan">
-                05 // PLANTA CAD 2D
+              <button type="button" class="cam-pill" data-camera="cam-cad-plan">
+                Planta CAD 2D
               </button>
             </div>
 
-            <!-- Lighting Simulation Filter Buttons -->
-            <div class="viewer-camera-pills">
-              <span class="mono-tag" style="margin-right: 0.5rem;">ILUMINAÇÃO:</span>
-              <button type="button" class="cam-btn light-btn" data-light-mode="day">DIA (6500K)</button>
-              <button type="button" class="cam-btn light-btn active" data-light-mode="twilight">CREPÚSCULO (3200K)</button>
-              <button type="button" class="cam-btn light-btn" data-light-mode="night">NOITE (2700K)</button>
+            <div class="viewer-cam-pills">
+              <span
+                style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 0.5rem;">ILUMINAÇÃO:</span>
+              <button type="button" class="cam-pill light-btn active" data-light-mode="day">Dia (Solar 6500K)</button>
+              <button type="button" class="cam-pill light-btn" data-light-mode="twilight">Crepúsculo (3200K)</button>
+              <button type="button" class="cam-pill light-btn" data-light-mode="night">Noite (2700K)</button>
             </div>
           </div>
 
-          <!-- Main Viewport Frame -->
-          <div class="viewer-viewport-frame">
-            <img src="/assets/images/i1.jpg" alt="Visualização Espacial NEXUS 3D" id="viewer-img-target" class="viewer-main-img light-mode-twilight" />
-
-            <!-- HUD Overlay Graphics -->
-            <div class="viewer-hud-overlay">
-              <div class="hud-corner hud-tl"></div>
-              <div class="hud-corner hud-tr"></div>
-              <div class="hud-corner hud-bl"></div>
-              <div class="hud-corner hud-br"></div>
-
-              <div class="hud-watermark">
-                NEXUS — Projetos 3D &amp; Estudo Quilemba
-                <span id="viewer-active-view-title">FACHADA PRINCIPAL (CREPÚSCULO)</span>
-              </div>
-
-              <!-- Action Dock -->
-              <div class="viewer-actions-dock">
-                <button type="button" class="dock-btn" id="btn-viewer-zoom-in" title="Aumentar Zoom">+</button>
-                <button type="button" class="dock-btn" id="btn-viewer-zoom-out" title="Diminuir Zoom">−</button>
-                <button type="button" class="dock-btn" id="btn-viewer-fullscreen" title="Modo Ecrã Inteiro">⛶</button>
-              </div>
-            </div>
+          <!-- Viewport Stage -->
+          <div class="viewer-viewport-box">
+            <img src="/assets/images/i5.jpg" alt="Visualização 3D Living e Lareira" id="viewer-img-target"
+              class="light-mode-day" />
           </div>
 
           <!-- Bottom Telemetry Bar -->
-          <div class="viewer-bottom-telemetry">
-            <span class="viewer-telemetry-tag">
-              LATITUDE: <strong>-8.83833° // LONG: 13.23444°</strong>
-            </span>
-            <span class="viewer-telemetry-tag">
-              CAM FOV: <strong id="viewer-telemetry-fov">42°</strong>
-            </span>
-            <span class="viewer-telemetry-tag">
-              EXPOSIÇÃO: <strong>+0.2 EV // ISO 100</strong>
-            </span>
-            <span class="viewer-telemetry-tag">
-              RESOLUÇÃO RENDER: <strong>7680 x 4320 (8K)</strong>
-            </span>
-            <span class="viewer-telemetry-tag">
-              STATUS: <strong style="color: var(--primary-accent);">COMPATIBILIZADO</strong>
-            </span>
+          <div class="viewer-bottom-bar">
+            <span>LOCALIZAÇÃO: <strong>LUANDA, ANGOLA (-8.83833°, 13.23444°)</strong></span>
+            <span>LENTE FOV: <strong id="viewer-telemetry-fov">54°</strong></span>
+            <span>EXPOSIÇÃO: <strong>+0.0 EV // ISO 100</strong></span>
+            <span>RESOLUÇÃO: <strong>7680 x 4320 (8K ULTRA HD)</strong></span>
+            <span>STATUS: <strong style="color: #16a34a;">BIM VALIDADO</strong></span>
           </div>
 
         </div>
-      </section>
 
-      <!-- ==========================================================================
-           SECTION 6: ANTES DA REQUALIFICAÇÃO VS. PROPOSTA 3D CONCEPTUAL
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+           SECTION: AXONOMETRIA EXPLODIDA 3D (Structural Assembly)
            ========================================================================== -->
-      <section id="comparacao">
+    <section id="axonometria">
+      <div class="container">
+
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <span class="section-label">05 // ANÁLISE COMPARATIVA DE RETROFIT</span>
-              <h2 class="section-title">ANTES DA REQUALIFICAÇÃO VS. PROPOSTA 3D CONCEPTUAL</h2>
+              <h2 class="section-title">Axonometria Explodida: Decomposição Estrutural</h2>
             </div>
             <p class="section-subtitle">
-              Arraste a barra divisória horizontalmente para visualizar o impacto da intervenção arquitetónica no imóvel existente em Luanda.
+              Visualização interativa das camadas construtivas: fundações, alvenarias, marcenaria de interiores,
+              caixilharia e cobertura verde.
             </p>
           </div>
         </div>
 
-        <div class="comparison-wrapper">
-          <div class="before-after-stage" title="Arraste para comparar o estado inicial com a proposta tridimensional final">
-            
-            <!-- After Image (Finished 3D Proposal) -->
-            <img src="/assets/images/i1.jpg" alt="Proposta Arquitetónica Final 3D" class="stage-image after-img" />
-            <div class="slider-status-pill pill-after">PROPOSTA NEXUS // 3D FOTORREALISTA</div>
+        <div class="viewer-light-card">
 
-            <!-- Before Wrap (Original Raw Concrete Building) -->
+          <div class="viewer-top-toolbar">
+            <div class="viewer-cam-pills">
+              <span
+                style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-right: 0.5rem;">SUBSISTEMAS:</span>
+              <button type="button" class="cam-pill active" id="btn-axon-wire">WIREFRAME</button>
+              <button type="button" class="cam-pill" id="btn-axon-toggle-fallback">CAD ESQUEMÁTICO (2D)</button>
+            </div>
+            <div style="font-size: 13px; font-weight: 600; color: var(--color-primary-light);">
+              Arraste o slider para separar as camadas 3D em tempo real
+            </div>
+          </div>
+
+          <div class="viewer-viewport-box" id="axon-canvas-wrap" style="height: 580px; background: #f8fafc;">
+            <canvas id="axon-3d-canvas"></canvas>
+
+            <div class="axon-static-layer" style="position: absolute; inset: 0; display: none; background: #ffffff;">
+              <img src="/assets/images/axonometria_explodida.jpg" alt="Axonometria Caderno Técnico"
+                style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+          </div>
+
+          <!-- Slider Bar -->
+          <div
+            style="padding: 1.5rem 2rem; background: var(--surface-white); border-top: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; gap: 2rem;">
+            <span style="font-size: 13px; font-weight: 700; color: var(--text-primary);">Nível de Separação
+              Tridimensional:</span>
+            <input type="range" min="0" max="100" value="55" class="custom-range-slider" id="axon-explosion-slider"
+              style="flex-grow: 1;" />
+            <strong id="axon-slider-readout"
+              style="font-size: 15px; color: var(--color-primary-light); min-width: 50px;">55%</strong>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+           SECTION: ANTES DA REQUALIFICAÇÃO VS. PROPOSTA 3D (Slider)
+           ========================================================================== -->
+    <section id="comparacao">
+      <div class="container">
+
+        <div class="section-header-block">
+          <div class="section-header-flex">
+            <div>
+              <h2 class="section-title">Antes da Requalificação vs. Proposta 3D</h2>
+            </div>
+            <p class="section-subtitle">
+              Arraste a barra horizontalmente para conferir a evolução do imóvel bruto até ao resultado arquitetónico
+              contemporâneo.
+            </p>
+          </div>
+        </div>
+
+        <div class="comparison-light-card">
+          <div class="before-after-stage" title="Arraste para comparar o estado inicial com a proposta final">
+
+            <!-- After (Daylight Villa) -->
+            <img src="/assets/images/hero_orthogonal_villa.jpg" alt="Proposta Arquitetónica 3D Concluída"
+              class="stage-image after-img" />
+            <div class="slider-pill-badge pill-after">PROPOSTA FINAL 8K</div>
+
+            <!-- Before (Concrete Skeleton) -->
             <div class="stage-image-wrap-before">
-              <img src="/assets/images/villa_before.jpg" alt="Estado Inicial Antes da Requalificação" class="stage-image before-img" />
-              <div class="slider-status-pill pill-before">ESTADO INICIAL // BETÃO BRUTO</div>
+              <img src="/assets/images/villa_before.jpg" alt="Estrutura de Betão Bruto Antes da Obra"
+                class="stage-image before-img" />
+              <div class="slider-pill-badge pill-before">ESTRUTURA BRUTA</div>
             </div>
 
-            <!-- Split Draggable Handle -->
+            <!-- Split Handle Knob -->
             <div class="split-handle">
               <div class="handle-knob">⇄</div>
             </div>
 
           </div>
 
-          <div class="comparison-caption-bar">
-            <span>REGISTO FOTOGRÁFICO DE OBRA (ESTRUTURA BRUTA)</span>
+          <div
+            style="margin-top: 1rem; display: flex; justify-content: space-between; font-size: 12.5px; color: var(--text-muted); font-weight: 500;">
+            <span>REGISTO DE CANTEIRO (ESTRUTURA EXISTENTE)</span>
             <span id="split-percentage-readout">50% / 50%</span>
-            <span>MODELO COMPUTACIONAL NEXUS 8K (PÓS-INTERVENÇÃO)</span>
+            <span>MODELO FOTORREALISTA ORTHOGONAL 8K</span>
           </div>
         </div>
-      </section>
 
-      <!-- ==========================================================================
-           SECTION 7: CADERNO DE ESPECIFICAÇÕES DE MATERIAIS
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+           SECTION: CADERNO DE MATERIAIS
            ========================================================================== -->
-      <section id="materiais">
+    <section id="materiais">
+      <div class="container">
+
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <span class="section-label">06 // CURADORIA TÉCNICA E MATERIAIS REAIS</span>
-              <h2 class="section-title">CADERNO DE ESPECIFICAÇÕES DE MATERIAIS</h2>
+              <h2 class="section-title">Caderno de Especificações de Materiais</h2>
             </div>
             <p class="section-subtitle">
-              Cada textura e acabamento 3D corresponde exatamente a amostras físicas certificadas e resistentes ao clima marítimo tropical de Luanda.
+              Curadoria de materiais reais resistentes ao clima tropical de Luanda, testados e especificados em projetos
+              BIM.
             </p>
           </div>
         </div>
 
-        <!-- Material Filters -->
-        <div class="materials-filters">
-          <button type="button" class="mat-filter-btn active" data-filter="all">TODOS OS MATERIAIS</button>
-          <button type="button" class="mat-filter-btn" data-filter="metais">METAIS NOBRES</button>
-          <button type="button" class="mat-filter-btn" data-filter="madeiras">MADEIRAS</button>
-          <button type="button" class="mat-filter-btn" data-filter="envolvente">ENVOLVENTE &amp; CAIXILHARIA</button>
-        </div>
+        <div class="materials-light-grid">
 
-        <!-- Materials Grid -->
-        <div class="materials-grid">
-          
-          <!-- Mat 01: Latão -->
-          <article class="material-card" data-category="metais" data-material-key="latao">
-            <div class="material-swatch-view">
-              <img src="/assets/images/mat_latao.jpg" alt="Amostra de Latão Acabamento Escovado" loading="lazy" />
-              <span class="mat-code-badge">NEX-BR01</span>
+          <!-- Mat 1: Latão -->
+          <article class="mat-light-card material-card" data-category="metais" data-material-key="latao">
+            <div class="mat-thumb-wrap">
+              <img src="/assets/images/mat_latao.jpg" alt="Amostra de Latão Escovado" loading="lazy" />
+              <span class="mat-badge-code">NEX-BR01</span>
             </div>
-            <div class="material-card-body">
-              <div>
-                <span class="mat-index">01 //</span>
-                <h3 class="mat-title">LATÃO ESCOVADO</h3>
-                <p class="mat-desc">
-                  Revestimento em painéis decorativos e sancas de iluminação com escovagem direcional acetinada de alto prestígio.
-                </p>
-              </div>
-              <div class="mat-specs-list">
-                <span>LIGA: <strong>CuZn37</strong></span>
-                <span>ESPESSURA: <strong>2.5 mm</strong></span>
-                <span>PROTEÇÃO: <strong>Verniz Eletrostático</strong></span>
-              </div>
+            <div class="mat-card-content">
+              <h3>Latão Escovado Acetinado</h3>
+              <p>Painéis decorativos de revestimento, nichos iluminados e detalhes de marcenaria de alto requinte.</p>
             </div>
           </article>
 
-          <!-- Mat 02: Madeira Carvalho -->
-          <article class="material-card" data-category="madeiras" data-material-key="carvalho">
-            <div class="material-swatch-view">
+          <!-- Mat 2: Carvalho -->
+          <article class="mat-light-card material-card" data-category="madeiras" data-material-key="carvalho">
+            <div class="mat-thumb-wrap">
               <img src="/assets/images/mat_carvalho.jpg" alt="Amostra de Madeira Carvalho Natural" loading="lazy" />
-              <span class="mat-code-badge">NEX-WO02</span>
+              <span class="mat-badge-code">NEX-WO02</span>
             </div>
-            <div class="material-card-body">
-              <div>
-                <span class="mat-index">02 //</span>
-                <h3 class="mat-title">CARVALHO NATURAL</h3>
-                <p class="mat-desc">
-                  Painéis acústicos ripados e marcenaria integrada em madeira maciça com tratamento hidrofóbico especial.
-                </p>
-              </div>
-              <div class="mat-specs-list">
-                <span>ESPÉCIE: <strong>Quercus Robur (FSC)</strong></span>
-                <span>ACABAMENTO: <strong>Óleo UV Mate A+</strong></span>
-                <span>ACÚSTICA: <strong>NRC 0.75</strong></span>
-              </div>
+            <div class="mat-card-content">
+              <h3>Carvalho Natural Europeu</h3>
+              <p>Ripados acústicos de teto e paredes, portas embutidas de grande formato e marcenaria integrada.</p>
             </div>
           </article>
 
-          <!-- Mat 03: Aço Primário -->
-          <article class="material-card" data-category="metais" data-material-key="aco">
-            <div class="material-swatch-view">
-              <img src="/assets/images/mat_aco.jpg" alt="Aço Primário Estrutural" loading="lazy" />
-              <span class="mat-code-badge">NEX-ST03</span>
+          <!-- Mat 3: Aço -->
+          <article class="mat-light-card material-card" data-category="metais" data-material-key="aco">
+            <div class="mat-thumb-wrap">
+              <img src="/assets/images/mat_aco.jpg" alt="Amostra de Aço Estrutural" loading="lazy" />
+              <span class="mat-badge-code">NEX-ST03</span>
             </div>
-            <div class="material-card-body">
-              <div>
-                <span class="mat-index">03 //</span>
-                <h3 class="mat-title">AÇO ESTRUTURAL</h3>
-                <p class="mat-desc">
-                  Perfis tubulares metálicos de secção tubular de alta resistência de suporte a consolas e pérgulas livres.
-                </p>
-              </div>
-              <div class="mat-specs-list">
-                <span>CLASSE: <strong>Aço S355JR</strong></span>
-                <span>TRATAMENTO: <strong>Epóxi C5M Luanda</strong></span>
-                <span>VÃO LIVRE: <strong>Até 4.80 metros</strong></span>
-              </div>
+            <div class="mat-card-content">
+              <h3>Aço Estrutural S355JR</h3>
+              <p>Perfis tubulares de suporte a grandes consolas em balanço livre com pintura anticorrosiva C5M.</p>
             </div>
           </article>
 
-          <!-- Mat 04: Caixilharia e Vidro Duplo -->
-          <article class="material-card" data-category="envolvente" data-material-key="caixilharia">
-            <div class="material-swatch-view">
-              <img src="/assets/images/mat_caixilharia.jpg" alt="Caixilharia Oculta e Vidro Duplo Acústico" loading="lazy" />
-              <span class="mat-code-badge">NEX-GL04</span>
+          <!-- Mat 4: Caixilharia -->
+          <article class="mat-light-card material-card" data-category="envolvente" data-material-key="caixilharia">
+            <div class="mat-thumb-wrap">
+              <img src="/assets/images/mat_caixilharia.jpg" alt="Caixilharia Oculta e Vidro Duplo" loading="lazy" />
+              <span class="mat-badge-code">NEX-GL04</span>
             </div>
-            <div class="material-card-body">
-              <div>
-                <span class="mat-index">04 //</span>
-                <h3 class="mat-title">CAIXILHARIA OCULTA</h3>
-                <p class="mat-desc">
-                  Esquadrias de alumínio embutidas de piso ao teto com vidro duplo de controlo solar e atenuação acústica extrema.
-                </p>
-              </div>
-              <div class="mat-specs-list">
-                <span>VIDRO: <strong>10 + 16Arg + 10 mm</strong></span>
-                <span>TÉRMICA: <strong>Ug = 1.1 W/(m²·K)</strong></span>
-                <span>ACÚSTICA: <strong>Rw = 44 dB</strong></span>
-              </div>
+            <div class="mat-card-content">
+              <h3>Caixilharia Oculta &amp; Vidro Duplo</h3>
+              <p>Esquadrias de piso ao teto (3.40m) com isolamento acústico 44dB e fator solar controlado.</p>
             </div>
           </article>
 
         </div>
-      </section>
 
-      <!-- ==========================================================================
-           SECTION 8: PERSPETIVAS DE ILUMINAÇÃO & INTEGRAÇÃO DE AMBIENTES
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+           SECTION: COMO TRABALHAMOS (PROCESSO EM 5 ETAPAS)
            ========================================================================== -->
-      <section id="iluminacao">
+    <section id="processo">
+      <div class="container">
+
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <span class="section-label">07 // ESTUDO FOTOMÉTRICO E INTEGRAÇÃO ESPACIAL</span>
-              <h2 class="section-title">PERSPETIVAS DE ILUMINAÇÃO &amp; INTEGRAÇÃO DE AMBIENTES</h2>
+              <h2 class="section-title">O Nosso Processo em 5 Etapas</h2>
             </div>
             <p class="section-subtitle">
-              Harmonização entre luz natural tropical diurna e atmosferas noturnas intimistas controladas por domótica KNX/DALI.
+              Garantia de previsibilidade orçamental, cumprimento de prazos contratuais e fidelidade construtiva.
             </p>
           </div>
         </div>
 
-        <div class="lighting-viewports-grid">
-          
-          <div class="lighting-card">
-            <div class="lighting-media">
-              <img src="/assets/images/i5.jpg" alt="Iluminação Interior Living Quilemba" loading="lazy" />
-              <div class="lighting-overlay-data">
-                <span>TEMPERATURA: 2700K (LUZ QUENTE)</span>
-                <span>LUMINÂNCIA: 220 LUX MÉDIO</span>
-              </div>
-            </div>
-            <div class="lighting-card-body">
-              <h3 class="lighting-title">LIVING &amp; LAREIRA INTERIOR</h3>
-              <p class="lighting-analysis">
-                Luminância rigorosamente calculada para assegurar continuidade visual entre interior e exterior. Fitas LED 2700K integradas nas sancas perimétricas, complementadas por projetores anti-encandeamento com ótica micro-refletora de feixe cónico embutidos no teto falso de gesso cartonado hidrófugo.
-              </p>
-            </div>
-          </div>
+        <div class="process-steps-list">
 
-          <div class="lighting-card">
-            <div class="lighting-media">
-              <img src="/assets/images/i1.jpg" alt="Iluminação Exterior Fachada e Piscina" loading="lazy" />
-              <div class="lighting-overlay-data">
-                <span>EXTERIOR: 3000K // ÁGUA: 4500K</span>
-                <span>CONTRASTE: 1:4 (DIALUX EVO)</span>
-              </div>
+          <div class="process-light-row">
+            <div class="p-step-num">01</div>
+            <div class="p-step-title">
+              <h4>Briefing &amp; Levantamento Técnico</h4>
+              <span>1 A 2 SEMANAS // DIAGNÓSTICO</span>
             </div>
-            <div class="lighting-card-body">
-              <h3 class="lighting-title">EXTERIOR &amp; PISCINA AO CREPÚSCULO</h3>
-              <p class="lighting-analysis">
-                O equilíbrio térmico da cor privilegia os tons quentes nos planos habitáveis, contrastando deliberadamente com a tonalidade fria da água da piscina (3000K vs 4500K subaquático), ampliando o reflexo das fachadas de betão arquitetónico e vidro duplo laminado.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ==========================================================================
-           SECTION 9: ESTRUTURA QUADRIPOLAR & PROCESSO EM 5 ETAPAS (Attachment 3)
-           ========================================================================== -->
-      <section id="processo">
-        <div class="section-header-block">
-          <div class="section-header-flex">
-            <div>
-              <span class="section-label">08 // FLUXO OPERACIONAL DE RIGOR TÉCNICO</span>
-              <h2 class="section-title">O NOSSO PROCESSO EM 5 ETAPAS</h2>
-            </div>
-            <p class="section-subtitle">
-              Cada projeto desenvolve-se numa sequência metódica com prazos contratuais vinculativos e marcos de aprovação formal.
+            <p class="p-step-desc">
+              Levantamento tridimensional laser in loco, diagnóstico de necessidades funcionais e plano de viabilidade
+              volumétrica.
             </p>
-          </div>
-        </div>
-
-        <div class="process-timeline">
-          
-          <div class="process-step-row">
-            <div class="step-num">01</div>
-            <div class="step-title-wrap">
-              <h4>BRIEFING &amp; LEVANTAMENTO TÉCNICO</h4>
-              <span>FASE PRELIMINAR // 1 A 2 SEMANAS</span>
-            </div>
-            <p class="step-desc">
-              Alinhamento estruturado com os clientes, definição precisa do programa de necessidades, levantamento tridimensional in loco com scanner laser e análise topográfica e geotécnica do terreno.
-            </p>
-            <div class="step-meta">
+            <div class="p-step-meta">
               <span>ENTREGÁVEL:</span>
               <strong>Dossiê de Diagnóstico</strong>
             </div>
           </div>
 
-          <div class="process-step-row">
-            <div class="step-num">02</div>
-            <div class="step-title-wrap">
-              <h4>MODELAÇÃO 3D &amp; CONCEITO PRELIMINAR</h4>
-              <span>VOLUMETRIA // 2 A 3 SEMANAS</span>
+          <div class="process-light-row">
+            <div class="p-step-num">02</div>
+            <div class="p-step-title">
+              <h4>Modelação 3D &amp; Conceito Preliminar</h4>
+              <span>2 A 3 SEMANAS // VOLUMETRIA</span>
             </div>
-            <p class="step-desc">
-              Tradução dos requisitos do programa em volumetria e distribuição espacial nos softwares BIM. Plantas humanizadas, cortes esquemáticos e primeiros estudos tridimensionais de volumetria.
+            <p class="p-step-desc">
+              Definição de volumes nos softwares BIM, plantas de layout de interiores e primeiros ensaios estéticos à
+              escala real.
             </p>
-            <div class="step-meta">
+            <div class="p-step-meta">
               <span>ENTREGÁVEL:</span>
               <strong>Modelo 3D Conceitual</strong>
             </div>
           </div>
 
-          <div class="process-step-row">
-            <div class="step-num">03</div>
-            <div class="step-title-wrap">
-              <h4>RENDERS FOTORREALISTAS &amp; APROVAÇÃO</h4>
-              <span>VISUALIZAÇÃO // 2 SEMANAS</span>
+          <div class="process-light-row">
+            <div class="p-step-num">03</div>
+            <div class="p-step-title">
+              <h4>Renders Fotorrealistas &amp; Aprovação</h4>
+              <span>2 SEMANAS // VISUALIZAÇÃO</span>
             </div>
-            <p class="step-desc">
-              Produção de imagens 3D de alta fidelidade visual (8K) com luz solar real de Luanda, materiais reais e integração paisagística com aprovação final de acabamentos e marcenaria.
+            <p class="p-step-desc">
+              Produção de imagens 8K com iluminação real de Luanda, materiais reais e integração paisagística com
+              aprovação do cliente.
             </p>
-            <div class="step-meta">
+            <div class="p-step-meta">
               <span>ENTREGÁVEL:</span>
               <strong>Galeria de Renders 8K</strong>
             </div>
           </div>
 
-          <div class="process-step-row">
-            <div class="step-num">04</div>
-            <div class="step-title-wrap">
-              <h4>DESENHOS DE EXECUÇÃO &amp; BIM IFC</h4>
-              <span>PROJETO EXECUTIVO // 3 A 4 SEMANAS</span>
+          <div class="process-light-row">
+            <div class="p-step-num">04</div>
+            <div class="p-step-title">
+              <h4>Projetos de Execução &amp; BIM IFC</h4>
+              <span>3 A 4 SEMANAS // PROJETO TÉCNICO</span>
             </div>
-            <p class="step-desc">
-              Desenvolvimento de todas as peças desenhadas e escritas técnicas para construção: alvenarias, tetos falsos, esquadrias, esquemas elétricos e caderno de encargos pormenorizado.
+            <p class="p-step-desc">
+              Caderno técnico com detalhamento milimétrico de marcenaria, esquadrias, instalações elétricas e mapas de
+              quantidades.
             </p>
-            <div class="step-meta">
+            <div class="p-step-meta">
               <span>ENTREGÁVEL:</span>
               <strong>Caderno Técnico Completo</strong>
             </div>
           </div>
 
-          <div class="process-step-row">
-            <div class="step-num">05</div>
-            <div class="step-title-wrap">
-              <h4>ACOMPANHAMENTO DE OBRA &amp; ENTREGA</h4>
-              <span>FISCALIZAÇÃO // DURAÇÃO DA OBRA</span>
+          <div class="process-light-row">
+            <div class="p-step-num">05</div>
+            <div class="p-step-title">
+              <h4>Acompanhamento de Obra &amp; Entrega</h4>
+              <span>DURAÇÃO DA OBRA // FISCALIZAÇÃO</span>
             </div>
-            <p class="step-desc">
-              Supervisão técnica contínua no canteiro de obras, fiscalização de conformidade dimensional face ao modelo 3D aprovado e entrega de chaves com termo formal de garantia estrutural.
+            <p class="p-step-desc">
+              Fiscalização contínua no canteiro de obras para garantir conformidade rigorosa com o modelo 3D aprovado.
             </p>
-            <div class="step-meta">
+            <div class="p-step-meta">
               <span>ENTREGÁVEL:</span>
               <strong>Termo de Garantia 10 Anos</strong>
             </div>
@@ -885,479 +682,299 @@
 
         </div>
 
-        <!-- Diferenciação Técnica de Entregáveis (3 Cards) -->
-        <div class="section-header-block" style="margin-bottom: 2rem;">
-          <h3 style="font-size: 1.4rem; text-transform: uppercase;">DIFERENCIAÇÃO TÉCNICA DE ENTREGÁVEIS</h3>
-        </div>
-
-        <div class="deliverables-grid">
-          <div class="deliverable-card">
-            <div>
-              <div class="deliverable-icon">⬚</div>
-              <h4 class="deliverable-title">1. Estrutura Conceptual 3D</h4>
-              <p class="deliverable-desc">
-                Ideal para clientes que pretendem visualizar o potencial espacial do seu imóvel ou terreno antes de iniciar a obra física, servindo de base contratual para decisões orçamentais sólidas.
-              </p>
-            </div>
-          </div>
-
-          <div class="deliverable-card">
-            <div>
-              <div class="deliverable-icon">▤</div>
-              <h4 class="deliverable-title">2. Plantas &amp; Desenhos Executivos</h4>
-              <p class="deliverable-desc">
-                Documentação milimétrica de suporte à construção, com medições exatas de vãos, detalhes de marcenaria, mapas de acabamentos e compatibilização de redes hidráulicas e elétricas.
-              </p>
-            </div>
-          </div>
-
-          <div class="deliverable-card">
-            <div>
-              <div class="deliverable-icon">▦</div>
-              <h4 class="deliverable-title">3. Execução Construtiva Física</h4>
-              <p class="deliverable-desc">
-                A materialização integral da obra chave-na-mão, com equipas técnicas próprias, fornecedores certificados e garantia integral de 10 anos para estruturas de betão armado e alvenarias.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ==========================================================================
-           SECTION 10: FICHA TÉCNICA DE DIMENSIONAMENTO & PARÂMETROS BIM
-           ========================================================================== -->
-      <section id="bim">
-        <div class="section-header-block">
-          <div class="section-header-flex">
-            <div>
-              <span class="section-label">09 // DADOS ANALÍTICOS DE CONFORMIDADE</span>
-              <h2 class="section-title">FICHA TÉCNICA DE DIMENSIONAMENTO &amp; PARÂMETROS BIM</h2>
-            </div>
-            <div>
-              <input type="text" id="bim-search-input" placeholder="FILTRAR COMPONENTE OU NORMA..." class="form-control" style="width: 280px; font-family: var(--font-mono); font-size: 11px;" />
-            </div>
-          </div>
-        </div>
-
-        <div class="bim-table-wrapper">
-          <table class="bim-table">
-            <thead>
-              <tr>
-                <th>COMPONENTE</th>
-                <th>ESPECIFICAÇÃO / FABRICANTE</th>
-                <th>TOLERÂNCIA DIMENSIONAL</th>
-                <th>DESEMPENHO / NORMATIVA</th>
-                <th>STATUS BIM</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="col-component">Estrutura Portante Primária</td>
-                <td>Betão C30/37 + Perfis Metálicos Tubulares S355JR</td>
-                <td>± 2.0 mm (Nível Laser)</td>
-                <td>Eurocódigo 2 &amp; 3 / Sísmica Classe II</td>
-                <td><span class="bim-status-badge validated">VALIDADO</span></td>
-              </tr>
-              <tr>
-                <td class="col-component">Envolvente Translúcida</td>
-                <td>Vidro Duplo Laminado 10+16Arg+10 Sunguard</td>
-                <td>± 1.0 mm (Caixilho Oculto)</td>
-                <td>Ug = 1.1 W/(m²·K) / Atenuação 44 dB</td>
-                <td><span class="bim-status-badge validated">VALIDADO</span></td>
-              </tr>
-              <tr>
-                <td class="col-component">Cobertura Invertida Verde</td>
-                <td>Isolamento XPS 100mm + Membrana EPDM Dupla</td>
-                <td>Pendente Mínima 1.8%</td>
-                <td>Estanquidade Classe 4 / R = 3.2 m²K/W</td>
-                <td><span class="bim-status-badge validated">VALIDADO</span></td>
-              </tr>
-              <tr>
-                <td class="col-component">Climatização &amp; Qualidade do Ar</td>
-                <td>Sistema VRV Daikin com Recuperador Entálpico</td>
-                <td>Caudal 450 m³/h / Divisão</td>
-                <td>COP 4.42 / Classe A+++ / Filtros F7</td>
-                <td><span class="bim-status-badge modeling">EM MODELAGEM</span></td>
-              </tr>
-              <tr>
-                <td class="col-component">Instalações Especiais &amp; Domótica</td>
-                <td>Protocolo KNX + DALI-2 para Controlo Lumínico</td>
-                <td>Latência de Rede &lt; 15 ms</td>
-                <td>Redundância Cat6A / Backup UPS 3kVA</td>
-                <td><span class="bim-status-badge validated">VALIDADO</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <!-- ==========================================================================
-           SECTION 11: FAQ TÉCNICO INTERATIVO
-           ========================================================================== -->
-      <section id="faq">
-        <div class="section-header-block">
-          <div class="section-header-flex">
-            <div>
-              <span class="section-label">10 // ESCLARECIMENTO DE DÚVIDAS OPERACIONAIS</span>
-              <h2 class="section-title">PERGUNTAS FREQUENTES &amp; POLÍTICAS DE PROJETO</h2>
-            </div>
-            <p class="section-subtitle">
-              Respostas claras sobre prazos, contratações parciais, compatibilização 3D com a construção física e formatos de entrega de ficheiros em Angola.
-            </p>
-          </div>
-        </div>
-
-        <div class="faq-accordion-group">
-          
-          <div class="faq-item">
-            <button type="button" class="faq-question-btn">
-              <span class="faq-title">1. Como a NEXUS harmoniza a etapa 3D com a fase física em obra?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer-panel">
-              <p>
-                Os nossos modelos 3D não são meras ilustrações artísticas: são construídos em metodologia BIM (Revit/ArchiCAD) com componentes construtivos reais, cotas milimétricas e materiais com fornecedores verificados em Luanda. A equipa de fiscalização utiliza os modelos tridimensionais em tablets no canteiro de obras para validar cada armação, pilar e caixilho antes da betonagem.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button type="button" class="faq-question-btn">
-              <span class="faq-title">2. É possível contratar apenas a fase de visualização 3D sem execução de obra?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer-panel">
-              <p>
-                Sim. A NEXUS opera em regime modular flexível. Desenvolvemos estudos de viabilidade volumétrica 3D e cadernos técnicos completos de apresentação para investidores e clientes que pretendem gerir a sua própria construção ou obter licenciamento municipal prévio junto do Governo Provincial de Luanda.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button type="button" class="faq-question-btn">
-              <span class="faq-title">3. Qual é a política da NEXUS quanto a alterações durante o processo de projeto?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer-panel">
-              <p>
-                Em cada uma das 5 etapas do projeto, o cliente dispõe de 2 ciclos de revisão formal de volumetria e materiais sem qualquer encargo adicional antes da aprovação do render final 8K. Alterações posteriores ao fecho do Caderno Técnico Executivo são geridas através de adendas técnicas de compatibilização controlada.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button type="button" class="faq-question-btn">
-              <span class="faq-title">4. Quais são os formatos de ficheiros entregues no fecho do contrato?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer-panel">
-              <p>
-                Entregamos um dossiê digital completo em formatos abertos e nativos: Modelo BIM em formato IFC 4.0, ficheiros de arquitetura e especialidades em Autodesk DWG (AutoCAD 2024), cadernos técnicos de execução em PDF de alta resolução para impressão em A1/A0 e galeria de imagens 8K em formato TIFF/PNG sem compressão.
-              </p>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <button type="button" class="faq-question-btn">
-              <span class="faq-title">5. Como garantem os prazos de execução e custos em Luanda?</span>
-              <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-answer-panel">
-              <p>
-                Trabalhamos com mapas de quantidades exaustivos baseados no modelo 3D aprovado e contratos com cláusulas de preço fechado para materiais estruturais chave, mitigando flutuações cambiais através de compras programadas e stockagem segura com fornecedores parceiros qualificados.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ==========================================================================
-           SECTION 12: CTA BANNER & TECHNICAL CADERNO DOWNLOAD
-           ========================================================================== -->
-      <section id="download-banner">
-        <div class="cta-banner-box">
-          <div class="cta-banner-info">
-            <span class="mono-tag" style="margin-bottom: 0.5rem;">[DOWNLOAD TÉCNICO AUTORIZADO]</span>
-            <h2>DESCARREGAR CADERNO TÉCNICO DO PROJETO (PDF)</h2>
-            <p>
-              Estudo preliminar detalhado (A1/A3, escala 1:100/1:50, 38 páginas de especificações de materiais, cálculos de cargas estáticas e memória descritiva da Residência Quilemba).
-            </p>
-          </div>
-          <div class="cta-banner-actions">
-            <button type="button" class="btn-primary btn-open-caderno-modal">
-              DESCARREGAR CADERNO [24.8 MB]
-            </button>
-            <button type="button" class="btn-ghost btn-open-appointment-modal">
-              AGENDAR REUNIÃO 3D <span class="arrow">→</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-    </main>
+      </div>
+    </section>
 
     <!-- ==========================================================================
-         ARCHITECTURAL FOOTER
-         ========================================================================== -->
-    <footer id="atelier-footer">
-      <div class="footer-top-grid">
-        
-        <!-- Brand Info -->
-        <div class="footer-brand">
-          <div class="logo-container" style="margin-bottom: 1rem;">
-            <div class="logo-mark">N</div>
-            <div class="logo-text">
-              <span class="logo-title">NEXUS ATELIER</span>
-              <span class="logo-subtitle">ARQUITETURA &amp; CONSTRUÇÃO</span>
-            </div>
-          </div>
+           SECTION: CTA BANNER FINAL
+           ========================================================================== -->
+    <section id="cta-banner">
+      <div class="container">
+        <div class="cta-box-center">
+          <h2>Pronto para transformar seu projeto em uma experiência memorável?</h2>
           <p>
-            Laboratório de arquitetura computacional, engenharia avançada e representação tridimensional fotorrealista para projetos de alta exigência residenciais e corporativos em Angola.
+            Agende uma reunião preliminar com os nossos arquitetos e especialistas em 3D e descubra o verdadeiro
+            potencial do seu imóvel em Angola.
           </p>
-          <div class="footer-geo-coord">
-            COORDENADAS: LAT -8.83833° // LONG 13.23444°<br />
-            LUANDA, REPÚBLICA DE ANGOLA
+          <div class="cta-pill-group">
+            <button type="button" class="btn-white-pill btn-open-appointment-modal">
+              Quero Fazer Meu Orçamento →
+            </button>
+            <button type="button" class="btn-glass-pill btn-open-caderno-modal">
+              Descarregar Caderno Técnico (PDF)
+            </button>
           </div>
         </div>
+      </div>
+    </section>
 
-        <!-- Contactos e Horário -->
-        <div>
-          <div class="footer-col-title">CONTACTOS &amp; ATELIER FÍSICO</div>
-          <ul class="footer-links-list">
-            <li><a href="mailto:atelier@nexus-dic.com">atelier@nexus-dic.com</a></li>
+  </main>
+
+  <!-- ==========================================================================
+         MODERN LIGHT FOOTER
+         ========================================================================== -->
+  <footer id="main-footer">
+    <div class="container">
+      <div class="footer-main-grid">
+
+        <div class="footer-col">
+          <div class="header-logo-wrap" style="color: var(--text-primary); margin-bottom: 1.25rem;">
+            <div class="logo-symbol" style="border-color: var(--text-primary);">
+              <div
+                style="width: 14px; height: 14px; background: var(--text-primary); position: absolute; right: -3px; bottom: -3px;">
+              </div>
+            </div>
+            <div>
+              <span class="logo-name" style="color: var(--text-primary);">ORTHOGONAL</span>
+              <span class="logo-sub" style="color: var(--text-muted);">VIZ STUDIO &amp; ATELIER</span>
+            </div>
+          </div>
+          <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7; max-width: 320px;">
+            Criamos experiências visuais fotorrealistas e projetos de design de interiores contemporâneo para
+            empreendimentos de alto padrão em Angola.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Sobre o Studio</a></li>
+            <li><a href="#servicos">Especialidades</a></li>
+            <li><a href="#interiores">Design de Interiores</a></li>
+            <li><a href="#visualizador">Galeria 3D</a></li>
+            <li><a href="#processo">Como Trabalhamos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contato Direto</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:contato@orthogonal-studio.com">contato@orthogonal-studio.com</a></li>
             <li><a href="https://wa.me/244923000000" target="_blank" rel="noopener">WhatsApp: +244 923 000 000</a></li>
-            <li><span style="font-size: 0.85rem; color: var(--secondary-titanium);">Sede: Condomínio Golfe 2, Luanda</span></li>
-            <li><span style="font-size: 0.85rem; color: var(--tertiary-blueprint);">Seg - Sex: 08:30 - 18:00 WAT</span></li>
+            <li><span style="font-size: 14px; color: var(--text-muted);">Sede: Condomínio Golfe 2, Luanda</span></li>
+            <li><span style="font-size: 14px; color: var(--text-muted);">Seg - Sex: 08:30 - 18:00 WAT</span></li>
           </ul>
         </div>
 
-        <!-- Plataformas e Software -->
-        <div>
-          <div class="footer-col-title">PLATAFORMAS E ARQUIVO DIGITAL</div>
-          <ul class="footer-links-list">
-            <li><a href="#visualizador">Ambiente de Visualização 3D</a></li>
-            <li><a href="#axonometria">Axonometria Explodida WebGL</a></li>
-            <li><a href="#materiais">Caderno de Materiais Reais</a></li>
-            <li><a href="#bim">Especificações BIM IFC</a></li>
-            <li><a href="#" class="btn-open-caderno-modal">Dossiê Técnico em PDF</a></li>
-          </ul>
-        </div>
-
-        <!-- Quadros Técnicos & Membresia -->
-        <div>
-          <div class="footer-col-title">QUADROS TÉCNICOS &amp; MEMBRESIA</div>
-          <p style="font-size: 0.8rem; color: var(--secondary-titanium); line-height: 1.6; margin-bottom: 0.75rem;">
-            Todas as representações técnicas, modelos tridimensionais e diagramas de decomposição construtiva são emitidos sob supervisão de engenheiros e arquitetos registados na Ordem dos Arquitectos de Angola (OAA) e Ordem dos Engenheiros de Angola (OEA).
+        <div class="footer-col">
+          <h4>Caderno Técnico</h4>
+          <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+            Consulte especificações de materiais, parâmetros BIM e memórias descritivas dos nossos projetos.
           </p>
-          <span class="spec-chip">REGISTO TÉCNICO OAA #892-A</span>
+          <button type="button" class="stage-pill-btn btn-open-caderno-modal"
+            style="background: var(--surface-subtle); border: 1px solid var(--border-light);">
+            Acessar Dossiê PDF
+          </button>
         </div>
 
       </div>
 
-      <!-- Bottom Bar -->
-      <div class="footer-bottom-bar">
-        <span>© 2026 NEXUS ATELIER. TODOS OS DIREITOS RESERVADOS.</span>
-        <span>SISTEMA DE VISUALIZAÇÃO INTERATIVA 3D &amp; GSAP ENGINE</span>
-        <span>LUANDA | ANGOLA</span>
+      <div class="footer-bottom-row">
+        <span>© 2026 Nexus. Todos os direitos reservados.</span>
+        <span>Design de Interiores e Construção</span>
+        <span>Lubango, Angola</span>
       </div>
-    </footer>
+    </div>
+  </footer>
 
-    <!-- ==========================================================================
-         MODAL 1: CADERNO TÉCNICO PREVIEW (PDF Simulation)
+  <!-- ==========================================================================
+         MODAL 1: ORÇAMENTO & CONSULTORIA TÉCNICA (Light Style)
          ========================================================================== -->
-    <div class="modal-backdrop" id="modal-caderno-preview" role="dialog" aria-modal="true" aria-labelledby="caderno-modal-title">
-      <div class="modal-window">
-        <div class="modal-header">
-          <div>
-            <span class="mono-tag" style="font-size: 9px;">DOSSIÊ TÉCNICO DE ENGENHARIA</span>
-            <h3 class="modal-title" id="caderno-modal-title">CADERNO TÉCNICO — RESIDÊNCIA QUILEMBA</h3>
+  <div class="modal-backdrop" id="modal-technical-appointment" role="dialog" aria-modal="true"
+    aria-labelledby="appointment-modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <span class="section-label" style="margin-bottom: 0.25rem;">ORÇAMENTO PRELIMINAR</span>
+          <h3 id="appointment-modal-title">Fazer Meu Orçamento</h3>
+        </div>
+        <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
+      </div>
+
+      <form class="modal-body"
+        onsubmit="event.preventDefault(); alert('Solicitação de orçamento registada com sucesso! A equipa do Nexus Design de Interiores e Construção entrará em contacto nas próximas 24 horas.'); document.getElementById('modal-technical-appointment').classList.remove('active');">
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="calc-client-name">Seu Nome / Empresa:</label>
+            <input type="text" id="calc-client-name" class="form-control" placeholder="Ex: Dr. Evaristo Correia"
+              required />
           </div>
-          <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
+          <div class="form-group">
+            <label class="form-label" for="calc-client-contact">WhatsApp ou Email:</label>
+            <input type="text" id="calc-client-contact" class="form-control" placeholder="+244 923 000 000" required />
+          </div>
         </div>
 
-        <div style="background: var(--surface-container-lowest); padding: 0.75rem 1.75rem; border-bottom: 1px solid var(--color-border); display: flex; gap: 0.5rem; flex-wrap: wrap;">
-          <button type="button" class="cam-btn caderno-page-tab active" data-page="page-1">PÁG 01: IMPLANTAÇÃO</button>
-          <button type="button" class="cam-btn caderno-page-tab" data-page="page-2">PÁG 02: AXONOMETRIA</button>
-          <button type="button" class="cam-btn caderno-page-tab" data-page="page-3">PÁG 03: MATERIAIS &amp; CROMIA</button>
-          <button type="button" class="cam-btn caderno-page-tab" data-page="page-4">PÁG 04: CÁLCULOS BIM</button>
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="calc-project-type">Tipo de Empreendimento:</label>
+            <select id="calc-project-type" class="form-control">
+              <option value="residencial">Residência de Luxo &amp; Interiores</option>
+              <option value="requalificacao">Requalificação &amp; Remodelação (Retrofit)</option>
+              <option value="comercial">Empreendimento Comercial / Lançamento na Planta</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="calc-location">Localização em Angola:</label>
+            <input type="text" id="calc-location" class="form-control" placeholder="Ex: Luanda Sul, Talatona, Miramar"
+              required />
+          </div>
         </div>
 
-        <div class="modal-body">
-          
-          <!-- Page 1 -->
-          <div class="caderno-page-view" data-page="page-1" style="display: block;">
-            <div style="border: 1px solid var(--color-border); padding: 1.5rem; background: #000; text-align: center;">
-              <img src="/assets/images/i3.jpg" alt="Planta de Implantação e Estrutura" style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
-            </div>
-            <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 11px; display: flex; justify-content: space-between;">
-              <span>DESENHO: ARQ-01 // ESCALA 1:100</span>
-              <span>PROPRIETÁRIO: DR. EVARISTO CORREIA</span>
-            </div>
+        <div class="form-group"
+          style="background: var(--surface-subtle); padding: 1.5rem; border-radius: 14px; border: 1px solid var(--border-light);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <span class="form-label" style="margin-bottom: 0;">Área Estimada do Projeto:</span>
+            <strong id="calc-area-display" style="font-size: 1.3rem; color: var(--color-primary-light);">450 m²</strong>
+          </div>
+          <input type="range" id="calc-area-range" min="100" max="2500" step="50" value="450"
+            class="custom-range-slider" style="width: 100%;" />
+          <div
+            style="display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 0.5rem;">
+            <span>100 m²</span>
+            <span>800 m²</span>
+            <span>2500+ m²</span>
           </div>
 
-          <!-- Page 2 -->
-          <div class="caderno-page-view" data-page="page-2" style="display: none;">
-            <div style="border: 1px solid var(--color-border); padding: 1.5rem; background: #000; text-align: center;">
-              <img src="/assets/images/axonometria_explodida.jpg" alt="Axonometria Explodida Caderno" style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
+          <div
+            style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light); display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+            <div>
+              <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Prazo Estimado de
+                Estudo 3D:</span>
+              <div id="calc-est-time" style="font-size: 1.15rem; color: var(--text-primary); font-weight: 700;">~ 6
+                semanas</div>
             </div>
-            <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 11px; display: flex; justify-content: space-between;">
-              <span>DESENHO: STR-04 // DECOMPOSIÇÃO CONSTRUTIVA</span>
-              <span>MODELAGEM PARAMÉTRICA BIM</span>
-            </div>
-          </div>
-
-          <!-- Page 3 -->
-          <div class="caderno-page-view" data-page="page-3" style="display: none;">
-            <div style="border: 1px solid var(--color-border); padding: 1.5rem; background: #000; text-align: center;">
-              <img src="/assets/images/i5.jpg" alt="Mapa de Acabamentos Interiores" style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
-            </div>
-            <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 11px; display: flex; justify-content: space-between;">
-              <span>MAPA DE ACABAMENTOS // QUIL-MAT-01</span>
-              <span>CARVALHO, LATÃO E CAIXILHARIA MINIMALISTA</span>
+            <div>
+              <span style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Entregáveis
+                Previstos:</span>
+              <div id="calc-est-docs" style="font-size: 1.15rem; color: var(--color-primary-light); font-weight: 700;">
+                12 renders 8K + Dossier BIM</div>
             </div>
           </div>
+        </div>
 
-          <!-- Page 4 -->
-          <div class="caderno-page-view" data-page="page-4" style="display: none;">
-            <div style="border: 1px solid var(--color-border); padding: 1.5rem; background: #000; text-align: center;">
-              <img src="/assets/images/i6.jpg" alt="Planeamento e Cálculos BIM" style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
-            </div>
-            <div style="margin-top: 1rem; font-family: var(--font-mono); font-size: 11px; display: flex; justify-content: space-between;">
-              <span>CADERNO DE ENCARGOS // MEMÓRIA DESCRITIVA</span>
-              <span>CONFORMIDADE EUROCÓDIGOS &amp; NORMAS ANGOLANAS</span>
-            </div>
+        <div class="form-group" style="margin-top: 1.5rem;">
+          <label class="form-label">Detalhes Adicionais:</label>
+          <textarea class="form-control" rows="3"
+            placeholder="Indique especificações: design de interiores completo, marcenaria sob medida, lançamento imobiliário..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-white-pill"
+          style="width: 100%; background: var(--color-primary-light); color: #ffffff; text-align: center; justify-content: center; margin-top: 1rem;">
+          Solicitar Orçamento &amp; Agendar Demonstração →
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+         MODAL 2: CADERNO TÉCNICO PDF PREVIEW
+         ========================================================================== -->
+  <div class="modal-backdrop" id="modal-caderno-preview" role="dialog" aria-modal="true"
+    aria-labelledby="caderno-modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <span class="section-label" style="margin-bottom: 0.25rem;">ARQUIVO TÉCNICO</span>
+          <h3 id="caderno-modal-title">Caderno Técnico — Residência Quilemba</h3>
+        </div>
+        <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
+      </div>
+
+      <div
+        style="background: var(--surface-subtle); padding: 0.75rem 2.25rem; border-bottom: 1px solid var(--border-light); display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <button type="button" class="cam-pill caderno-page-tab active" data-page="page-1">Pág 01: Implantação</button>
+        <button type="button" class="cam-pill caderno-page-tab" data-page="page-2">Pág 02: Axonometria 3D</button>
+        <button type="button" class="cam-pill caderno-page-tab" data-page="page-3">Pág 03: Interiores</button>
+        <button type="button" class="cam-pill caderno-page-tab" data-page="page-4">Pág 04: Cálculos BIM</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="caderno-page-view" data-page="page-1" style="display: block;">
+          <div
+            style="border: 1px solid var(--border-light); border-radius: 12px; padding: 1rem; background: #ffffff; text-align: center;">
+            <img src="/assets/images/i3.jpg" alt="Planta de Implantação"
+              style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
           </div>
-
-          <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
-            <button type="button" class="btn-ghost" onclick="window.print()">
-              IMPRIMIR FICHA TÉCNICA
-            </button>
-            <a href="/assets/images/axonometria_explodida.jpg" download="NEXUS_Caderno_Tecnico_Quilemba.jpg" class="btn-primary">
-              DESCARREGAR ARQUIVO [ZIP/PDF]
-            </a>
+          <div
+            style="margin-top: 1rem; font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between;">
+            <span>DESENHO: ARQ-01 // ESCALA 1:100</span>
+            <span>PROPRIETÁRIO: DR. EVARISTO CORREIA</span>
           </div>
+        </div>
 
+        <div class="caderno-page-view" data-page="page-2" style="display: none;">
+          <div
+            style="border: 1px solid var(--border-light); border-radius: 12px; padding: 1rem; background: #ffffff; text-align: center;">
+            <img src="/assets/images/axonometria_explodida.jpg" alt="Axonometria Explodida"
+              style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
+          </div>
+        </div>
+
+        <div class="caderno-page-view" data-page="page-3" style="display: none;">
+          <div
+            style="border: 1px solid var(--border-light); border-radius: 12px; padding: 1rem; background: #ffffff; text-align: center;">
+            <img src="/assets/images/i5.jpg" alt="Interiores e Marcenaria"
+              style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
+          </div>
+        </div>
+
+        <div class="caderno-page-view" data-page="page-4" style="display: none;">
+          <div
+            style="border: 1px solid var(--border-light); border-radius: 12px; padding: 1rem; background: #ffffff; text-align: center;">
+            <img src="/assets/images/i6.jpg" alt="Planeamento BIM"
+              style="max-height: 400px; width: auto; max-width: 100%; object-fit: contain;" />
+          </div>
+        </div>
+
+        <div style="margin-top: 2rem; display: flex; justify-content: flex-end; gap: 1rem;">
+          <button type="button" class="stage-pill-btn" onclick="window.print()">
+            Imprimir
+          </button>
+          <a href="/assets/images/hero_orthogonal_villa.jpg" download="Orthogonal_Studio_Dossier.jpg"
+            class="btn-white-pill" style="background: var(--color-primary-light); color: #ffffff;">
+            Descarregar Arquivo Completo
+          </a>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ==========================================================================
-         MODAL 2: TECHNICAL STUDY APPOINTMENT / ESTIMATOR
-         ========================================================================== -->
-    <div class="modal-backdrop" id="modal-technical-appointment" role="dialog" aria-modal="true" aria-labelledby="appointment-modal-title">
-      <div class="modal-window">
-        <div class="modal-header">
-          <div>
-            <span class="mono-tag" style="font-size: 9px;">PROPOSTA E PLANEAMENTO PRELIMINAR</span>
-            <h3 class="modal-title" id="appointment-modal-title">SOLICITAR ESTUDO TÉCNICO &amp; REUNIÃO 3D</h3>
-          </div>
-          <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
-        </div>
-
-        <form class="modal-body" onsubmit="event.preventDefault(); alert('Solicitação registada com sucesso! A equipa técnica da NEXUS entrará em contacto nas próximas 24 horas.'); document.getElementById('modal-technical-appointment').classList.remove('active');">
-          
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label class="form-label" for="calc-client-name">Nome Completo / Empresa:</label>
-              <input type="text" id="calc-client-name" class="form-control" placeholder="Ex: Dr. Evaristo Correia" required />
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="calc-client-contact">Email ou WhatsApp (Luanda):</label>
-              <input type="text" id="calc-client-contact" class="form-control" placeholder="+244 923 000 000" required />
-            </div>
-          </div>
-
-          <div class="form-grid-2">
-            <div class="form-group">
-              <label class="form-label" for="calc-project-type">Tipologia da Intervenção:</label>
-              <select id="calc-project-type" class="form-control">
-                <option value="residencial">Habitação Unifamiliar / Moradia de Luxo</option>
-                <option value="requalificacao">Requalificação &amp; Remodelação (Retrofit)</option>
-                <option value="comercial">Edifício Comercial / Escritórios / Hotelaria</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label class="form-label" for="calc-location">Localização em Angola:</label>
-              <input type="text" id="calc-location" class="form-control" placeholder="Ex: Luanda Sul, Talatona, Miramar" required />
-            </div>
-          </div>
-
-          <!-- Area Slider Estimator -->
-          <div class="form-group" style="background: var(--surface-container-lowest); padding: 1.25rem; border: 1px solid var(--color-border); margin-top: 0.5rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-              <span class="form-label" style="margin-bottom: 0;">Área Estimada do Imóvel:</span>
-              <strong id="calc-area-display" style="font-family: var(--font-display); font-size: 1.3rem; color: var(--primary-accent);">450 m²</strong>
-            </div>
-            <input type="range" id="calc-area-range" min="100" max="2500" step="50" value="450" class="custom-range-slider" />
-            <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 9px; color: var(--tertiary-blueprint); margin-top: 0.4rem;">
-              <span>100 m² (Apartamento)</span>
-              <span>800 m² (Moradia)</span>
-              <span>2500+ m² (Condomínio / Corporativo)</span>
-            </div>
-
-            <!-- Auto Calculations Bar -->
-            <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--color-border); display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-              <div>
-                <span style="font-family: var(--font-mono); font-size: 9px; color: var(--tertiary-blueprint); text-transform: uppercase;">Prazo Estimado de Estudo 3D:</span>
-                <div id="calc-est-time" style="font-family: var(--font-display); font-size: 1.1rem; color: var(--color-white); font-weight: 600;">~ 6 semanas</div>
-              </div>
-              <div>
-                <span style="font-family: var(--font-mono); font-size: 9px; color: var(--tertiary-blueprint); text-transform: uppercase;">Entregáveis Previstos:</span>
-                <div id="calc-est-docs" style="font-family: var(--font-display); font-size: 1.1rem; color: var(--primary-accent); font-weight: 600;">12 renders 8K + Dossier BIM IFC</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group" style="margin-top: 1.5rem;">
-            <label class="form-label">Descrição das Necessidades Específicas:</label>
-            <textarea class="form-control" rows="3" placeholder="Indique características pretendidas: piscina infinita, caixilharia de grande vão, reforço estrutural, etc..."></textarea>
-          </div>
-
-          <div style="display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem;">
-            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">
-              ENVIAR SOLICITAÇÃO TÉCNICA E AGENDAR SESSÃO 3D →
-            </button>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
-    <!-- ==========================================================================
+  <!-- ==========================================================================
          MODAL 3: MATERIAL DETAIL INSPECTOR
          ========================================================================== -->
-    <div class="modal-backdrop" id="modal-material-detail" role="dialog" aria-modal="true" aria-labelledby="mat-detail-modal-title">
-      <div class="modal-window">
-        <div class="modal-header">
-          <div>
-            <span class="mono-tag modal-mat-code" style="font-size: 9px;">NEX-MAT // ESPECIFICAÇÃO</span>
-            <h3 class="modal-title modal-mat-title" id="mat-detail-modal-title">DETALHE DO MATERIAL</h3>
-          </div>
-          <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
+  <div class="modal-backdrop" id="modal-material-detail" role="dialog" aria-modal="true"
+    aria-labelledby="mat-detail-modal-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <div>
+          <span class="section-label" style="margin-bottom: 0.25rem;">DETALHE DE MATERIAL</span>
+          <h3 id="mat-detail-modal-title" class="modal-mat-title">Especificação de Material</h3>
+        </div>
+        <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <div
+          style="width: 100%; height: 260px; overflow: hidden; border-radius: 14px; margin-bottom: 1.5rem; border: 1px solid var(--border-light);">
+          <img src="/assets/images/mat_latao.jpg" alt="Amostra de Material" class="modal-mat-img"
+            style="width: 100%; height: 100%; object-fit: cover;" />
         </div>
 
-        <div class="modal-body">
-          <div style="width: 100%; height: 260px; overflow: hidden; border: 1px solid var(--color-border); margin-bottom: 1.5rem; background: #000;">
-            <img src="/assets/images/mat_latao.jpg" alt="Amostra de Material" class="modal-mat-img" style="width: 100%; height: 100%; object-fit: cover;" />
-          </div>
+        <div class="modal-mat-specs-list" style="margin-bottom: 2rem;"></div>
 
-          <div class="modal-mat-specs-list" style="margin-bottom: 2rem;">
-            <!-- Injected dynamically via main.js -->
-          </div>
-
-          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); padding-top: 1.25rem;">
-            <span style="font-family: var(--font-mono); font-size: 10px; color: var(--tertiary-blueprint);">
-              CERTIFICAÇÃO LABORATÓRIO NACIONAL DE ENGENHARIA CIVIL
-            </span>
-            <button type="button" class="btn-primary btn-open-caderno-modal">
-              CONSULTAR NO CADERNO TÉCNICO
-            </button>
-          </div>
+        <div style="display: flex; justify-content: flex-end;">
+          <button type="button" class="btn-white-pill btn-open-appointment-modal"
+            style="background: var(--color-primary-light); color: #ffffff;">
+            Consultar Aplicação no Projeto
+          </button>
         </div>
       </div>
     </div>
+  </div>
 
-  </body>
+</body>
+
 </html>

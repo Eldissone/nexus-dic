@@ -1,12 +1,11 @@
 /* ==========================================================================
-   NEXUS ARCHITECTURAL ATELIER — GSAP ANIMATIONS & INTERACTIVE AUDIO
-   GSAP 3 + ScrollTrigger: Staggered Reveals, Parallax, KPI Counter, Audio FX
+   ORTHOGONAL / NEXUS ARCHITECTURAL STUDIO — GSAP ANIMATIONS & INTERACTIVE AUDIO
+   GSAP 3 + ScrollTrigger: Hero Sky Entrance, Parallax, KPI Counters, Card Staggers
    ========================================================================== */
 
 (function () {
   'use strict';
 
-  // Check GSAP availability
   if (typeof gsap === 'undefined') {
     console.warn('GSAP library not detected');
     return;
@@ -17,7 +16,7 @@
   }
 
   /* ==========================================================================
-     AUDIO SYNTHESIZER (Web Audio API - Architectural Tactile Feedback)
+     AUDIO SYNTHESIZER (Web Audio API - Subtle Soft Tactile Clicks)
      ========================================================================== */
 
   let audioCtx = null;
@@ -35,7 +34,7 @@
     }
   }
 
-  function playTactileClick(frequency = 800, duration = 0.035) {
+  function playSoftClick(frequency = 750, duration = 0.03) {
     if (!audioEnabled || !audioCtx) return;
     try {
       const osc = audioCtx.createOscillator();
@@ -43,9 +42,9 @@
 
       osc.type = 'sine';
       osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(120, audioCtx.currentTime + duration);
+      osc.frequency.exponentialRampToValueAtTime(200, audioCtx.currentTime + duration);
 
-      gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.03, audioCtx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
 
       osc.connect(gain);
@@ -58,78 +57,47 @@
     }
   }
 
-  function setupSoundToggle() {
-    const soundBtn = document.getElementById('btn-sound-toggle');
-    if (!soundBtn) return;
-
-    soundBtn.addEventListener('click', () => {
-      initAudio();
-      audioEnabled = !audioEnabled;
-      soundBtn.classList.toggle('active', audioEnabled);
-      soundBtn.innerHTML = audioEnabled
-        ? 'AUDIO: <strong>ATIVO</strong>'
-        : 'AUDIO: <strong>MUDO</strong>';
-      if (audioEnabled) {
-        playTactileClick(900, 0.05);
-      }
-    });
-
-    // Attach click feedback to all interactive elements
-    document.addEventListener('click', (e) => {
-      const target = e.target.closest('button, .nav-link, .cam-btn, .mat-filter-btn, .layer-pill, .faq-question-btn');
-      if (target && audioEnabled) {
-        playTactileClick(700, 0.03);
-      }
-    });
-  }
-
   /* ==========================================================================
      GSAP ENTRANCE & SCROLLTRIGGER REVEALS
      ========================================================================== */
 
   function initScrollAnimations() {
-    // 1. Hero Reveal Timeline
+    // 1. Hero Reveal Timeline (Smooth Sky Blue Stagger)
     const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-    heroTl.from('.hero-cad-tag', {
-      y: 20,
+    heroTl.from('.hero-badge-pill', {
+      y: -20,
       opacity: 0,
       duration: 0.8,
       delay: 0.2
     });
 
-    heroTl.from('.hero-title', {
-      y: 35,
+    heroTl.from('.hero-main-title', {
+      y: 40,
       opacity: 0,
       duration: 1.1,
       ease: 'power4.out'
     }, '-=0.5');
 
-    heroTl.from('.hero-description', {
+    heroTl.from('.hero-description-text', {
       y: 25,
       opacity: 0,
       duration: 0.9
     }, '-=0.7');
 
-    heroTl.from('.hero-buttons a', {
+    heroTl.from('.hero-cta-pill', {
       y: 20,
+      scale: 0.95,
       opacity: 0,
-      duration: 0.7,
-      stagger: 0.15
+      duration: 0.7
     }, '-=0.6');
 
-    heroTl.from('.hero-case-callout', {
-      x: -30,
+    heroTl.from('.hero-villa-frame', {
+      y: 60,
       opacity: 0,
-      duration: 0.8
-    }, '-=0.4');
-
-    heroTl.from('.hero-stat-card', {
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.1
-    }, '-=0.4');
+      duration: 1.2,
+      ease: 'power3.out'
+    }, '-=0.5');
 
     // 2. Animate KPI numbers
     animateCounters();
@@ -150,10 +118,37 @@
       });
     });
 
-    // 4. Bento Grid Reveal
-    gsap.from('.bento-card', {
+    // 4. Interior Spotlight Card Reveal
+    gsap.from('.interior-spotlight-card', {
       scrollTrigger: {
-        trigger: '.bento-grid',
+        trigger: '.interior-spotlight-card',
+        start: 'top 82%',
+        toggleActions: 'play none none none'
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.9,
+      ease: 'power3.out'
+    });
+
+    // 5. Pillars Stagger
+    gsap.from('.pillar-card', {
+      scrollTrigger: {
+        trigger: '.pillars-light-grid',
+        start: 'top 82%',
+        toggleActions: 'play none none none'
+      },
+      y: 35,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: 'power3.out'
+    });
+
+    // 6. Services Bento Grid Reveal
+    gsap.from('.service-card', {
+      scrollTrigger: {
+        trigger: '.services-bento-grid',
         start: 'top 80%',
         toggleActions: 'play none none none'
       },
@@ -164,24 +159,10 @@
       ease: 'power3.out'
     });
 
-    // 5. Methodology Cards Reveal
-    gsap.from('.method-card', {
+    // 7. Materials Cards Reveal
+    gsap.from('.mat-light-card', {
       scrollTrigger: {
-        trigger: '.methodology-grid',
-        start: 'top 80%',
-        toggleActions: 'play none none none'
-      },
-      y: 35,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.12,
-      ease: 'power3.out'
-    });
-
-    // 6. Materials Cards Reveal
-    gsap.from('.material-card', {
-      scrollTrigger: {
-        trigger: '.materials-grid',
+        trigger: '.materials-light-grid',
         start: 'top 80%',
         toggleActions: 'play none none none'
       },
@@ -192,46 +173,27 @@
       ease: 'power3.out'
     });
 
-    // 7. Process Step Rows Reveal
-    gsap.from('.process-step-row', {
+    // 8. Process Step Rows Reveal
+    gsap.from('.process-light-row', {
       scrollTrigger: {
-        trigger: '.process-timeline',
+        trigger: '.process-steps-list',
         start: 'top 80%',
         toggleActions: 'play none none none'
       },
       x: -30,
       opacity: 0,
       duration: 0.7,
-      stagger: 0.15,
+      stagger: 0.12,
       ease: 'power3.out'
     });
 
-    // 8. Deliverable Cards Reveal
-    gsap.from('.deliverable-card', {
-      scrollTrigger: {
-        trigger: '.deliverables-grid',
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      },
-      y: 30,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: 'power3.out'
-    });
-
-    // 9. BIM Table Rows Reveal
-    gsap.from('.bim-table tbody tr', {
-      scrollTrigger: {
-        trigger: '.bim-table',
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      },
-      opacity: 0,
-      y: 15,
-      duration: 0.6,
-      stagger: 0.08,
-      ease: 'power2.out'
+    // 9. Floating Cloud Parallax Effect
+    window.addEventListener('scroll', () => {
+      const scrollY = window.pageYOffset;
+      const clouds = document.querySelector('.hero-clouds-layer');
+      if (clouds && scrollY < 1200) {
+        clouds.style.transform = `translateY(${scrollY * 0.25}px)`;
+      }
     });
   }
 
@@ -241,13 +203,11 @@
 
   function animateCounters() {
     const stat1 = document.getElementById('stat-counter-1'); // 98.4%
-    const stat2 = document.getElementById('stat-counter-2'); // 120400 m²
-    const stat3 = document.getElementById('stat-counter-3'); // 10 Anos
-    const stat4 = document.getElementById('stat-counter-4'); // Level 3
+    const stat2 = document.getElementById('stat-counter-2'); // 5000 m²
 
     if (stat1 && typeof ScrollTrigger !== 'undefined') {
       ScrollTrigger.create({
-        trigger: '.hero-telemetry-strip',
+        trigger: '.metrics-light-strip',
         start: 'top 95%',
         onEnter: () => {
           const obj1 = { val: 0 };
@@ -262,7 +222,7 @@
 
           const obj2 = { val: 0 };
           gsap.to(obj2, {
-            val: 120400,
+            val: 5000,
             duration: 2.5,
             ease: 'power3.out',
             onUpdate: () => {
@@ -275,39 +235,6 @@
   }
 
   /* ==========================================================================
-     MAGNETIC BUTTONS (Subtle Architectural Micro-Interaction)
-     ========================================================================== */
-
-  function setupMagneticButtons() {
-    const magneticBtns = document.querySelectorAll('.btn-primary, .btn-ghost, .telemetry-btn');
-    if (window.innerWidth < 1024) return;
-
-    magneticBtns.forEach((btn) => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-
-        gsap.to(btn, {
-          x: x * 0.15,
-          y: y * 0.15,
-          duration: 0.3,
-          ease: 'power2.out'
-        });
-      });
-
-      btn.addEventListener('mouseleave', () => {
-        gsap.to(btn, {
-          x: 0,
-          y: 0,
-          duration: 0.5,
-          ease: 'elastic.out(1, 0.4)'
-        });
-      });
-    });
-  }
-
-  /* ==========================================================================
      ACTIVE NAVIGATION TRACKING ON SCROLL
      ========================================================================== */
 
@@ -317,7 +244,7 @@
 
     window.addEventListener('scroll', () => {
       let currentSection = '';
-      const scrollPos = window.pageYOffset + 180;
+      const scrollPos = window.pageYOffset + 200;
 
       sections.forEach((sec) => {
         const top = sec.offsetTop;
@@ -336,11 +263,8 @@
     });
   }
 
-  // Init all on DOM ready
   document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
-    setupSoundToggle();
-    setupMagneticButtons();
     setupNavTracking();
   });
 })();
