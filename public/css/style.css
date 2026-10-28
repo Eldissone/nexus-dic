@@ -344,18 +344,19 @@ h6 {
 
 .stage-pill-btn:hover,
 .stage-pill-btn.active {
-  background: var(--color-primary-light);
-  color: #ffffff;
-  border-color: var(--color-primary-light);
+  background: var(--color-primary);
+  color: var(--color-black);
+  border-color: var(--color-primary);
 }
 
 .metrics-light-strip {
-  background: var(--surface-white);
+  background: var(--color-black);
   border-bottom: 1px solid var(--border-light);
   padding: 3.5rem 0;
   box-shadow: var(--shadow-soft);
   position: relative;
   z-index: 10;
+  border-radius: 25px;
 }
 
 .metrics-grid-4 {
@@ -379,7 +380,7 @@ h6 {
   font-family: var(--font-display);
   font-size: 2.8rem;
   font-weight: 800;
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   line-height: 1;
   margin-bottom: 0.4rem;
   letter-spacing: -0.03em;
@@ -389,7 +390,7 @@ h6 {
   font-family: var(--font-display);
   font-size: 13px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--color-white);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -487,15 +488,15 @@ section {
 .pillar-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
-  border-color: var(--color-primary-light);
+  border-color: var(--color-primary);
 }
 
 .pillar-icon-pill {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: #eff6ff;
-  color: var(--color-primary-light);
+  background: var(--color-black);
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -539,7 +540,7 @@ section {
 .service-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
-  border-color: var(--color-primary-light);
+  border-color: var(--color-primary);
 }
 
 .service-card-media {
@@ -564,7 +565,7 @@ section {
   position: absolute;
   top: 1.25rem;
   left: 1.25rem;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--color-black);
   backdrop-filter: blur(8px);
   padding: 5px 12px;
   border-radius: var(--radius-pill);
@@ -622,7 +623,7 @@ section {
   font-family: var(--font-display);
   font-size: 13px;
   font-weight: 700;
-  color: var(--color-primary-light);
+  color: var(--color-black);
   cursor: pointer;
 }
 
@@ -664,7 +665,7 @@ section {
 }
 
 .axon-toolbar-hint {
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   font-size: 13px;
   font-weight: 600;
 }
@@ -686,7 +687,7 @@ section {
 .cam-pill.active {
   background: var(--color-black);
   color: #ffffff;
-  border-color: var(--color-primary-light);
+  border-color: var(--color-primary);
 }
 
 .viewer-viewport-box {
@@ -778,7 +779,7 @@ section {
 
 .axon-slider-readout {
   min-width: 50px;
-  color: var(--color-primary-light);
+  color: var(--color-primary);
   font-size: 15px;
 }
 
@@ -807,7 +808,7 @@ section {
 }
 
 .viewer-bottom-bar strong {
-  color: var(--color-primary-light);
+  color: var(--color-black);
 }
 
 #comparacao {
@@ -883,7 +884,7 @@ section {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--color-black);
   color: var(--color-primary);
   display: flex;
   align-items: center;
@@ -915,7 +916,8 @@ section {
 
 .pill-after {
   right: 1.5rem;
-  color: var(--color-primary-light);
+  color: var(--color-primary);
+  background: var(--color-black);
 }
 
 #materiais {
@@ -943,7 +945,7 @@ section {
 .mat-light-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-hover);
-  border-color: var(--color-primary-light);
+  border-color: var(--color-primary);
 }
 
 .mat-thumb-wrap {
@@ -968,7 +970,7 @@ section {
   position: absolute;
   top: 0.85rem;
   right: 0.85rem;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--color-black);
   backdrop-filter: blur(6px);
   border-radius: var(--radius-pill);
   padding: 3px 10px;
@@ -1032,7 +1034,7 @@ section {
 
 .process-light-row:hover {
   background: var(--surface-white);
-  border-color: var(--color-primary-light);
+  border-color: var(--color-primary);
   box-shadow: var(--shadow-card);
   transform: translateX(4px);
 }
@@ -1041,7 +1043,7 @@ section {
   font-family: var(--font-display);
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--color-primary-light);
+  color: var(--color-black);
 }
 
 .p-step-title h4 {
@@ -1069,7 +1071,7 @@ section {
 
 .p-step-meta strong {
   display: block;
-  color: var(--color-primary-light);
+  color: var(--color-black);
   font-size: 13px;
   margin-top: 2px;
 }
@@ -1261,7 +1263,7 @@ section {
 }
 
 .footer-links a:hover {
-  color: var(--color-primary-light);
+  color: var(--color-primary);
 }
 
 .footer-bottom-row {
@@ -1372,7 +1374,7 @@ section {
 }
 
 .form-control:focus {
-  border-color: var(--color-primary-light);
+  border-color: var(--color-primary);
   background: #ffffff;
 }
 
@@ -1401,7 +1403,7 @@ section {
 }
 
 .estimate-area {
-  color: var(--color-primary-light);
+  color: var(--color-black);
   font-size: 1.3rem;
 }
 
@@ -1439,7 +1441,7 @@ section {
 }
 
 .estimate-docs {
-  color: var(--color-primary-light);
+  color: var(--color-black);
 }
 
 .form-details-group {

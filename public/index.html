@@ -29,12 +29,11 @@
     </a>
 
     <nav class="nav-pill-capsule" aria-label="Navegação Principal">
-      <a href="#hero" class="nav-link active">Sobre</a>
-      <a href="#servicos" class="nav-link">Serviços</a>
+      <a href="#hero" class="nav-link active">Home</a>
       <a href="#interiores" class="nav-link">Interiores</a>
+      <a href="#servicos" class="nav-link">Serviços</a>
       <a href="#visualizador" class="nav-link">Galeria 3D</a>
-      <a href="#axonometria" class="nav-link">Cases</a>
-      <a href="#processo" class="nav-link">Como trabalhamos</a>
+      <a href="#processo" class="nav-link">Etapas</a>
     </nav>
 
     <!-- Right Contact Pill -->
@@ -390,56 +389,6 @@
       </div>
     </section>
 
-    <section id="axonometria">
-      <div class="container">
-
-        <div class="section-header-block">
-          <div class="section-header-flex">
-            <div>
-              <h2 class="section-title">Axonometria Explodida: Decomposição Estrutural</h2>
-            </div>
-            <p class="section-subtitle">
-              Visualização interativa das camadas construtivas: fundações, alvenarias, marcenaria de interiores,
-              caixilharia e cobertura verde.
-            </p>
-          </div>
-        </div>
-
-        <div class="viewer-light-card">
-
-          <div class="viewer-top-toolbar">
-            <div class="viewer-cam-pills">
-              <span class="viewer-toolbar-label">SUBSISTEMAS:</span>
-              <button type="button" class="cam-pill active" id="btn-axon-wire">WIREFRAME</button>
-              <button type="button" class="cam-pill" id="btn-axon-toggle-fallback">CAD ESQUEMÁTICO (2D)</button>
-            </div>
-            <div class="axon-toolbar-hint">
-              Arraste o slider para separar as camadas 3D em tempo real
-            </div>
-          </div>
-
-          <div class="viewer-viewport-box axon-viewport" id="axon-canvas-wrap">
-            <canvas id="axon-3d-canvas"></canvas>
-
-            <div class="axon-static-layer">
-              <img src="/assets/images/axonometria_explodida.jpg" alt="Axonometria Caderno Técnico"
-                class="axon-static-image" />
-            </div>
-          </div>
-
-          <!-- Slider Bar -->
-          <div class="axon-slider-bar">
-            <span class="axon-slider-label">Nível de Separação
-              Tridimensional:</span>
-            <input type="range" min="0" max="100" value="55" class="custom-range-slider" id="axon-explosion-slider"
-              />
-            <strong id="axon-slider-readout" class="axon-slider-readout">55%</strong>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
 
     <!-- ==========================================================================
            SECTION: ANTES DA REQUALIFICAÇÃO VS. PROPOSTA 3D (Slider)
@@ -565,7 +514,7 @@
     </section>
 
     <!-- ==========================================================================
-           SECTION: COMO TRABALHAMOS (PROCESSO EM 5 ETAPAS)
+           SECTION: PROCESSO EM 5 ETAPAS
            ========================================================================== -->
     <section id="processo">
       <div class="container">
@@ -587,7 +536,7 @@
             <div class="p-step-num">01</div>
             <div class="p-step-title">
               <h4>Briefing &amp; Levantamento Técnico</h4>
-              <span>1 A 2 SEMANAS // DIAGNÓSTICO</span>
+              <span>DIAGNÓSTICO</span>
             </div>
             <p class="p-step-desc">
               Levantamento tridimensional laser in loco, diagnóstico de necessidades funcionais e plano de viabilidade
@@ -811,7 +760,7 @@
             <div>
               <span class="estimate-result-label">Prazo Estimado de
                 Estudo 3D:</span>
-              <div id="calc-est-time" class="estimate-result-value">~ 6
+              <div id="calc-est-time" class="estimate-result-value">~ 1
                 semanas</div>
             </div>
             <div>
