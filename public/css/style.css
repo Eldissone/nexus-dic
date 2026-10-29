@@ -326,6 +326,21 @@ h6 {
   display: none;
 }
 
+/* Fallback animation system: works without third-party libraries or network access. */
+.native-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms cubic-bezier(.22, .61, .36, 1), transform 700ms cubic-bezier(.22, .61, .36, 1);
+}
+
+.native-reveal.is-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#hero .native-reveal:nth-child(2) { transition-delay: 100ms; }
+#hero .native-reveal:nth-child(3) { transition-delay: 180ms; }
+
 .stage-pill-btn {
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(12px);

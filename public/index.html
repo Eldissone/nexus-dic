@@ -9,11 +9,6 @@
     content="Criamos experiências visuais que traduzem seu empreendimento e ajudam você a vender" />
   <link rel="stylesheet" href="/css/style.css" />
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
   <script src="/js/three-scenes.js" defer></script>
   <script src="/js/animations.js" defer></script>
   <script src="/js/main.js" defer></script>
@@ -207,7 +202,7 @@
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <h2 class="section-title">Especialidades de Engenharia &amp; Atelier</h2>
+              <h2 class="section-title">Especialidades em Designer &amp; Construção</h2>
             </div>
             <p class="section-subtitle">
               Atuamos desde a conceção tridimensional preliminar até à entrega dos projetos executivos e fiscalização
@@ -336,11 +331,11 @@
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <h2 class="section-title">Ambiente de Visualização Espacial 3D</h2>
+              <h2 class="section-title">Galeria de Ambientes em 3D</h2>
             </div>
             <p class="section-subtitle">
-              Alterne entre ângulos de câmara calculados, ensaios de iluminação solar diurna e noturna para inspecionar
-              cada detalhe do projeto.
+              Explore os principais ambientes do projeto, da sala integrada às áreas exteriores, através de renders
+              fotorrealistas.
             </p>
           </div>
         </div>
@@ -352,26 +347,26 @@
             <div class="viewer-cam-pills">
               <span class="viewer-toolbar-label">VISUALIZAÇÃO:</span>
               <button type="button" class="cam-pill active" data-camera="cam-living-fire">
-                Living &amp; Lareira (Interior)
+                Sala Integrada
               </button>
               <button type="button" class="cam-pill" data-camera="cam-living-garden">
-                Sala &amp; Jardim
+                Entrada Principal
               </button>
               <button type="button" class="cam-pill" data-camera="cam-ext-twilight">
-                Fachada Externa
+                Jardim Frontal
               </button>
               <button type="button" class="cam-pill" data-camera="cam-ext-night">
-                Piscina &amp; Terraço
+                Piscina &amp; Deck
               </button>
               <button type="button" class="cam-pill" data-camera="cam-cad-plan">
-                Planta CAD 2D
+                Pátio Privativo
               </button>
             </div>
           </div>
 
           <!-- Viewport Stage -->
           <div class="viewer-viewport-box">
-            <img src="/assets/images/i5.jpg" alt="Visualização 3D Living e Lareira" id="viewer-img-target"
+            <img src="/assets/images/projeto1/12.jpeg" alt="Sala integrada com paleta de tons neutros" id="viewer-img-target"
               class="viewer-main-img light-mode-day" />
           </div>
 
@@ -449,62 +444,61 @@
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <h2 class="section-title">Caderno de Especificações de Materiais</h2>
+              <h2 class="section-title">Materiais &amp; Aplicações no Projeto</h2>
             </div>
             <p class="section-subtitle">
-              Curadoria de materiais reais resistentes ao clima tropical de Luanda, testados e especificados em projetos
-              BIM.
+              Uma seleção de revestimentos, texturas e acabamentos aplicados nos ambientes deste projeto.
             </p>
           </div>
         </div>
 
         <div class="materials-light-grid">
 
-          <!-- Mat 1: Latão -->
-          <article class="mat-light-card material-card" data-category="metais" data-material-key="latao">
+          <!-- Material application 1: natural stone and dark metal -->
+          <article class="mat-light-card material-card" data-category="envolvente" data-material-key="latao">
             <div class="mat-thumb-wrap">
-              <img src="/assets/images/mat_latao.jpg" alt="Amostra de Latão Escovado" loading="lazy" />
-              <span class="mat-badge-code">NEX-BR01</span>
+              <img src="/assets/images/projeto1/1.jpeg" alt="Fachada com pedra natural e perfis escuros" loading="lazy" />
+              <span class="mat-badge-code">NEX-ARQ01</span>
             </div>
             <div class="mat-card-content">
-              <h3>Latão Escovado Acetinado</h3>
-              <p>Painéis decorativos de revestimento, nichos iluminados e detalhes de marcenaria de alto requinte.</p>
+              <h3>Pedra Natural &amp; Perfis Escuros</h3>
+              <p>Textura mineral na fachada, perfis metálicos escuros e iluminação linear para uma entrada marcante.</p>
             </div>
           </article>
 
-          <!-- Mat 2: Carvalho -->
+          <!-- Material application 2: timber deck -->
           <article class="mat-light-card material-card" data-category="madeiras" data-material-key="carvalho">
             <div class="mat-thumb-wrap">
-              <img src="/assets/images/mat_carvalho.jpg" alt="Amostra de Madeira Carvalho Natural" loading="lazy" />
-              <span class="mat-badge-code">NEX-WO02</span>
+              <img src="/assets/images/projeto1/4.jpeg" alt="Deck de madeira junto a piscina" loading="lazy" />
+              <span class="mat-badge-code">NEX-EXT02</span>
             </div>
             <div class="mat-card-content">
-              <h3>Carvalho Natural Europeu</h3>
-              <p>Ripados acústicos de teto e paredes, portas embutidas de grande formato e marcenaria integrada.</p>
+              <h3>Deck de Madeira &amp; Área de Lazer</h3>
+              <p>Madeira tratada, pedra escura e acabamentos resistentes para uma zona exterior confortável e durável.</p>
             </div>
           </article>
 
-          <!-- Mat 3: Aço -->
-          <article class="mat-light-card material-card" data-category="metais" data-material-key="aco">
+          <!-- Material application 3: mineral volumes and glazing -->
+          <article class="mat-light-card material-card" data-category="envolvente" data-material-key="aco">
             <div class="mat-thumb-wrap">
-              <img src="/assets/images/mat_aco.jpg" alt="Amostra de Aço Estrutural" loading="lazy" />
-              <span class="mat-badge-code">NEX-ST03</span>
+              <img src="/assets/images/projeto1/8.jpeg" alt="Volumes arquitetónicos com vidro e revestimento mineral" loading="lazy" />
+              <span class="mat-badge-code">NEX-ARQ03</span>
             </div>
             <div class="mat-card-content">
-              <h3>Aço Estrutural S355JR</h3>
-              <p>Perfis tubulares de suporte a grandes consolas em balanço livre com pintura anticorrosiva C5M.</p>
+              <h3>Volumes Minerais &amp; Caixilharia</h3>
+              <p>Planos claros, molduras em grafite e vãos amplos de vidro equilibram privacidade, luz e presença.</p>
             </div>
           </article>
 
-          <!-- Mat 4: Caixilharia -->
-          <article class="mat-light-card material-card" data-category="envolvente" data-material-key="caixilharia">
+          <!-- Material application 4: neutral interior palette -->
+          <article class="mat-light-card material-card" data-category="interiores" data-material-key="caixilharia">
             <div class="mat-thumb-wrap">
-              <img src="/assets/images/mat_caixilharia.jpg" alt="Caixilharia Oculta e Vidro Duplo" loading="lazy" />
-              <span class="mat-badge-code">NEX-GL04</span>
+              <img src="/assets/images/projeto1/12.jpeg" alt="Interior com paleta de tons neutros e iluminação indireta" loading="lazy" />
+              <span class="mat-badge-code">NEX-INT04</span>
             </div>
             <div class="mat-card-content">
-              <h3>Caixilharia Oculta &amp; Vidro Duplo</h3>
-              <p>Esquadrias de piso ao teto (3.40m) com isolamento acústico 44dB e fator solar controlado.</p>
+              <h3>Paleta Interior Neutra</h3>
+              <p>Estofos em tons areia, madeira natural e luz indireta criam ambientes elegantes, leves e acolhedores.</p>
             </div>
           </article>
 

@@ -82,38 +82,38 @@
     // Camera viewpoints database
     const cameraViews = {
       'cam-ext-twilight': {
-        src: '/assets/images/i1.jpg',
-        title: 'FACHADA PRINCIPAL (CREPÚSCULO)',
+        src: '/assets/images/projeto1/10.jpeg',
+        title: 'JARDIM FRONTAL',
         fov: '42°',
-        exposure: '+0.2 EV',
+        exposure: '+0.1 EV',
         lat: '-8.83833°'
       },
       'cam-living-fire': {
-        src: '/assets/images/i5.jpg',
-        title: 'LIVING & LAREIRA CENTRAL',
-        fov: '54°',
-        exposure: '-0.1 EV',
+        src: '/assets/images/projeto1/12.jpeg',
+        title: 'SALA INTEGRADA',
+        fov: '50°',
+        exposure: '+0.0 EV',
         lat: '-8.83830°'
       },
       'cam-living-garden': {
-        src: '/assets/images/i2.jpg',
-        title: 'SALA MINIMALISTA & JARDIM',
-        fov: '48°',
+        src: '/assets/images/projeto1/1.jpeg',
+        title: 'ENTRADA PRINCIPAL',
+        fov: '45°',
         exposure: '+0.0 EV',
         lat: '-8.83832°'
       },
       'cam-ext-night': {
-        src: '/assets/images/i4.jpg',
-        title: 'VISTA AÉREA & PISCINA',
+        src: '/assets/images/projeto1/14.jpeg',
+        title: 'PISCINA & DECK',
         fov: '38°',
-        exposure: '+0.4 EV',
+        exposure: '+0.2 EV',
         lat: '-8.83835°'
       },
       'cam-cad-plan': {
-        src: '/assets/images/i3.jpg',
-        title: 'ESTUDO CAD & IMPLANTAÇÃO',
-        fov: 'ORTHO 1:100',
-        exposure: 'CAD 2D',
+        src: '/assets/images/projeto1/4.jpeg',
+        title: 'PÁTIO PRIVATIVO',
+        fov: '48°',
+        exposure: '+0.1 EV',
         lat: '-8.83833°'
       }
     };
@@ -203,55 +203,47 @@
 
   const materialsData = {
     'latao': {
-      title: 'Latão Acabamento Escovado',
-      code: 'NEX-MAT-BR01',
-      category: 'Metais Nobres',
-      img: '/assets/images/mat_latao.jpg',
+      title: 'Pedra Natural & Perfis Escuros',
+      code: 'NEX-ARQ01',
+      category: 'Fachada contemporânea',
+      img: '/assets/images/projeto1/1.jpeg',
       specs: [
-        { label: 'Liga Metálica', value: 'CuZn37 (63% Cobre / 37% Zinco)' },
-        { label: 'Espessura Nominal', value: '2.5 mm com reforço posterior em alumínio' },
-        { label: 'Tratamento de Superfície', value: 'Escovagem direcional acetinada + Verniz eletrostático mate' },
-        { label: 'Resistência à Corrosão', value: 'Ensaio Salt-Spray ASTM B117 (> 720h ambiente salino Luanda)' },
-        { label: 'Aplicação Principal', value: 'Revestimento de pórticos interiores, sancas de luz e nichos decorativos' }
+        { label: 'Revestimento', value: 'Pedra natural escura em planos verticais de destaque' },
+        { label: 'Perfis', value: 'Elementos metálicos em grafite com acabamento mate' },
+        { label: 'Iluminação', value: 'Linhas embutidas que valorizam a textura da fachada' }
       ]
     },
     'carvalho': {
-      title: 'Madeira Carvalho Natural',
-      code: 'NEX-MAT-WO02',
-      category: 'Madeiras Maciças',
-      img: '/assets/images/mat_carvalho.jpg',
+      title: 'Deck de Madeira & Área de Lazer',
+      code: 'NEX-EXT02',
+      category: 'Área exterior',
+      img: '/assets/images/projeto1/4.jpeg',
       specs: [
-        { label: 'Espécie Botânica', value: 'Quercus robur (Carvalho Europeu certificado FSC)' },
-        { label: 'Seção dos Ripados', value: '30 x 40 mm com espaçamento de 15 mm' },
-        { label: 'Tratamento Protetor', value: '3 demãos de óleo mineral UV hidrofóbico classe A+' },
-        { label: 'Absorção Acústica', value: 'NRC 0.75 com manta de lã de rocha interior 40 kg/m³' },
-        { label: 'Aplicação Principal', value: 'Painéis acústicos de sala de estar, forros de teto e marcenaria integrada' }
+        { label: 'Pavimento', value: 'Deck em madeira tratada para uso exterior' },
+        { label: 'Complementos', value: 'Pedra escura e vegetação integrada ao espaço de lazer' },
+        { label: 'Aplicação', value: 'Zona de piscina, descanso e circulação exterior' }
       ]
     },
     'aco': {
-      title: 'Aço Primário Estrutural',
-      code: 'NEX-MAT-ST03',
-      category: 'Estruturas Metálicas',
-      img: '/assets/images/mat_aco.jpg',
+      title: 'Volumes Minerais & Caixilharia',
+      code: 'NEX-ARQ03',
+      category: 'Envolvente arquitetónica',
+      img: '/assets/images/projeto1/8.jpeg',
       specs: [
-        { label: 'Classificação Estrutural', value: 'Aço S355JR segundo EN 10025-2' },
-        { label: 'Seções Perfiladas', value: 'Tubulares quadrados RHS 250x250x12 mm & Vigas HEB 300' },
-        { label: 'Tratamento Anticorrosivo', value: 'Decapagem Sa 2.5 + Metalização a zinco + Pintura epóxi C5M Luanda' },
-        { label: 'Capacidade de Carga', value: 'Consolas em balanço livre até 4.80 metros' },
-        { label: 'Aplicação Principal', value: 'Pilares em consolas de varanda, pérgulas de cobertura e reforço de vãos' }
+        { label: 'Volumes', value: 'Revestimentos minerais claros e planos em grafite' },
+        { label: 'Vãos', value: 'Caixilharia escura com grandes superfícies de vidro' },
+        { label: 'Aplicação', value: 'Fachadas que maximizam a luz natural e a privacidade' }
       ]
     },
     'caixilharia': {
-      title: 'Caixilharia Oculta & Vidro Duplo',
-      code: 'NEX-MAT-GL04',
-      category: 'Envolvente Térmica',
-      img: '/assets/images/mat_caixilharia.jpg',
+      title: 'Paleta Interior Neutra',
+      code: 'NEX-INT04',
+      category: 'Interiores',
+      img: '/assets/images/projeto1/12.jpeg',
       specs: [
-        { label: 'Sistema de Caixilharia', value: 'Alumínio extrudido termolacado preto mate com corte térmico 34mm' },
-        { label: 'Composição do Vidro', value: '10 mm Sunguard Solar + 16 mm Gás Argónio + 10 mm Laminado Acústico' },
-        { label: 'Desempenho Térmico (Ug)', value: '1.1 W/(m²·K) com controle solar fator g = 0.28' },
-        { label: 'Isolamento Acústico', value: 'Atenuação acústica certificada Rw = 44 dB' },
-        { label: 'Aplicação Principal', value: 'Panos de vidro de piso ao teto (altura 3.40 m) com embutimento perimétrico' }
+        { label: 'Tons', value: 'Areia, bege e cinza quente para uma atmosfera serena' },
+        { label: 'Elementos', value: 'Madeira natural, estofos suaves e superfícies minerais' },
+        { label: 'Iluminação', value: 'Luz indireta integrada para conforto visual noturno' }
       ]
     }
   };

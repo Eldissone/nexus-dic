@@ -39,12 +39,75 @@
   }
 
   if (typeof gsap === 'undefined') {
-    console.warn('GSAP library not detected');
+    initNativeAnimations();
     return;
   }
 
   if (typeof ScrollTrigger !== 'undefined') {
     gsap.registerPlugin(ScrollTrigger);
+  }
+
+  /* Fallback offline: does not require GSAP or any external script. */
+  function initNativeAnimations() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const elements = document.querySelectorAll(
+      '.hero-main-title, .hero-description-text, .hero-cta-pill, .hero-villa-frame, ' +
+      '.section-header-block, .interior-spotlight-card, .pillar-card, .service-card, .mat-light-card'
+    );
+    elements.forEach((element) => element.classList.add('native-reveal'));
+
+    const reveal = (element) => element.classList.add('is-in-view');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries, activeObserver) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            reveal(entry.target);
+            activeObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5%' });
+      elements.forEach((element) => observer.observe(element));
+    } else {
+      elements.forEach(reveal);
+    }
+
+    const metrics = document.querySelector('.metrics-light-strip');
+    const stat1 = document.getElementById('stat-counter-1');
+    const stat2 = document.getElementById('stat-counter-2');
+    let countersStarted = false;
+    const runCounters = () => {
+      if (countersStarted || !stat1 || !stat2) return;
+      countersStarted = true;
+      const startedAt = performance.now();
+      const duration = 2200;
+      const tick = (now) => {
+        const progress = Math.min((now - startedAt) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        stat1.textContent = `${(98.4 * eased).toFixed(1)}%`;
+        stat2.textContent = `+${Math.round(5000 * eased).toLocaleString('pt-AO')} M²`;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    if (metrics && 'IntersectionObserver' in window) {
+      const metricsObserver = new IntersectionObserver((entries, activeObserver) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          runCounters();
+          activeObserver.disconnect();
+        }
+      }, { threshold: 0.15 });
+      metricsObserver.observe(metrics);
+    } else {
+      runCounters();
+    }
+
+    const clouds = document.querySelector('.hero-clouds-layer');
+    if (clouds) {
+      window.addEventListener('scroll', () => {
+        clouds.style.transform = `translateY(${Math.min(window.scrollY, 1200) * 0.25}px)`;
+      }, { passive: true });
+    }
   }
 
   /* ==========================================================================
