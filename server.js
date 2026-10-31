@@ -8,6 +8,9 @@ const indexPage = path.join(publicDirectory, 'index.html');
 
 app.use(express.static(publicDirectory));
 
+app.get('/logo.png', (_req, res) => res.redirect('/assets/logo.png'));
+app.get('/favicon.ico', (_req, res) => res.redirect('/assets/logo.png'));
+
 app.get('/', (_request, response) => {
   response.sendFile(indexPage);
 });
