@@ -7,6 +7,8 @@
   <title>Nexus - Design de Interiores e Construção</title>
   <meta name="description"
     content="Criamos experiências visuais que traduzem seu empreendimento e ajudam você a vender" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
   <link rel="stylesheet" href="/css/style.css" />
 
   <script src="/js/three-scenes.js" defer></script>
@@ -25,6 +27,7 @@
 
     <nav class="nav-pill-capsule" aria-label="Navegação Principal">
       <a href="#hero" class="nav-link active">Home</a>
+      <a href="#biografia" class="nav-link">Biografia</a>
       <a href="#interiores" class="nav-link">Interiores</a>
       <a href="#servicos" class="nav-link">Serviços</a>
       <a href="#visualizador" class="nav-link">Galeria 3D</a>
@@ -55,65 +58,172 @@
         </a>
       </div>
 
-      <div class="hero-villa-stage">
-        <div class="hero-villa-frame">
-
-          <img src="/assets/images/projeto1/8.jpeg"
-            alt="Nexus Design de Interiores e Construção Modern Villa Daylight Render" class="hero-villa-img"
-            id="hero-display-img" />
-
-          <div id="hero-3d-canvas-container">
-            <canvas id="hero-3d-canvas"></canvas>
-          </div>
-          <div class="hero-3d-toggle-bar">
-            <button type="button" class="stage-pill-btn active" id="btn-toggle-hero-3d"
-              title="Alternar entre imagem 8K e 3D interativo">
-              3D INTERATIVO (WEBGL)
-            </button>
-            <button type="button" class="stage-pill-btn" id="btn-hero-iso">
-              ISOMÉTRICA
-            </button>
-            <button type="button" class="stage-pill-btn" id="btn-hero-wireframe">
-              CAD WIREFRAME
-            </button>
-          </div>
-
-        </div>
-      </div>
-
     </section>
 
-    <div class="metrics-light-strip">
+    <!-- ==========================================================================
+           SECTION: BIOGRAFIA DO FUNDADOR (Galvino Caleison Cardoso Chingulo)
+           ========================================================================== -->
+    <section id="biografia" class="biografia-section">
       <div class="container">
-        <div class="metrics-grid-4">
 
-          <div class="metric-item">
-            <span class="metric-val" id="stat-counter-1">98.4%</span>
-            <span class="metric-label">Satisfação Contratual</span>
-            <span class="metric-sub">Aprovação em primeira rodada</span>
+        <div class="bio-grid-layout">
+
+          <!-- Left Column: Portrait Showcase -->
+          <div class="bio-portrait-wrapper">
+            <div class="bio-portrait-card">
+              <div class="bio-portrait-media">
+                <img src="/assets/foto-bio.PNG"
+                  alt="Galvino Caleison Cardoso Chingulo - Fundador e Designer da Nexus"
+                  class="bio-portrait-img" loading="lazy" />
+                <div class="bio-badge-status">
+                  <span class="bio-badge-dot"></span>
+                  Fundador &amp; Diretor Criativo
+                </div>
+                <div class="bio-portrait-info-pill">
+                  <div class="bio-portrait-name">Galvino Caleison Cardoso Chingulo</div>
+                  <div class="bio-portrait-role">
+                    <span>✦</span> Designer de Interiores &amp; Lighting Specialist
+                  </div>
+                  <div class="bio-portrait-loc">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    Lubango, Huíla — Angola
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick credibility highlights under card -->
+            <div class="bio-quick-stats">
+              <div class="bio-quick-stat-item">
+                <strong>Humpata &amp; EBLD</strong>
+                <span>Formação Técnica</span>
+              </div>
+              <div class="bio-quick-stat-item">
+                <strong>Kimbo do Soba &amp; Casa das Artes</strong>
+                <span>Projetos de Referência</span>
+              </div>
+            </div>
           </div>
 
-          <div class="metric-item">
-            <span class="metric-val" id="stat-counter-2">+5000 M²</span>
-            <span class="metric-label">Espaços Projetados</span>
-            <span class="metric-sub">Residenciais e corporativos</span>
-          </div>
+          <!-- Right Column: Biography Narrative & Credentials -->
+          <div class="bio-content-col">
+            <span class="bio-tag-eyebrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              Biografia &amp; Liderança Criativa
+            </span>
 
-          <div class="metric-item">
-            <span class="metric-val" id="stat-counter-3">4 Anos</span>
-            <span class="metric-label">Experiências Criativas</span>
-            <span class="metric-sub">Desde 2022</span>
-          </div>
+            <h2 class="bio-main-heading">Galvino Caleison Cardoso Chingulo</h2>
+            <p class="bio-sub-title">
+              <span>Fundador da Nexus</span>
+              <span class="bio-sep">•</span>
+              <span>Designer de Interiores</span>
+              <span class="bio-sep">•</span>
+              <span>Especialista em Iluminação</span>
+            </p>
 
-          <div class="metric-item">
-            <span class="metric-val" id="stat-counter-4">8K UHD</span>
-            <span class="metric-label">Projecções Visuais</span>
-            <span class="metric-sub">Renderização em 3D</span>
+            <p class="bio-lead-text">
+              Natural do Lubango, província da Huíla, Galvino Chingulo é um profissional movido pela criatividade, pela inovação e pela paixão de transformar espaços em ambientes que unem estética, funcionalidade, conforto e identidade única.
+            </p>
+
+            <p class="bio-body-text">
+              Com formação sólida em <strong>Construção Civil</strong> pelo Instituto Politécnico da Humpata, compreende os princípios construtivos, cálculo de materiais e o rigor de execução das obras. Direcionou o seu talento criativo para o <strong>Design de Interiores</strong> e o <strong>Lighting Design</strong> de alto padrão, capacitando-se em instituições conceituadas como a <em>Escola Brasileira de Lighting Design</em> e a <em>Academy Trash A</em> em Luanda. Através da <strong>Nexus</strong>, assina projetos autorais que combinam sensibilidade sensorial, modelação técnica de ponta e representação fotorrealista 8K.
+            </p>
+
+            <!-- 4 Pillars of Formation & Specialization from Autobiography -->
+            <h4 class="bio-pillars-title">Formação Académica &amp; Especializações</h4>
+            <div class="bio-pillars-grid">
+
+              <div class="bio-pillar-card">
+                <div class="bio-pillar-icon-box">
+                  <span class="material-symbols-outlined">architecture</span>
+                </div>
+                <h5 class="bio-pillar-heading">Construção Civil</h5>
+                <span class="bio-pillar-institution">Inst. Politécnico da Humpata</span>
+                <p class="bio-pillar-desc">
+                  Base técnica sólida em princípios construtivos, materiais nobres, estabilidade e organização rigorosa de obras.
+                </p>
+              </div>
+
+              <div class="bio-pillar-card">
+                <div class="bio-pillar-icon-box">
+                  <span class="material-symbols-outlined">lightbulb</span>
+                </div>
+                <h5 class="bio-pillar-heading">Lighting Design</h5>
+                <span class="bio-pillar-institution">Escola Brasileira de Lighting Design</span>
+                <p class="bio-pillar-desc">
+                  Aplicação estratégica e cênica da luz, iluminação circadiana e valorização de texturas e volumes espaciais.
+                </p>
+              </div>
+
+              <div class="bio-pillar-card">
+                <div class="bio-pillar-icon-box">
+                  <span class="material-symbols-outlined">chair</span>
+                </div>
+                <h5 class="bio-pillar-heading">Design de Interiores</h5>
+                <span class="bio-pillar-institution">Academy Trash A (Luanda)</span>
+                <p class="bio-pillar-desc">
+                  Composição contemporânea e biofílica, marcenaria sob medida, ergonomia refinada e personalização autoral.
+                </p>
+              </div>
+
+              <div class="bio-pillar-card">
+                <div class="bio-pillar-icon-box">
+                  <span class="material-symbols-outlined">laptop_mac</span>
+                </div>
+                <h5 class="bio-pillar-heading">Fotorrealismo 3D &amp; V-Ray</h5>
+                <span class="bio-pillar-institution">AutoCAD • SketchUp • V-Ray</span>
+                <p class="bio-pillar-desc">
+                  Visualização arquitetónica avançada e renderizações 8K de ultra-definição para aproximar a visão da realidade.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- Founder Quote Block -->
+            <div class="bio-quote-block">
+              <p class="bio-quote-text">
+                “Construo a minha trajetória através do conhecimento, expresso a minha criatividade através do design e transformo ideias em espaços com identidade, propósito e valor.”
+              </p>
+              <div class="bio-quote-author">
+                <span>—</span> Galvino Caleison Cardoso Chingulo
+              </div>
+            </div>
+
+            <!-- Action Buttons: Download PDF and Book Consultation -->
+            <div class="bio-action-group">
+              <a href="/assets/Autobiografia_Galvino_Caleison_Cardoso_Chingulo.pdf"
+                target="_blank" rel="noopener noreferrer"
+                class="btn-bio-pdf"
+                download="Autobiografia_Galvino_Caleison_Cardoso_Chingulo.pdf">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="12" y1="18" x2="12" y2="12"></line>
+                  <polyline points="9 15 12 18 15 15"></polyline>
+                </svg>
+                <div class="btn-bio-pdf-content">
+                  <span class="btn-bio-pdf-title">Descarregar Autobiografia Completa</span>
+                  <span class="btn-bio-pdf-sub">Documento PDF Oficial • Ler trajetória</span>
+                </div>
+              </a>
+
+              <button type="button" class="btn-bio-contact btn-open-appointment-modal">
+                <span>Solicitar Projeto com o Fundador →</span>
+              </button>
+            </div>
+
           </div>
 
         </div>
+
       </div>
-    </div>
+    </section>
 
     <section id="interiores">
       <div class="container">
@@ -153,7 +263,9 @@
         <div class="pillars-light-grid">
 
           <div class="pillar-card">
-            <div class="pillar-icon-pill">☼</div>
+            <div class="pillar-icon-pill">
+              <span class="material-symbols-outlined">wb_sunny</span>
+            </div>
             <h4>Iluminação Circadiana</h4>
             <p>
               Equilíbrio de luz natural diurna com iluminação indireta quente (2700K) embutida em sancas perimétricas
@@ -162,7 +274,9 @@
           </div>
 
           <div class="pillar-card">
-            <div class="pillar-icon-pill">🪵</div>
+            <div class="pillar-icon-pill">
+              <span class="material-symbols-outlined">carpenter</span>
+            </div>
             <h4>Marcenaria Sob Medida</h4>
             <p>
               Painéis acústicos de carvalho, portas de piso ao teto (3.40m) com dobradiças ocultas e estantes que
@@ -171,7 +285,9 @@
           </div>
 
           <div class="pillar-card">
-            <div class="pillar-icon-pill">◇</div>
+            <div class="pillar-icon-pill">
+              <span class="material-symbols-outlined">palette</span>
+            </div>
             <h4>Paleta Tátil &amp; Nobre</h4>
             <p>
               Mármore travertino romano apicoado, latão acetinado escovado manualmente, tecidos em linho puro e
@@ -180,7 +296,9 @@
           </div>
 
           <div class="pillar-card">
-            <div class="pillar-icon-pill">◎</div>
+            <div class="pillar-icon-pill">
+              <span class="material-symbols-outlined">aspect_ratio</span>
+            </div>
             <h4>Ergonomia &amp; Fluidez</h4>
             <p>
               Distribuição espacial calculada na proporção áurea, assegurando circulação fluida entre sala de estar,
@@ -655,7 +773,7 @@
         <div class="footer-col">
           <h4>Navegação</h4>
           <ul class="footer-links">
-            <li><a href="#hero">Sobre </a></li>
+            <li><a href="#biografia">Sobre o Fundador</a></li>
             <li><a href="#servicos">Especialidades</a></li>
             <li><a href="#interiores">Design de Interiores</a></li>
             <li><a href="#visualizador">Galeria 3D</a></li>

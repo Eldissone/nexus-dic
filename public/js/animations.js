@@ -72,35 +72,7 @@
       elements.forEach(reveal);
     }
 
-    const metrics = document.querySelector('.metrics-light-strip');
-    const stat1 = document.getElementById('stat-counter-1');
-    const stat2 = document.getElementById('stat-counter-2');
-    let countersStarted = false;
-    const runCounters = () => {
-      if (countersStarted || !stat1 || !stat2) return;
-      countersStarted = true;
-      const startedAt = performance.now();
-      const duration = 2200;
-      const tick = (now) => {
-        const progress = Math.min((now - startedAt) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        stat1.textContent = `${(98.4 * eased).toFixed(1)}%`;
-        stat2.textContent = `+${Math.round(5000 * eased).toLocaleString('pt-AO')} M²`;
-        if (progress < 1) requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-    };
-    if (metrics && 'IntersectionObserver' in window) {
-      const metricsObserver = new IntersectionObserver((entries, activeObserver) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          runCounters();
-          activeObserver.disconnect();
-        }
-      }, { threshold: 0.15 });
-      metricsObserver.observe(metrics);
-    } else {
-      runCounters();
-    }
+
 
     const clouds = document.querySelector('.hero-clouds-layer');
     if (clouds) {
@@ -298,42 +270,7 @@
     });
   }
 
-  /* ==========================================================================
-     STAT COUNTERS ANIMATION
-     ========================================================================== */
 
-  function animateCounters() {
-    const stat1 = document.getElementById('stat-counter-1'); // 98.4%
-    const stat2 = document.getElementById('stat-counter-2'); // 5000 m²
-
-    if (stat1 && typeof ScrollTrigger !== 'undefined') {
-      ScrollTrigger.create({
-        trigger: '.metrics-light-strip',
-        start: 'top 95%',
-        onEnter: () => {
-          const obj1 = { val: 0 };
-          gsap.to(obj1, {
-            val: 98.4,
-            duration: 2,
-            ease: 'power2.out',
-            onUpdate: () => {
-              stat1.textContent = `${obj1.val.toFixed(1)}%`;
-            }
-          });
-
-          const obj2 = { val: 0 };
-          gsap.to(obj2, {
-            val: 5000,
-            duration: 2.5,
-            ease: 'power3.out',
-            onUpdate: () => {
-              stat2.textContent = `+${Math.round(obj2.val).toLocaleString('pt-AO')} M²`;
-            }
-          });
-        }
-      });
-    }
-  }
 
   /* ==========================================================================
      ACTIVE NAVIGATION TRACKING ON SCROLL
