@@ -203,9 +203,9 @@
 
   const materialsData = {
     'latao': {
-      title: 'Pedra Natural & Perfis Escuros',
-      code: 'NEX-ARQ01',
-      category: 'Fachada contemporânea',
+      title: 'Residência Quilemba',
+      code: 'PRJ-01',
+      category: 'Arquitetura residencial',
       img: '/assets/images/projeto1/1.jpeg',
       specs: [
         { label: 'Revestimento', value: 'Pedra natural escura em planos verticais de destaque' },
@@ -214,8 +214,8 @@
       ]
     },
     'carvalho': {
-      title: 'Deck de Madeira & Área de Lazer',
-      code: 'NEX-EXT02',
+      title: 'Villa Jardim & Piscina',
+      code: 'PRJ-02',
       category: 'Área exterior',
       img: '/assets/images/projeto1/4.jpeg',
       specs: [
@@ -225,9 +225,9 @@
       ]
     },
     'aco': {
-      title: 'Volumes Minerais & Caixilharia',
-      code: 'NEX-ARQ03',
-      category: 'Envolvente arquitetónica',
+      title: 'Casa Horizonte',
+      code: 'PRJ-03',
+      category: 'Arquitetura residencial',
       img: '/assets/images/projeto1/8.jpeg',
       specs: [
         { label: 'Volumes', value: 'Revestimentos minerais claros e planos em grafite' },
@@ -236,8 +236,8 @@
       ]
     },
     'caixilharia': {
-      title: 'Paleta Interior Neutra',
-      code: 'NEX-INT04',
+      title: 'Apartamento Essencial',
+      code: 'PRJ-04',
       category: 'Interiores',
       img: '/assets/images/projeto1/12.jpeg',
       specs: [
@@ -447,7 +447,24 @@
     if (form) {
       form.addEventListener('submit', (event) => {
         event.preventDefault();
-        window.alert('Solicitação de orçamento registada com sucesso! A equipa do Nexus Design de Interiores e Construção entrará em contacto nas próximas 24 horas.');
+        const name = document.getElementById('calc-client-name')?.value.trim() || '';
+        const contact = document.getElementById('calc-client-contact')?.value.trim() || '';
+        const location = document.getElementById('calc-location')?.value.trim() || '';
+        const type = projectType?.options[projectType.selectedIndex]?.text || '';
+        const area = areaInput?.value || '';
+        const details = document.getElementById('calc-project-details')?.value.trim() || '';
+        const message = [
+          'Olá, gostaria de solicitar um orçamento preliminar.',
+          '',
+          `Nome/Empresa: ${name}`,
+          `Contacto: ${contact}`,
+          `Tipo de projeto: ${type}`,
+          `Localização: ${location}`,
+          `Área estimada: ${area} m²`,
+          details ? `Detalhes: ${details}` : ''
+        ].filter(Boolean).join('\n');
+
+        window.open(`https://wa.me/244923000000?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
         modal.classList.remove('active');
       });
     }
@@ -456,6 +473,73 @@
   /* ==========================================================================
      8. GLOBAL MODALS CLOSE LOGIC
      ========================================================================== */
+
+  function initPortfolioGallery() {
+    const filters = document.querySelectorAll('.gallery-filter');
+    const projects = document.querySelectorAll('.gallery-project');
+    const lightbox = document.getElementById('modal-gallery-lightbox');
+    const lightboxImage = document.getElementById('gallery-lightbox-image');
+    const lightboxTitle = document.getElementById('gallery-lightbox-title');
+    const prevButton = document.querySelector('.gallery-lightbox-prev');
+    const nextButton = document.querySelector('.gallery-lightbox-next');
+    let activeProject = 0;
+
+    function visibleProjects() {
+      return [...projects].filter((project) => !project.classList.contains('is-filtered-out'));
+    }
+
+    function showProject(project) {
+      const image = project.querySelector('img');
+      const label = project.querySelector('.gallery-project-overlay span');
+      if (!image || !lightbox || !lightboxImage || !lightboxTitle) return;
+
+      const items = visibleProjects();
+      activeProject = items.indexOf(project);
+      lightboxImage.src = image.currentSrc || image.src;
+      lightboxImage.alt = image.alt;
+      lightboxTitle.textContent = label?.textContent || image.alt;
+      lightbox.classList.add('active');
+    }
+
+    function showRelativeProject(step) {
+      const items = visibleProjects();
+      if (!items.length) return;
+      activeProject = (activeProject + step + items.length) % items.length;
+      showProject(items[activeProject]);
+    }
+
+    filters.forEach((filter) => {
+      filter.addEventListener('click', () => {
+        const category = filter.dataset.galleryFilter;
+        filters.forEach((item) => item.classList.toggle('active', item === filter));
+        projects.forEach((project) => {
+          const categories = project.dataset.galleryCategory.split(' ');
+          project.classList.toggle('is-filtered-out', category !== 'all' && !categories.includes(category));
+        });
+      });
+    });
+
+    projects.forEach((project) => {
+      project.tabIndex = 0;
+      project.setAttribute('role', 'button');
+      project.setAttribute('aria-label', `Ampliar ${project.querySelector('img')?.alt || 'imagem'}`);
+      project.addEventListener('click', () => showProject(project));
+      project.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          showProject(project);
+        }
+      });
+    });
+
+    prevButton?.addEventListener('click', () => showRelativeProject(-1));
+    nextButton?.addEventListener('click', () => showRelativeProject(1));
+    window.addEventListener('keydown', (event) => {
+      if (!lightbox?.classList.contains('active')) return;
+      if (event.key === 'ArrowLeft') showRelativeProject(-1);
+      if (event.key === 'ArrowRight') showRelativeProject(1);
+    });
+  }
 
   function initModalsClose() {
     const allModals = document.querySelectorAll('.modal-backdrop');
@@ -566,6 +650,7 @@
       initFaqAccordion();
       initCadernoPdfModal();
       initAppointmentModal();
+      initPortfolioGallery();
       initModalsClose();
       initTelemetryClockAndCursor();
       initHero3dToggle();

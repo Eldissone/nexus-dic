@@ -54,7 +54,7 @@
             mais na planta</strong> e valorizar cada espaço com identidade única.
         </p>
 
-        <a href="#servicos" class="hero-cta-pill">
+        <a href="#visualizador" class="hero-cta-pill">
           Tenho Interesse
         </a>
       </div>
@@ -456,7 +456,82 @@
           </div>
         </div>
 
-        <div class="viewer-light-card">
+        <div class="gallery-filters" aria-label="Categorias da galeria">
+          <button type="button" class="gallery-filter active" data-gallery-filter="all">Todos</button>
+          <button type="button" class="gallery-filter" data-gallery-filter="construcao">Construção Civil</button>
+          <button type="button" class="gallery-filter" data-gallery-filter="lighting">Lighting Design</button>
+          <button type="button" class="gallery-filter" data-gallery-filter="interiores">Design de Interiores</button>
+          <button type="button" class="gallery-filter" data-gallery-filter="3d">Fotorrealismo 3D &amp; V-Ray</button>
+        </div>
+
+        <div class="portfolio-gallery-grid">
+          <article class="gallery-project gallery-project--wide" data-gallery-category="construcao 3d">
+            <img src="/assets/images/projeto1/1.jpeg" alt="Projeto de construção civil com fachada contemporânea" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Construção Civil</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="interiores lighting">
+            <img src="/assets/images/projeto1/12.jpeg" alt="Sala integrada com iluminação e design de interiores" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Design de Interiores</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="lighting interiores">
+            <img src="/assets/images/projeto1/14.jpeg" alt="Área exterior iluminada ao anoitecer" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Lighting Design</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="3d">
+            <img src="/assets/images/hero_orthogonal_villa.jpg" alt="Visualização arquitetónica fotorrealista em 3D" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Fotorrealismo 3D &amp; V-Ray</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="construcao 3d">
+            <img src="/assets/images/projeto1/8.jpeg" alt="Volumes arquitetónicos de residência contemporânea" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Construção Civil</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="interiores lighting">
+            <img src="/assets/images/i5.jpg" alt="Ambiente interior com iluminação acolhedora" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Interiores &amp; Iluminação</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="construcao">
+            <img src="/assets/images/projeto1/2.jpeg" alt="Obra residencial com linguagem contemporânea" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Construção Civil</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="construcao">
+            <img src="/assets/images/projeto1/3.jpeg" alt="Detalhe de projeto residencial" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Construção Civil</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="lighting">
+            <img src="/assets/images/projeto1/10.jpeg" alt="Iluminação de jardim e fachada" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Lighting Design</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="lighting">
+            <img src="/assets/images/projeto1/13.jpeg" alt="Projeto de iluminação exterior" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Lighting Design</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="interiores">
+            <img src="/assets/images/i2.jpg" alt="Ambiente residencial com design personalizado" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Design de Interiores</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="interiores">
+            <img src="/assets/images/i4.jpg" alt="Composição de interiores contemporânea" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Design de Interiores</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="3d">
+            <img src="/assets/images/projeto1/5.jpeg" alt="Renderização fotorrealista de residência" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Fotorrealismo 3D &amp; V-Ray</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="3d">
+            <img src="/assets/images/projeto1/7.jpeg" alt="Estudo 3D de arquitetura residencial" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Fotorrealismo 3D &amp; V-Ray</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="3d">
+            <img src="/assets/images/projeto1/15.jpeg" alt="Visualização exterior em 3D" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Fotorrealismo 3D &amp; V-Ray</span></div>
+          </article>
+          <article class="gallery-project" data-gallery-category="interiores lighting">
+            <img src="/assets/images/i7.jpg" alt="Interior com luz indireta e materiais naturais" loading="lazy" />
+            <div class="gallery-project-overlay"><span>Interiores &amp; Iluminação</span></div>
+          </article>
+        </div>
+
+        <div class="viewer-light-card" aria-hidden="true">
 
           <!-- Top Toolbar -->
           <div class="viewer-top-toolbar">
@@ -500,59 +575,8 @@
       </div>
     </section>
 
-
     <!-- ==========================================================================
-           SECTION: ANTES DA REQUALIFICAÇÃO VS. PROPOSTA 3D (Slider)
-           ========================================================================== -->
-    <section id="comparacao">
-      <div class="container">
-
-        <div class="section-header-block">
-          <div class="section-header-flex">
-            <div>
-              <h2 class="section-title">Antes da Requalificação vs. Proposta 3D</h2>
-            </div>
-            <p class="section-subtitle">
-              Arraste a barra horizontalmente para conferir a evolução do imóvel bruto até ao resultado arquitetónico
-              contemporâneo.
-            </p>
-          </div>
-        </div>
-
-        <div class="comparison-light-card">
-          <div class="before-after-stage" title="Arraste para comparar o estado inicial com a proposta final">
-
-            <!-- After (Daylight Villa) -->
-            <img src="/assets/images/hero_orthogonal_villa.jpg" alt="Proposta Arquitetónica 3D Concluída"
-              class="stage-image after-img" />
-            <div class="slider-pill-badge pill-after">PROPOSTA FINAL 8K</div>
-
-            <!-- Before (Concrete Skeleton) -->
-            <div class="stage-image-wrap-before">
-              <img src="/assets/images/villa_before.jpg" alt="Estrutura de Betão Bruto Antes da Obra"
-                class="stage-image before-img" />
-              <div class="slider-pill-badge pill-before">ESTRUTURA BRUTA</div>
-            </div>
-
-            <!-- Split Handle Knob -->
-            <div class="split-handle">
-              <div class="handle-knob">⇄</div>
-            </div>
-
-          </div>
-
-          <div class="comparison-caption">
-            <span>ESTRUTURA EXISTENTE</span>
-            <span id="split-percentage-readout">50% / 50%</span>
-            <span>MODELO FOTORREALISTA</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ==========================================================================
-           SECTION: CADERNO DE MATERIAIS
+           SECTION: PROJECTOS EM DESTAQUE
            ========================================================================== -->
     <section id="materiais">
       <div class="container">
@@ -560,10 +584,10 @@
         <div class="section-header-block">
           <div class="section-header-flex">
             <div>
-              <h2 class="section-title">Materiais &amp; Aplicações no Projeto</h2>
+              <h2 class="section-title">Projectos em Destaque</h2>
             </div>
             <p class="section-subtitle">
-              Uma seleção de revestimentos, texturas e acabamentos aplicados nos ambientes deste projeto.
+              Conheça alguns dos nossos projectos e as soluções de arquitectura, interiores e exteriores aplicadas em cada espaço.
             </p>
           </div>
         </div>
@@ -574,10 +598,10 @@
           <article class="mat-light-card material-card" data-category="envolvente" data-material-key="latao">
             <div class="mat-thumb-wrap">
               <img src="/assets/images/projeto1/1.jpeg" alt="Fachada com pedra natural e perfis escuros" loading="lazy" />
-              <span class="mat-badge-code">NEX-ARQ01</span>
+              <span class="mat-badge-code">PRJ-01</span>
             </div>
             <div class="mat-card-content">
-              <h3>Pedra Natural &amp; Perfis Escuros</h3>
+              <h3>Residência Quilemba</h3>
               <p>Textura mineral na fachada, perfis metálicos escuros e iluminação linear para uma entrada marcante.</p>
             </div>
           </article>
@@ -586,10 +610,10 @@
           <article class="mat-light-card material-card" data-category="madeiras" data-material-key="carvalho">
             <div class="mat-thumb-wrap">
               <img src="/assets/images/projeto1/4.jpeg" alt="Deck de madeira junto a piscina" loading="lazy" />
-              <span class="mat-badge-code">NEX-EXT02</span>
+              <span class="mat-badge-code">PRJ-02</span>
             </div>
             <div class="mat-card-content">
-              <h3>Deck de Madeira &amp; Área de Lazer</h3>
+              <h3>Villa Jardim &amp; Piscina</h3>
               <p>Madeira tratada, pedra escura e acabamentos resistentes para uma zona exterior confortável e durável.</p>
             </div>
           </article>
@@ -598,10 +622,10 @@
           <article class="mat-light-card material-card" data-category="envolvente" data-material-key="aco">
             <div class="mat-thumb-wrap">
               <img src="/assets/images/projeto1/8.jpeg" alt="Volumes arquitetónicos com vidro e revestimento mineral" loading="lazy" />
-              <span class="mat-badge-code">NEX-ARQ03</span>
+              <span class="mat-badge-code">PRJ-03</span>
             </div>
             <div class="mat-card-content">
-              <h3>Volumes Minerais &amp; Caixilharia</h3>
+              <h3>Casa Horizonte</h3>
               <p>Planos claros, molduras em grafite e vãos amplos de vidro equilibram privacidade, luz e presença.</p>
             </div>
           </article>
@@ -610,10 +634,10 @@
           <article class="mat-light-card material-card" data-category="interiores" data-material-key="caixilharia">
             <div class="mat-thumb-wrap">
               <img src="/assets/images/projeto1/12.jpeg" alt="Interior com paleta de tons neutros e iluminação indireta" loading="lazy" />
-              <span class="mat-badge-code">NEX-INT04</span>
+              <span class="mat-badge-code">PRJ-04</span>
             </div>
             <div class="mat-card-content">
-              <h3>Paleta Interior Neutra</h3>
+              <h3>Apartamento Essencial</h3>
               <p>Estofos em tons areia, madeira natural e luz indireta criam ambientes elegantes, leves e acolhedores.</p>
             </div>
           </article>
@@ -884,7 +908,7 @@
 
         <div class="form-group form-details-group">
           <label class="form-label">Detalhes Adicionais:</label>
-          <textarea class="form-control" rows="3"
+          <textarea id="calc-project-details" class="form-control" rows="3"
             placeholder="Indique especificações: design de interiores completo, marcenaria sob medida, lançamento imobiliário..."></textarea>
         </div>
 
@@ -964,15 +988,15 @@
   </div>
 
   <!-- ==========================================================================
-         MODAL 3: MATERIAL DETAIL INSPECTOR
+         MODAL 3: DETALHE DO PROJECTO
          ========================================================================== -->
   <div class="modal-backdrop" id="modal-material-detail" role="dialog" aria-modal="true"
     aria-labelledby="mat-detail-modal-title">
     <div class="modal-window">
       <div class="modal-header">
         <div>
-          <span class="section-label modal-section-label">DETALHE DE MATERIAL</span>
-          <h3 id="mat-detail-modal-title" class="modal-mat-title">Especificação de Material</h3>
+          <span class="section-label modal-section-label">DETALHE DO PROJECTO</span>
+          <h3 id="mat-detail-modal-title" class="modal-mat-title">Informações do Projecto</h3>
         </div>
         <button type="button" class="modal-close-btn" aria-label="Fechar modal">✕</button>
       </div>
@@ -991,6 +1015,18 @@
           </button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop gallery-lightbox" id="modal-gallery-lightbox" role="dialog" aria-modal="true" aria-labelledby="gallery-lightbox-title">
+    <div class="gallery-lightbox-window">
+      <button type="button" class="modal-close-btn" aria-label="Fechar visualização">✕</button>
+      <button type="button" class="gallery-lightbox-nav gallery-lightbox-prev" aria-label="Imagem anterior">←</button>
+      <figure class="gallery-lightbox-figure">
+        <img id="gallery-lightbox-image" src="" alt="" />
+        <figcaption id="gallery-lightbox-title"></figcaption>
+      </figure>
+      <button type="button" class="gallery-lightbox-nav gallery-lightbox-next" aria-label="Próxima imagem">→</button>
     </div>
   </div>
 

@@ -217,8 +217,8 @@ h6 {
   z-index: 5;
   text-align: center;
   max-width: 1060px;
-  margin: 2rem auto;
-  top: 5rem;
+  margin: 3rem auto;
+  top: 6rem;
   padding: 2rem 1.5rem 2.5rem 1.5rem;
   display: flex;
   flex-direction: column;
@@ -242,7 +242,7 @@ h6 {
   color: rgba(255, 255, 255, 0.92);
   line-height: 1.6;
   max-width: 680px;
-  margin: 0 auto;
+  margin: 1rem auto;
   font-weight: 400;
 }
 
@@ -250,12 +250,12 @@ h6 {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(255, 255, 255, 0.22);
+  background: var(--color-primary);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: var(--radius-pill);
-  color: #ffffff;
+  color: var(--color-black);
   font-family: var(--font-display);
   font-size: 14.5px;
   font-weight: 600;
@@ -1036,6 +1036,157 @@ section {
 
 #visualizador {
   background: var(--surface-ground);
+}
+
+.gallery-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0 0 2rem;
+}
+
+.gallery-filter {
+  appearance: none;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-pill);
+  background: var(--surface-white);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 650;
+  padding: 0.7rem 1rem;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.gallery-filter:hover,
+.gallery-filter.active {
+  background: var(--color-black);
+  border-color: var(--color-black);
+  color: #fff;
+}
+
+.portfolio-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 280px;
+  gap: 1rem;
+}
+
+.gallery-project {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--surface-subtle);
+  cursor: zoom-in;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.gallery-project--wide {
+  grid-column: span 2;
+}
+
+.gallery-project img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-project:hover img {
+  transform: scale(1.06);
+}
+
+.gallery-project-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: end;
+  padding: 1.25rem;
+  background: linear-gradient(transparent 45%, rgba(0, 0, 0, 0.7));
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.gallery-project.is-filtered-out {
+  display: none;
+}
+
+.gallery-lightbox {
+  z-index: 1100;
+  padding: 2rem;
+}
+
+.gallery-lightbox-window {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: min(1180px, 100%);
+  max-height: 92vh;
+}
+
+.gallery-lightbox-window > .modal-close-btn {
+  position: absolute;
+  z-index: 2;
+  top: 0.75rem;
+  right: 0.75rem;
+}
+
+.gallery-lightbox-figure {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+  margin: 0;
+}
+
+.gallery-lightbox-figure img {
+  display: block;
+  width: 100%;
+  max-height: calc(92vh - 3rem);
+  border-radius: var(--radius-card);
+  background: #111827;
+  object-fit: contain;
+}
+
+.gallery-lightbox-figure figcaption {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-weight: 650;
+  text-align: center;
+}
+
+.gallery-lightbox-nav {
+  position: absolute;
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--color-black);
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.gallery-lightbox-prev {
+  left: 1rem;
+}
+
+.gallery-lightbox-next {
+  right: 1rem;
+}
+
+/* The old single-image viewer is retained in the markup for compatibility,
+   but the portfolio now uses the visual gallery above. */
+#visualizador .viewer-light-card {
+  display: none;
 }
 
 .viewer-light-card {
@@ -2011,6 +2162,10 @@ section {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .portfolio-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .process-light-row {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -2129,6 +2284,41 @@ section {
 
   .materials-light-grid {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-gallery-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 250px;
+  }
+
+  .gallery-project--wide {
+    grid-column: span 1;
+  }
+
+  .gallery-filters {
+    gap: 0.5rem;
+  }
+
+  .gallery-filter {
+    font-size: 0.74rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .gallery-lightbox {
+    padding: 1rem;
+  }
+
+  .gallery-lightbox-nav {
+    top: auto;
+    bottom: 3.25rem;
+  }
+
+  .gallery-lightbox-prev {
+    left: 0.75rem;
+  }
+
+  .gallery-lightbox-next {
+    right: 0.75rem;
   }
 
   .before-after-stage {
