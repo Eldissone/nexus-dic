@@ -32,6 +32,101 @@
     revealVisibleRows();
   }
 
+  function initEditorialScrollSections() {
+    const steps = document.querySelectorAll('.scroll-story-step');
+    const featureImage = document.getElementById('story-feature-image');
+    const featureLabel = document.getElementById('story-feature-label');
+    const reveals = document.querySelectorAll('.scroll-reveal');
+
+    if ('IntersectionObserver' in window) {
+      reveals.forEach((element) => element.classList.add('is-prepared'));
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.18 });
+      reveals.forEach((element) => revealObserver.observe(element));
+
+      const storyObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          steps.forEach((step) => step.classList.toggle('is-active', step === entry.target));
+          if (featureImage && entry.target.dataset.storyImage) {
+            featureImage.style.opacity = '0';
+            window.setTimeout(() => {
+              featureImage.src = entry.target.dataset.storyImage;
+              featureImage.style.opacity = '1';
+            }, 180);
+            featureLabel.textContent = entry.target.dataset.storyLabel || '';
+          }
+        });
+      }, { threshold: 0.58 });
+      steps.forEach((step) => storyObserver.observe(step));
+    } else {
+      reveals.forEach((element) => element.classList.add('is-visible'));
+    }
+  }
+
+  function initShowreel() {
+    const canvas = document.getElementById('showreel-canvas');
+    if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const context = canvas.getContext('2d');
+    const duration = 15000;
+    let width = 0;
+    let height = 0;
+    let scale = 1;
+
+    function resize() {
+      const box = canvas.getBoundingClientRect();
+      scale = Math.min(window.devicePixelRatio || 1, 2);
+      width = box.width; height = box.height;
+      canvas.width = Math.round(width * scale); canvas.height = Math.round(height * scale);
+      context.setTransform(scale, 0, 0, scale, 0, 0);
+    }
+    function clamp(value) { return Math.max(0, Math.min(1, value)); }
+    function ease(value) { return value * value * (3 - 2 * value); }
+    function phase(time, start, end) { return ease(clamp((time - start) / (end - start))); }
+    function text(textValue, x, y, size, alpha, align) {
+      context.globalAlpha = alpha; context.font = `700 ${size}px Space Grotesk, sans-serif`; context.textAlign = align || 'left'; context.fillStyle = '#f7f7f4'; context.fillText(textValue, x, y); context.globalAlpha = 1;
+    }
+    function draw(now) {
+      const time = now % duration;
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = '#090a0b'; context.fillRect(0, 0, width, height);
+      const yellow = '#f0e638'; const cx = width / 2; const cy = height / 2;
+      const a = phase(time, 0, 2900); const b = phase(time, 2800, 5800); const c = phase(time, 5700, 9000); const d = phase(time, 8900, 12000); const e = phase(time, 11900, 15000);
+
+      // Act I: blueprint rhythm
+      context.strokeStyle = `rgba(240,230,56,${.7 * a})`; context.lineWidth = 1;
+      for (let index = -6; index < 7; index++) { const pos = cx + index * (width / 12); context.beginPath(); context.moveTo(pos, cy - height * .31 * a); context.lineTo(pos, cy + height * .31 * a); context.stroke(); }
+      text('SPACE', cx, cy + 22, Math.min(width * .17, 180), a, 'center');
+
+      // Act II: geometry becomes an architectural frame
+      const frame = Math.min(width, height) * (.12 + .23 * b); context.strokeStyle = `rgba(247,247,244,${b})`; context.lineWidth = 3;
+      context.strokeRect(cx - frame * 1.6, cy - frame, frame * 3.2, frame * 2);
+      context.fillStyle = `rgba(240,230,56,${.92 * b})`; context.fillRect(cx - frame * 1.6, cy - frame, frame * 1.1, frame * 2);
+      text('LIGHT', cx, cy + 18, Math.min(width * .14, 150), b, 'center');
+
+      // Act III: kinetic material stripes
+      context.save(); context.translate(cx, cy); context.rotate((c - .5) * .45); context.globalAlpha = c;
+      for (let index = 0; index < 13; index++) { context.fillStyle = index % 2 ? '#f0e638' : '#f7f7f4'; context.fillRect(-width * .4 + index * width * .065, -height * .5, width * .027, height); }
+      context.restore(); text('MATTER', cx, cy + 18, Math.min(width * .12, 132), c, 'center');
+
+      // Act IV: editorial black & white lockup
+      context.fillStyle = `rgba(247,247,244,${d})`; context.fillRect(0, 0, width * d, height);
+      context.fillStyle = '#090a0b'; context.globalAlpha = d; context.font = `700 ${Math.min(width * .15, 170)}px Space Grotesk, sans-serif`; context.textAlign = 'center'; context.fillText('NEXUS', cx, cy + 22); context.globalAlpha = 1;
+      context.strokeStyle = `rgba(9,10,11,${d})`; context.strokeRect(width*.12, height*.18, width*.76, height*.64);
+
+      // Act V: final resume card
+      context.fillStyle = `rgba(9,10,11,${e})`; context.fillRect(0, 0, width, height);
+      text('MOTION DESIGNER', cx, cy - 28, Math.min(width * .058, 68), e, 'center');
+      context.fillStyle = `rgba(240,230,56,${e})`; context.fillRect(cx - 58, cy + 6, 116 * e, 6);
+      context.font = '600 12px JetBrains Mono, monospace'; context.textAlign = 'center'; context.fillStyle = `rgba(247,247,244,${e})`; context.fillText('SPACE / LIGHT / MATTER / FORM', cx, cy + 48);
+      requestAnimationFrame(draw);
+    }
+    resize(); window.addEventListener('resize', resize); requestAnimationFrame(draw);
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initProcessStepReveals, { once: true });
   } else {
@@ -40,6 +135,15 @@
 
   if (typeof gsap === 'undefined') {
     initNativeAnimations();
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        initEditorialScrollSections();
+        initShowreel();
+      }, { once: true });
+    } else {
+      initEditorialScrollSections();
+      initShowreel();
+    }
     return;
   }
 
@@ -304,5 +408,7 @@
   document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     setupNavTracking();
+    initEditorialScrollSections();
+    initShowreel();
   });
 })();
